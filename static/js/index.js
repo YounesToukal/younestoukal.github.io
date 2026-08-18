@@ -1,8 +1,9 @@
 /* ==========================================================================
    Younes Toukal — personal academic site
-   Three small enhancements, all progressive: with JS disabled the page is
+   Four small enhancements, all progressive: with JS disabled the page is
    fully readable and every anchor still works (smooth scrolling and the
-   sticky-nav offset are handled in CSS).
+   sticky-nav offset are handled in CSS, and the dark-mode toggle falls back
+   to following the OS preference via a plain CSS media query).
    ========================================================================== */
 
 (function () {
@@ -86,5 +87,28 @@
     });
 
     sections.forEach(function (section) { navObserver.observe(section); });
+  }
+
+  /* ------------------------------------------------------------------
+     4. Dark-mode toggle
+        The icon shown for each theme, and the OS-preference fallback for
+        anyone who never clicks the toggle, are handled entirely in CSS
+        (see .theme-toggle in index.css) — this only needs to flip the
+        explicit override and remember it. A matching inline script in
+        <head> applies a saved choice before first paint.
+     ------------------------------------------------------------------ */
+  var themeToggle = document.querySelector('.theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme');
+      var systemDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = current ? current === 'dark' : systemDark;
+      var next = isDark ? 'light' : 'dark';
+
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
   }
 })();
