@@ -1,0 +1,605 @@
+/* ==========================================================================
+   Younes Toukal — personal academic site
+   Structure follows the Nerfies project-page template (CC BY-SA 4.0):
+   https://github.com/nerfies/nerfies.github.io
+   Styling is original — light theme, single accent, Inter.
+
+   Retheming: everything visual is driven by the custom properties below.
+   ========================================================================== */
+
+:root {
+  /* --- colour ------------------------------------------------------------ */
+  --accent:        #0f766e;   /* deep teal — deliberately not corporate blue */
+  --accent-dark:   #0b5b55;
+  --accent-soft:   #ccfbf1;
+  --ink:           #14181d;   /* body text */
+  --ink-strong:    #0a0d10;   /* headings */
+  --ink-muted:     #5b6570;   /* dates, captions, tags */
+  --bg:            #ffffff;
+  --bg-alt:        #f7f8f9;   /* alternating section bands */
+  --rule:          #e3e6e9;
+
+  /* --- type -------------------------------------------------------------- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  /* --- layout ------------------------------------------------------------ */
+  --container: 960px;
+  --measure:   68ch;          /* max line length for running prose */
+  --nav-h:     60px;
+  --radius:    10px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Reset / base
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* keeps anchored sections clear of the sticky navbar */
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  color: var(--ink-strong);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration: underline; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+img { max-width: 100%; height: auto; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Shared inline-SVG icon sizing. Deliberately sets no fill/stroke — each
+   <symbol> in the sprite carries its own, and they resolve to currentColor. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Layout primitives (Nerfies vocabulary: .container / .section)
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 84px 0;
+  border-top: 1px solid var(--rule);
+}
+.section.is-alt { background: var(--bg-alt); }
+
+.prose { max-width: var(--measure); }
+
+
+/* --------------------------------------------------------------------------
+   Section headers — 4M style: small label, thin rule, generous margin.
+   Deliberately not boxed cards.
+   -------------------------------------------------------------------------- */
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 12px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-intro {
+  max-width: var(--measure);
+  margin-top: -12px;
+  margin-bottom: 32px;
+  color: var(--ink-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   Buttons (Nerfies .button / .publication-links / .link-block)
+   -------------------------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+.button:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button.is-accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.button.is-accent:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #fff;
+}
+
+.button.is-small {
+  padding: 7px 14px;
+  font-size: 0.85rem;
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+.link-block { display: inline-flex; }
+
+
+/* --------------------------------------------------------------------------
+   Navbar — sticky; the CV button never scrolls out of reach
+   -------------------------------------------------------------------------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+}
+
+.navbar-brand {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink-strong);
+  flex: none;
+}
+.navbar-brand:hover { text-decoration: none; color: var(--accent); }
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.navbar-item {
+  position: relative;
+  padding: 6px 12px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  border-radius: 6px;
+}
+.navbar-item:hover { text-decoration: none; color: var(--ink-strong); }
+
+/* set by index.js as the reader scrolls */
+.navbar-item.is-active { color: var(--accent); }
+.navbar-item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.navbar-cv { flex: none; }
+
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero { background: var(--bg); }
+
+.hero-body {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.hero-portrait {
+  width: 180px;
+  height: 180px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 18px;              /* softly-rounded square, per PLAN §2 */
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+
+.hero-text { min-width: 0; }
+
+.publication-title {
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.hero-role {
+  font-size: 1.06rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.hero-role .sep { color: var(--rule); margin: 0 6px; }
+
+.hero-tagline {
+  max-width: 56ch;
+  color: var(--ink-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   Education timeline
+   -------------------------------------------------------------------------- */
+
+.timeline { display: grid; gap: 30px; }
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 24px;
+  padding-left: 20px;
+  border-left: 2px solid var(--rule);
+}
+
+.timeline-date {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-title { font-size: 1.14rem; margin-bottom: 3px; }
+
+.timeline-org {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+
+.timeline-detail {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  max-width: var(--measure);
+}
+
+
+/* --------------------------------------------------------------------------
+   Research / project cards
+   -------------------------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.card:hover {
+  border-color: #cfd5da;
+  box-shadow: 0 2px 16px rgba(20, 24, 29, 0.05);
+}
+
+.card-title { font-size: 1.12rem; margin-bottom: 6px; }
+
+.card-org {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+
+.card .tags { margin-top: auto; }
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.link-arrow {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.link-arrow::after {
+  content: " \2192";
+  transition: margin-left .18s ease;
+  display: inline-block;
+}
+.link-arrow:hover { text-decoration: none; }
+.link-arrow:hover::after { margin-left: 4px; }
+
+
+/* --------------------------------------------------------------------------
+   Tags — shared by cards and the skills section
+   -------------------------------------------------------------------------- */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tags li {
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-size: 0.79rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.is-alt .tags li { background: var(--bg); }
+
+
+/* --------------------------------------------------------------------------
+   Academic service
+   -------------------------------------------------------------------------- */
+
+.service {
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.service-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+
+.service p { font-size: 0.95rem; }
+
+
+/* --------------------------------------------------------------------------
+   Skills — grouped, not a wall of tags
+   -------------------------------------------------------------------------- */
+
+.skills { display: grid; gap: 32px; }
+
+.skill-group {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.skill-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: 5px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.contact-list { display: grid; gap: 14px; }
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.98rem;
+}
+
+.contact-list .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.footer {
+  padding: 40px 0 56px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg-alt);
+  font-size: 0.87rem;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.footer p { margin-bottom: 6px; }
+.footer-credit { font-size: 0.82rem; }
+
+
+/* --------------------------------------------------------------------------
+   Scroll reveal — subtle only (PLAN §2). Applied by index.js, which also
+   adds .js-reveal so the content stays visible when JS is unavailable.
+   -------------------------------------------------------------------------- */
+
+.js-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.js-reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .hero-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .hero-portrait { width: 132px; height: 132px; }
+
+  .timeline-item,
+  .skill-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .timeline-date { padding-top: 0; }
+  .skill-label { padding-top: 0; }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+
+  .section { padding: 60px 0; }
+
+  .container { padding: 0 18px; }
+
+  .navbar-inner { gap: 12px; }
+
+  /* nav links become a compact scrolling strip; brand and CV button stay put */
+  .navbar-menu {
+    margin-left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .navbar-menu::-webkit-scrollbar { display: none; }
+
+  .navbar-item { padding: 6px 9px; font-size: 0.86rem; }
+
+  .navbar-cv span { display: none; }   /* icon-only CV button on narrow screens */
+  .navbar-cv { padding: 8px 10px; }
+
+  .cards { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+  .navbar-brand { display: none; }     /* reclaim width for the nav strip */
+}
+
+
+/* --------------------------------------------------------------------------
+   Accessibility & print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .js-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .navbar, .footer { display: none; }
+  .section { padding: 24px 0; border-top: none; }
+  .card { break-inside: avoid; }
+  a { color: var(--ink); }
+}

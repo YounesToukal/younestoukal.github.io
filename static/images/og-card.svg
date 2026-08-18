@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     role="img" aria-label="Younes Toukal — Materials Engineering and Computer Vision">
+  <!-- PLACEHOLDER social preview. Most platforms prefer PNG/JPG over SVG for
+       og:image — replace this with a 1200x630 PNG and update the og:image
+       meta tag in index.html. -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="0" y="0" width="12" height="630" fill="#0f766e"/>
+
+  <text x="90" y="268" font-family="Georgia, 'Times New Roman', serif"
+        font-size="76" font-weight="700" fill="#0a0d10">Younes Toukal</text>
+
+  <text x="90" y="330" font-family="Inter, 'Segoe UI', sans-serif"
+        font-size="30" font-weight="500" fill="#14181d">Materials Engineering M2 — Université Paris-Saclay</text>
+
+  <text x="90" y="378" font-family="Inter, 'Segoe UI', sans-serif"
+        font-size="30" font-weight="500" fill="#0f766e">AI &amp; Computer Vision research</text>
+
+  <rect x="90" y="432" width="120" height="3" fill="#e3e6e9"/>
+
+  <text x="90" y="486" font-family="Inter, 'Segoe UI', sans-serif"
+        font-size="24" fill="#5b6570">younestoukal.github.io</text>
+</svg>

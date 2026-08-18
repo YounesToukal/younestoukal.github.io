@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Younes Toukal — Materials Engineering &amp; Computer Vision</title>
+  <meta name="description"
+        content="Younes Toukal — Materials Engineering M2 student at Université Paris-Saclay working at the
+                 intersection of materials science and AI / computer vision.">
+  <meta name="keywords"
+        content="Younes Toukal, materials engineering, computer vision, deep learning, generative models,
+                 Paris-Saclay, MATEC">
+  <meta name="author" content="Younes Toukal">
+
+  <link rel="canonical" href="https://younestoukal.github.io/">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Younes Toukal — Materials Engineering &amp; Computer Vision">
+  <meta property="og:description"
+        content="Materials Engineering M2 at Université Paris-Saclay, working across materials science and
+                 AI / computer vision.">
+  <meta property="og:url" content="https://younestoukal.github.io/">
+  <!-- TODO: replace og-card.svg with a real 1200x630 PNG once a headshot/branding exists -->
+  <meta property="og:image" content="https://younestoukal.github.io/static/images/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     Inline SVG icon sprite. Replaces Font Awesome / Academicons
+     from the Nerfies template — no icon-font dependency.
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>
+  </symbol>
+  <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 9.5h5.16V21H2.4zM9.9 9.5h4.94v1.57h.07c.69-1.24
+             2.37-2.55 4.88-2.55 5.22 0 6.18 3.28 6.18 7.55V21h-5.15v-4.86c0-1.16-.02-2.65-1.68-2.65-1.68
+             0-1.94 1.26-1.94 2.57V21H9.9z"/>
+  </symbol>
+  <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58
+             0-.29-.01-1.05-.02-2.06-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73
+             1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96
+             0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55
+             3.3-1.23 3.3-1.23.65 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48
+             5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.83.58A12.01 12.01 0 0 0 24 12.5C24
+             5.87 18.63.5 12 .5z"/>
+  </symbol>
+  <symbol id="icon-scholar" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2 1 8l11 6 9-4.91V16h2V8zM4 13.4V17c0 2.21 3.58 4 8 4s8-1.79 8-4v-3.6l-8 4.36z"/>
+  </symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+</svg>
+
+
+<!-- ============================================================
+     Nav — sticky, CV button always reachable (PLAN §1)
+     ============================================================ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container navbar-inner">
+    <a class="navbar-brand" href="#home">Younes&nbsp;Toukal</a>
+
+    <div class="navbar-menu">
+      <a class="navbar-item" href="#about">About</a>
+      <a class="navbar-item" href="#education">Education</a>
+      <a class="navbar-item" href="#research">Research</a>
+      <a class="navbar-item" href="#skills">Skills</a>
+      <a class="navbar-item" href="#contact">Contact</a>
+    </div>
+
+    <!-- TODO: replace static/pdfs/CV.pdf with the real CV (keep the filename and this link works as-is) -->
+    <a class="button is-accent is-small navbar-cv" href="./static/pdfs/CV.pdf" download>
+      <svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>
+      <span>Download CV</span>
+    </a>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     Hero
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="container hero-body">
+
+    <!-- TODO: replace headshot.svg with a real square photo (headshot.jpg, ~600x600 or larger)
+         and update the src below. Everything else stays the same. -->
+    <img class="hero-portrait" src="./static/images/headshot.svg"
+         alt="Portrait of Younes Toukal" width="180" height="180">
+
+    <div class="hero-text">
+      <h1 class="publication-title">Younes Toukal</h1>
+
+      <p class="hero-role">
+        Materials Engineering M2 &mdash; Université Paris-Saclay
+        <span class="sep">·</span>
+        AI &amp; Computer Vision research
+      </p>
+
+      <p class="hero-tagline">
+        I work where materials science meets computer vision &mdash; building and studying models
+        that learn from images, volumes and video.
+      </p>
+
+      <div class="publication-links">
+        <span class="link-block">
+          <a class="button is-accent" href="./static/pdfs/CV.pdf" download>
+            <svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>
+            <span>Download CV</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <!-- TODO: replace with the email address you want publicly listed -->
+          <a class="button" href="mailto:TODO-your-email@example.com">
+            <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg>
+            <span>Email</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <!-- TODO: replace TODO with your LinkedIn vanity slug -->
+          <a class="button" href="https://www.linkedin.com/in/TODO" rel="noopener" target="_blank">
+            <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a class="button" href="https://github.com/younestoukal" rel="noopener" target="_blank">
+            <svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>
+            <span>GitHub</span>
+          </a>
+        </span>
+
+        <!-- Google Scholar — uncomment and fill in the profile URL once you have one.
+        <span class="link-block">
+          <a class="button" href="https://scholar.google.com/citations?user=TODO" rel="noopener" target="_blank">
+            <svg class="icon" aria-hidden="true"><use href="#icon-scholar"/></svg>
+            <span>Scholar</span>
+          </a>
+        </span>
+        -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     About
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-label">About</h2>
+
+    <!-- ============================================================
+         DRAFT BIO — written from PLAN.md §3, not dictated by Younes.
+         Read it once and edit freely; the facts are inferred, not confirmed.
+         ============================================================ -->
+    <div class="content prose">
+      <p>
+        I am a Materials Engineering M2 student at Université Paris-Saclay (MATEC), working at the
+        intersection of materials science and machine learning. I did my earlier degree at USTHB in
+        Algiers before moving to France to specialise.
+      </p>
+      <p>
+        That dual background is deliberate. Materials science taught me to reason about physical
+        mechanisms &mdash; how a glass fails under thermal shock, why a microstructure looks the way it
+        does &mdash; and computer vision gave me the tools to measure those things at scale. Most of the
+        interesting problems I have worked on sit in that overlap: characterisation data that is really
+        an image problem, and vision models that are only trustworthy if you understand what generated
+        the data.
+      </p>
+      <p>
+        My recent work spans generative models (diffusion samplers, ControlNet, LoRA, flow matching),
+        3D reconstruction from single cameras, video understanding, and medical image analysis. I am
+        currently looking for a PhD position where I can keep working across both fields.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Education
+     ============================================================ -->
+<section class="section is-alt" id="education">
+  <div class="container">
+    <h2 class="section-label">Education</h2>
+
+    <ul class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-date">2025 &ndash; 2026</div>
+        <div class="timeline-body">
+          <h3 class="timeline-title">M2 MATEC &mdash; Materials Science &amp; Engineering</h3>
+          <p class="timeline-org">Université Paris-Saclay, France</p>
+          <p class="timeline-detail">
+            Materials characterisation and modelling, taken alongside self-directed work in deep
+            learning and computer vision.
+          </p>
+        </div>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-date">Until 2025</div>
+        <div class="timeline-body">
+          <!-- TODO: confirm the exact degree title, field and years for the USTHB entry -->
+          <h3 class="timeline-title">Master LMD</h3>
+          <p class="timeline-org">Université des Sciences et de la Technologie Houari Boumediene (USTHB), Algiers</p>
+          <p class="timeline-detail">
+            Foundation in materials science and engineering.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Research / Projects
+     ============================================================ -->
+<section class="section" id="research">
+  <div class="container">
+    <h2 class="section-label">Research &amp; Projects</h2>
+    <p class="section-intro">
+      Selected work across materials engineering and computer vision.
+    </p>
+
+    <!-- TODO: for any card below, add a link row like the commented example in the first card
+         once a repo, report or demo is public. Cards without links render cleanly as-is. -->
+    <div class="cards">
+
+      <article class="card">
+        <h3 class="card-title">Thermal tempering and thermal shock in glass</h3>
+        <p class="card-org">SEDIVER · IPR&ndash;ISCR, Rennes</p>
+        <p class="card-desc">
+          Study of residual stress build-up during thermal tempering of glass insulators and the
+          conditions under which thermal shock drives failure. Combines the process side (quench
+          parameters, stress profiles) with the characterisation side.
+        </p>
+        <ul class="tags">
+          <li>Glass</li><li>Thermal shock</li><li>Residual stress</li><li>Characterisation</li>
+        </ul>
+        <!-- Example link row — copy into any card once you have a URL:
+        <div class="card-links">
+          <a class="link-arrow" href="https://github.com/younestoukal/REPO" rel="noopener" target="_blank">Code</a>
+          <a class="link-arrow" href="./static/pdfs/REPORT.pdf">Report</a>
+        </div>
+        -->
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">Generative models from the ground up</h3>
+        <p class="card-org">ACVSS 2026</p>
+        <p class="card-desc">
+          Hand-built a DDIM sampler with classifier-free guidance rather than calling a library, then
+          worked through conditioning and adaptation on Stable Diffusion 1.5 &mdash; ControlNet, LoRA
+          fine-tuning, and flow matching as an alternative formulation.
+        </p>
+        <ul class="tags">
+          <li>Diffusion</li><li>DDIM / CFG</li><li>ControlNet</li><li>LoRA</li><li>Flow matching</li><li>PyTorch</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">Depth &amp; 3D reconstruction in an operating room</h3>
+        <p class="card-desc">
+          Reconstructing 3D scene geometry and meshes from a single fisheye camera mounted in a medical
+          simulation trauma room. The wide-angle distortion and the cluttered, occluded scene are the
+          hard parts &mdash; standard pinhole depth pipelines do not transfer directly.
+        </p>
+        <ul class="tags">
+          <li>3D reconstruction</li><li>Fisheye</li><li>Depth estimation</li><li>Medical simulation</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">VesselVis &mdash; 3D vessel segmentation review tool</h3>
+        <p class="card-desc">
+          A full-stack web tool for reviewing and correcting 3D liver vasculature segmentations:
+          synchronised 2D slice views and a 3D mesh viewer, with annotation, relabelling and island-removal
+          interventions that write back to the volume.
+        </p>
+        <ul class="tags">
+          <li>FastAPI</li><li>React</li><li>Three.js</li><li>Medical imaging</li><li>Segmentation</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">Video understanding &amp; action recognition</h3>
+        <p class="card-desc">
+          Compared representative approaches to action recognition on the KTH dataset: frozen DINOv2
+          features with a temporal head, LSTM sequence models, I3D, and video transformers &mdash; looking
+          at what each buys you relative to its cost.
+        </p>
+        <ul class="tags">
+          <li>DINOv2</li><li>I3D</li><li>LSTM</li><li>Video transformers</li><li>KTH</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">Saliency-inspired vision architecture</h3>
+        <p class="card-desc">
+          An ongoing research idea for a vision architecture that takes its structure from visual
+          saliency and attention rather than applying attention uniformly over a fixed token grid.
+        </p>
+        <ul class="tags">
+          <li>Architecture design</li><li>Attention</li><li>Saliency</li><li>Work in progress</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="service">
+      <h3 class="service-label">Academic Service</h3>
+      <!-- TODO: add the venue name and year for the poster judging role -->
+      <p>Poster session judge &mdash; <em>venue and year to confirm</em>.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Skills
+     ============================================================ -->
+<section class="section is-alt" id="skills">
+  <div class="container">
+    <h2 class="section-label">Skills</h2>
+
+    <div class="skills">
+      <div class="skill-group">
+        <h3 class="skill-label">Languages &amp; Tools</h3>
+        <ul class="tags">
+          <li>Python</li><li>PyTorch</li><li>NumPy</li><li>OpenCV</li><li>scikit-learn</li>
+          <li>FastAPI</li><li>React</li><li>Three.js</li><li>Git</li><li>Docker</li><li>Linux</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-label">Domains</h3>
+        <ul class="tags">
+          <li>Computer Vision</li><li>Generative Models</li><li>3D Reconstruction</li>
+          <li>Medical Image Analysis</li><li>Video Understanding</li><li>Materials Science</li>
+          <li>Materials Characterisation</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-label">Languages</h3>
+        <ul class="tags">
+          <li>French</li><li>English</li><li>Arabic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Contact
+     ============================================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2 class="section-label">Contact</h2>
+    <p class="section-intro">
+      The fastest way to reach me is email. I am open to PhD positions and research collaborations.
+    </p>
+
+    <ul class="contact-list">
+      <li>
+        <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg>
+        <!-- TODO: replace with the email address you want publicly listed (appears twice: href + text) -->
+        <a href="mailto:TODO-your-email@example.com">TODO-your-email@example.com</a>
+      </li>
+      <li>
+        <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"/></svg>
+        <!-- TODO: replace TODO with your LinkedIn vanity slug -->
+        <a href="https://www.linkedin.com/in/TODO" rel="noopener" target="_blank">linkedin.com/in/TODO</a>
+      </li>
+      <li>
+        <svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>
+        <a href="https://github.com/younestoukal" rel="noopener" target="_blank">github.com/younestoukal</a>
+      </li>
+      <li>
+        <svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>
+        <span>Île-de-France, France</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Footer — CC BY-SA 4.0 attribution is a licence obligation of
+     reusing the Nerfies template. Please keep both links.
+     ============================================================ -->
+<footer class="footer">
+  <div class="container content">
+    <p>
+      &copy; <span id="year">2026</span> Younes Toukal. This website is licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+      Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+    <p class="footer-credit">
+      Built on the <a href="https://github.com/nerfies/nerfies.github.io" rel="noopener" target="_blank">Nerfies</a>
+      project page template.
+    </p>
+  </div>
+</footer>
+
+<script src="./static/js/index.js"></script>
+</body>
+</html>

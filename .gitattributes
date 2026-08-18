@@ -1,0 +1,17 @@
+# Normalise line endings for text so the repo stays LF regardless of platform.
+* text=auto eol=lf
+
+# Binary assets — never apply line-ending conversion. Converting LF to CRLF
+# inside a PDF corrupts its byte offsets and makes the file unreadable.
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+
+# SVG is text, but keep it LF like everything else.
+*.svg  text eol=lf

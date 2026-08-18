@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"
+     role="img" aria-label="Placeholder portrait">
+  <!-- PLACEHOLDER. Replace this file with a real square photo (e.g. headshot.jpg,
+       600x600 or larger) and update the <img src> in index.html. -->
+  <rect width="400" height="400" fill="#eef0f2"/>
+
+  <!-- generic avatar silhouette -->
+  <circle cx="200" cy="158" r="58" fill="#c8cdd2"/>
+  <path d="M200 232c-58 0-104 36-114 88h228c-10-52-56-88-114-88z" fill="#c8cdd2"/>
+
+  <text x="200" y="368" text-anchor="middle"
+        font-family="Inter, Segoe UI, sans-serif" font-size="19" font-weight="600"
+        letter-spacing="1.6" fill="#8a929a">PHOTO PLACEHOLDER</text>
+</svg>
