@@ -38,7 +38,6 @@ Select-String -Path index.html -Pattern TODO
 
 | What | Where |
 |---|---|
-| Headshot photo | `static/images/headshot.svg` → replace with a square photo, update the `<img src>` |
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
 | Public email | `index.html` — appears in the hero button and the contact list |
 | LinkedIn URL | `index.html` — hero button and contact list |
