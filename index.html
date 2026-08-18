@@ -119,10 +119,7 @@
     </button>
 
     <!-- TODO: replace static/pdfs/CV.pdf with the real CV (keep the filename and this link works as-is) -->
-    <a class="button is-accent is-small navbar-cv" href="./static/pdfs/CV.pdf" download>
-      <svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>
-      <span>Download CV</span>
-    </a>
+    <a class="navbar-item navbar-cv" href="./static/pdfs/CV.pdf" download>CV</a>
   </div>
 </nav>
 
@@ -151,39 +148,17 @@
       </p>
 
       <div class="hero-actions">
-        <span class="action-item">
-          <a class="button is-accent" href="./static/pdfs/CV.pdf" download>
-            <svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>
-            <span>Download CV</span>
-          </a>
-        </span>
-        <span class="action-item">
-          <a class="button" href="mailto:younesstoukal2@gmail.com">
-            <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg>
-            <span>Email</span>
-          </a>
-        </span>
-        <span class="action-item">
-          <!-- TODO: replace TODO with your LinkedIn vanity slug -->
-          <a class="button" href="https://www.linkedin.com/in/TODO" rel="noopener" target="_blank">
-            <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"/></svg>
-            <span>LinkedIn</span>
-          </a>
-        </span>
-        <span class="action-item">
-          <a class="button" href="https://github.com/younestoukal" rel="noopener" target="_blank">
-            <svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>
-            <span>GitHub</span>
-          </a>
-        </span>
-
+        <a href="./static/pdfs/CV.pdf" download>CV</a>
+        <span class="dot">&middot;</span>
+        <a href="mailto:younesstoukal2@gmail.com">Email</a>
+        <span class="dot">&middot;</span>
+        <!-- TODO: replace TODO with your LinkedIn vanity slug -->
+        <a href="https://www.linkedin.com/in/TODO" rel="noopener" target="_blank">LinkedIn</a>
+        <span class="dot">&middot;</span>
+        <a href="https://github.com/younestoukal" rel="noopener" target="_blank">GitHub</a>
         <!-- Google Scholar — uncomment and fill in the profile URL once you have one.
-        <span class="action-item">
-          <a class="button" href="https://scholar.google.com/citations?user=TODO" rel="noopener" target="_blank">
-            <svg class="icon" aria-hidden="true"><use href="#icon-scholar"/></svg>
-            <span>Scholar</span>
-          </a>
-        </span>
+        <span class="dot">&middot;</span>
+        <a href="https://scholar.google.com/citations?user=TODO" rel="noopener" target="_blank">Scholar</a>
         -->
       </div>
     </div>
@@ -275,74 +250,86 @@
       <article class="card">
         <img class="card-image" src="./static/images/projects/thermal-tempering.svg"
              alt="Thermal tempering and thermal shock in glass — placeholder">
-        <h3 class="card-title">Thermal tempering and thermal shock in glass</h3>
-        <p class="card-org">SEDIVER · IPR&ndash;ISCR, Rennes</p>
-        <p class="card-desc">
-          Study of residual stress build-up during thermal tempering of glass insulators and the
-          conditions under which thermal shock drives failure. Combines the process side (quench
-          parameters, stress profiles) with the characterisation side.
-        </p>
-        <!-- Example link row — copy into any card once you have a URL:
-        <div class="card-links">
-          <a class="link-arrow" href="https://github.com/younestoukal/REPO" rel="noopener" target="_blank">Code</a>
-          <a class="link-arrow" href="./static/pdfs/REPORT.pdf">Report</a>
+        <div class="card-body">
+          <h3 class="card-title">Thermal tempering and thermal shock in glass</h3>
+          <p class="card-org">SEDIVER · IPR&ndash;ISCR, Rennes</p>
+          <p class="card-desc">
+            Study of residual stress build-up during thermal tempering of glass insulators and the
+            conditions under which thermal shock drives failure. Combines the process side (quench
+            parameters, stress profiles) with the characterisation side.
+          </p>
+          <!-- Example link row — copy into any card once you have a URL:
+          <div class="card-links">
+            <a class="link-arrow" href="https://github.com/younestoukal/REPO" rel="noopener" target="_blank">Code</a>
+            <a class="link-arrow" href="./static/pdfs/REPORT.pdf">Report</a>
+          </div>
+          -->
         </div>
-        -->
       </article>
 
       <article class="card">
         <img class="card-image" src="./static/images/projects/generative-models.svg"
              alt="Generative models from the ground up — placeholder">
-        <h3 class="card-title">Generative models from the ground up</h3>
-        <p class="card-org">ACVSS 2026</p>
-        <p class="card-desc">
-          Hand-built a DDIM sampler with classifier-free guidance rather than calling a library, then
-          worked through conditioning and adaptation on Stable Diffusion 1.5 &mdash; ControlNet, LoRA
-          fine-tuning, and flow matching as an alternative formulation.
-        </p>
+        <div class="card-body">
+          <h3 class="card-title">Generative models from the ground up</h3>
+          <p class="card-org">ACVSS 2026</p>
+          <p class="card-desc">
+            Hand-built a DDIM sampler with classifier-free guidance rather than calling a library, then
+            worked through conditioning and adaptation on Stable Diffusion 1.5 &mdash; ControlNet, LoRA
+            fine-tuning, and flow matching as an alternative formulation.
+          </p>
+        </div>
       </article>
 
       <article class="card">
         <img class="card-image" src="./static/images/projects/depth-reconstruction.svg"
              alt="Depth and 3D reconstruction in an operating room — placeholder">
-        <h3 class="card-title">Depth &amp; 3D reconstruction in an operating room</h3>
-        <p class="card-desc">
-          Reconstructing 3D scene geometry and meshes from a single fisheye camera mounted in a medical
-          simulation trauma room. The wide-angle distortion and the cluttered, occluded scene are the
-          hard parts &mdash; standard pinhole depth pipelines do not transfer directly.
-        </p>
+        <div class="card-body">
+          <h3 class="card-title">Depth &amp; 3D reconstruction in an operating room</h3>
+          <p class="card-desc">
+            Reconstructing 3D scene geometry and meshes from a single fisheye camera mounted in a medical
+            simulation trauma room. The wide-angle distortion and the cluttered, occluded scene are the
+            hard parts &mdash; standard pinhole depth pipelines do not transfer directly.
+          </p>
+        </div>
       </article>
 
       <article class="card">
         <img class="card-image" src="./static/images/projects/vesselvis.svg"
              alt="VesselVis 3D vessel segmentation review tool — placeholder">
-        <h3 class="card-title">VesselVis &mdash; 3D vessel segmentation review tool</h3>
-        <p class="card-desc">
-          A full-stack web tool for reviewing and correcting 3D liver vasculature segmentations:
-          synchronised 2D slice views and a 3D mesh viewer, with annotation, relabelling and island-removal
-          interventions that write back to the volume.
-        </p>
+        <div class="card-body">
+          <h3 class="card-title">VesselVis &mdash; 3D vessel segmentation review tool</h3>
+          <p class="card-desc">
+            A full-stack web tool for reviewing and correcting 3D liver vasculature segmentations:
+            synchronised 2D slice views and a 3D mesh viewer, with annotation, relabelling and island-removal
+            interventions that write back to the volume.
+          </p>
+        </div>
       </article>
 
       <article class="card">
         <img class="card-image" src="./static/images/projects/video-understanding.svg"
              alt="Video understanding and action recognition — placeholder">
-        <h3 class="card-title">Video understanding &amp; action recognition</h3>
-        <p class="card-desc">
-          Compared representative approaches to action recognition on the KTH dataset: frozen DINOv2
-          features with a temporal head, LSTM sequence models, I3D, and video transformers &mdash; looking
-          at what each buys you relative to its cost.
-        </p>
+        <div class="card-body">
+          <h3 class="card-title">Video understanding &amp; action recognition</h3>
+          <p class="card-desc">
+            Compared representative approaches to action recognition on the KTH dataset: frozen DINOv2
+            features with a temporal head, LSTM sequence models, I3D, and video transformers &mdash; looking
+            at what each buys you relative to its cost.
+          </p>
+        </div>
       </article>
 
       <article class="card">
         <img class="card-image" src="./static/images/projects/vision-architecture.svg"
              alt="Saliency-inspired vision architecture — placeholder">
-        <h3 class="card-title">Saliency-inspired vision architecture</h3>
-        <p class="card-desc">
-          An ongoing research idea for a vision architecture that takes its structure from visual
-          saliency and attention rather than applying attention uniformly over a fixed token grid.
-        </p>
+        <div class="card-body">
+          <h3 class="card-title">Saliency-inspired vision architecture</h3>
+          <p class="card-desc">
+            An ongoing research idea for a vision architecture that takes its structure from visual
+            saliency and attention rather than applying attention uniformly over a fixed token grid.
+          </p>
+        </div>
       </article>
 
     </div>

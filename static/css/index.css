@@ -24,8 +24,6 @@
   --bg-alt:        #e0e5d8;   /* soft linen — alternating section bands */
   --rule:          #d6d9c8;   /* border/divider, a shade off soft-linen */
   --navbar-bg:     rgba(251, 250, 246, 0.85);
-  --card-hover-border: #c2c7b3;
-  --card-shadow:   rgba(42, 44, 43, 0.06);
 
   /* --- type -------------------------------------------------------------- */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -62,8 +60,6 @@
     --bg-alt:        #201e1b;
     --rule:          #3a3630;
     --navbar-bg:     rgba(23, 21, 19, 0.82);
-    --card-hover-border: #4a443b;
-    --card-shadow:   rgba(0, 0, 0, 0.35);
   }
 }
 
@@ -78,8 +74,6 @@
   --bg-alt:        #201e1b;
   --rule:          #3a3630;
   --navbar-bg:     rgba(23, 21, 19, 0.82);
-  --card-hover-border: #4a443b;
-  --card-shadow:   rgba(0, 0, 0, 0.35);
 }
 
 
@@ -157,7 +151,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .section {
-  padding: 84px 0;
+  padding: 56px 0;
   border-top: 1px solid var(--rule);
   transition: background-color .25s ease, border-color .25s ease;
 }
@@ -192,54 +186,21 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Buttons
+   Hero action links — plain inline text, not bordered buttons. Every
+   reference site treats CV/Email/Scholar/GitHub as ordinary links, not
+   CTAs, so the whole row stays flat and light rather than boxed.
    -------------------------------------------------------------------------- */
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1.2;
-  white-space: nowrap;
-  transition: border-color .18s ease, background .18s ease, color .18s ease;
-}
-.button:hover {
-  text-decoration: none;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.button.is-accent {
-  background: var(--cta);
-  border-color: var(--cta);
-  color: var(--cta-ink);
-  font-weight: 600;
-}
-.button.is-accent:hover {
-  background: var(--cta-dark);
-  border-color: var(--cta-dark);
-  color: var(--cta-ink);
-}
-
-.button.is-small {
-  padding: 7px 14px;
-  font-size: 0.85rem;
-}
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 26px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
-.action-item { display: inline-flex; }
+.hero-actions .dot { color: var(--rule); }
 
 
 /* --------------------------------------------------------------------------
@@ -304,7 +265,17 @@ img { max-width: 100%; height: auto; }
   background: var(--accent);
 }
 
-.navbar-cv { flex: none; }
+/* Plain link like the other nav items, just weighted/coloured to read as
+   the one action among them — no button box. */
+.navbar-cv {
+  flex: none;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.navbar-cv:hover { color: var(--accent-dark); }
+.navbar-cv .icon { width: 15px; height: 15px; }
 
 .theme-toggle {
   display: inline-flex;
@@ -351,17 +322,17 @@ img { max-width: 100%; height: auto; }
 .hero-content {
   display: flex;
   align-items: center;
-  gap: 48px;
-  padding-top: 88px;
-  padding-bottom: 88px;
+  gap: 36px;
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 
 .hero-portrait {
-  width: 180px;
-  height: 180px;
+  width: 148px;
+  height: 148px;
   flex: none;
   object-fit: cover;
-  border-radius: 18px;              /* softly-rounded square, per PLAN §2 */
+  border-radius: 14px;              /* softly-rounded square, per PLAN §2 */
   border: 1px solid var(--rule);
   background: var(--bg-alt);
 }
@@ -369,10 +340,10 @@ img { max-width: 100%; height: auto; }
 .hero-text { min-width: 0; }
 
 .name-title {
-  font-size: clamp(2.1rem, 5vw, 3rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hero-role {
@@ -428,61 +399,60 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Research / project cards
+   Research / project entries — flat horizontal rows (thumbnail left, text
+   right), separated by whitespace and a thin rule rather than a boxed or
+   shadowed card. This is the one layout every reference researcher site
+   shares for publications/projects.
    -------------------------------------------------------------------------- */
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 24px;
+  gap: 32px;
 }
 
 .card {
   display: flex;
-  flex-direction: column;
-  padding: 26px;
-  background: var(--bg);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  overflow: hidden;   /* clips .card-image to the card's own corners */
-  transition: background-color .25s ease, border-color .18s ease, box-shadow .18s ease;
+  gap: 24px;
+  align-items: flex-start;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
 }
-.card:hover {
-  border-color: var(--card-hover-border);
-  box-shadow: 0 2px 16px var(--card-shadow);
+.card:first-child {
+  padding-top: 0;
+  border-top: none;
 }
 
-/* Bleeds to the card's outer edge: negative margin cancels the card's own
-   padding on three sides, width compensates for it on the other two. */
 .card-image {
-  display: block;
-  width: calc(100% + 52px);
-  margin: -26px -26px 18px -26px;
-  aspect-ratio: 16 / 9;
+  flex: none;
+  width: 170px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
   background: var(--bg-alt);
 }
 
-.card-title { font-size: 1.12rem; margin-bottom: 6px; }
+.card-body { min-width: 0; }
+
+.card-title { font-size: 1.08rem; margin-bottom: 5px; }
 
 .card-org {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .card-desc {
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   color: var(--ink-muted);
-  margin-bottom: 16px;
 }
 
 .card-links {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .link-arrow {
@@ -559,12 +529,12 @@ img { max-width: 100%; height: auto; }
   .hero-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
-    padding-top: 56px;
-    padding-bottom: 56px;
+    gap: 24px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
-  .hero-portrait { width: 132px; height: 132px; }
+  .hero-portrait { width: 112px; height: 112px; }
 
   .timeline-item {
     grid-template-columns: 1fr;
@@ -577,7 +547,7 @@ img { max-width: 100%; height: auto; }
 @media (max-width: 720px) {
   body { font-size: 16px; }
 
-  .section { padding: 60px 0; }
+  .section { padding: 40px 0; }
 
   .container { padding: 0 18px; }
 
@@ -594,10 +564,8 @@ img { max-width: 100%; height: auto; }
 
   .navbar-item { padding: 6px 9px; font-size: 0.86rem; }
 
-  .navbar-cv span { display: none; }   /* icon-only CV button on narrow screens */
-  .navbar-cv { padding: 8px 10px; }
-
-  .cards { grid-template-columns: 1fr; }
+  .card { flex-direction: column; gap: 12px; padding-top: 24px; }
+  .card-image { width: 100%; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 400px) {
