@@ -546,12 +546,38 @@ img { max-width: 100%; height: auto; }
 
 .service p { font-size: 0.95rem; }
 
+.service-intro {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+}
+
+.service-list { display: grid; gap: 9px; max-width: var(--measure); }
+
+.service-list li {
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding-left: 1.1em;
+  position: relative;
+}
+.service-list li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
 
 /* --------------------------------------------------------------------------
    Experience — schools/programmes, photo + text
    -------------------------------------------------------------------------- */
 
 .experience-list { display: grid; gap: 30px; }
+
+/* A tighter variant of the Education .timeline, used for short one-line
+   training entries nested inside an Experience .service block. */
+.timeline-compact { gap: 20px; }
+.timeline-compact .timeline-detail { font-size: 0.9rem; }
 
 .experience-item {
   display: flex;

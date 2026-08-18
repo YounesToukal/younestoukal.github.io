@@ -51,19 +51,18 @@ Select-String -Path index.html -Pattern TODO
 | What | Where |
 |---|---|
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
-| Public email | `index.html` — appears in the hero button and the contact list |
-| LinkedIn URL | `index.html` — hero button and contact list |
+| LinkedIn URL | `index.html` — hero button and contact list (your CV doesn't give the raw slug) |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
-| USTHB degree details | Education section — exact title and years |
-| Poster judging venue | Academic Service line |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
 | ACVSS dates, location, role | Experience section |
 | Deep Learning Indaba details | Experience section — year, location, role, what you did there |
-| 2 experience photos | `static/images/experience/*.svg` → replace with real photos |
+| 3 experience photos | `static/images/experience/*.svg` → replace with real photos |
 | Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
 
-The bio in the About section is a **draft** written from the project plan, not dictated —
-read it and edit before publishing.
+Content has been fact-checked against your CV (`Resume - Younes Toukal.pdf`) — identity,
+education, contact email, skills, volunteering and most experience entries are now sourced
+from it directly, not drafted. The exceptions are ACVSS 2026 and Deep Learning Indaba, which
+you mentioned directly but don't appear on that CV — worth double-checking their details.
 
 ## Preview locally
 
