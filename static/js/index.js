@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Younes Toukal — personal academic site
+   Five small enhancements, all progressive: with JS disabled the page is
+   fully readable and every anchor still works (smooth scrolling and the
+   sticky-nav offset are handled in CSS, the dark-mode toggle falls back to
+   following the OS preference via a plain CSS media query, every "Email"
+   link is still a working mailto: link on its own, and every gallery
+   photo is still visible, just not enlargeable, without the lightbox).
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ------------------------------------------------------------------
+     1. Scroll reveal — subtle fade + rise, once per element.
+        The .js-reveal class is added here rather than in the HTML so
+        content is never hidden if JS fails to run.
+     ------------------------------------------------------------------ */
+  var revealTargets = document.querySelectorAll(
+    '.hero-block, .page-content > section'
+  );
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+    Array.prototype.forEach.call(revealTargets, function (el) {
+      el.classList.add('js-reveal');
+      revealObserver.observe(el);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     2. Active section highlight in the navbar
+     ------------------------------------------------------------------ */
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.navbar-menu .navbar-item')
+  );
+
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    var linkFor = {};
+    var sections = [];
+
+    navLinks.forEach(function (link) {
+      var id = link.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
+      if (!section) return;
+      linkFor[id] = link;
+      sections.push(section);
+    });
+
+    var visible = {};
+
+    var setActive = function () {
+      // topmost currently-visible section wins
+      var current = sections.filter(function (s) { return visible[s.id]; })[0];
+      navLinks.forEach(function (link) { link.classList.remove('is-active'); });
+      if (current && linkFor[current.id]) {
+        linkFor[current.id].classList.add('is-active');
+      }
+    };
+
+    var navObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        visible[entry.target.id] = entry.isIntersecting;
+      });
+      setActive();
+    }, {
+      // a band just under the sticky navbar, so the "current" section is the
+      // one the reader is actually looking at
+      rootMargin: '-70px 0px -55% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(function (section) { navObserver.observe(section); });
+  }
+
+  /* ------------------------------------------------------------------
+     3. Dark-mode toggle
+        The icon shown for each theme, and the OS-preference fallback for
+        anyone who never clicks the toggle, are handled entirely in CSS
+        (see .theme-toggle in index.css) — this only needs to flip the
+        explicit override and remember it. A matching inline script in
+        <head> applies a saved choice before first paint.
+     ------------------------------------------------------------------ */
+  var themeToggle = document.querySelector('.theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme');
+      var systemDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = current ? current === 'dark' : systemDark;
+      var next = isDark ? 'light' : 'dark';
+
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     4. Email popover — clicking "Email" shows the full address with a
+        Copy button and a "Send email" link, rather than silently
+        trying to open a mail client that might not be configured (and
+        showing nothing if it isn't). Reads the address straight off
+        each link's own mailto: href, so there is one source of truth
+        and no markup to duplicate. Without JS the link is still a
+        plain working mailto: link.
+     ------------------------------------------------------------------ */
+  var emailLinks = document.querySelectorAll('.email-link');
+  if (emailLinks.length) {
+    var open = null;
+
+    var closePopover = function () {
+      if (!open) return;
+      open.popover.parentNode.removeChild(open.popover);
+      open.trigger.setAttribute('aria-expanded', 'false');
+      open = null;
+    };
+
+    var copyToClipboard = function (text, done) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, done);
+        return;
+      }
+      var tmp = document.createElement('textarea');
+      tmp.value = text;
+      tmp.style.position = 'fixed';
+      tmp.style.opacity = '0';
+      document.body.appendChild(tmp);
+      tmp.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(tmp);
+      done();
+    };
+
+    Array.prototype.forEach.call(emailLinks, function (link) {
+      var email = (link.getAttribute('href') || '').replace(/^mailto:/, '');
+      if (!email) return;
+
+      link.setAttribute('aria-haspopup', 'true');
+      link.setAttribute('aria-expanded', 'false');
+
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        var reopening = open && open.trigger === link;
+        closePopover();
+        if (reopening) return;
+
+        var popover = document.createElement('div');
+        popover.className = 'email-popover';
+        popover.setAttribute('role', 'dialog');
+        popover.setAttribute('aria-label', 'Email address');
+
+        var address = document.createElement('p');
+        address.className = 'email-popover-address';
+        address.textContent = email;
+
+        var actions = document.createElement('div');
+        actions.className = 'email-popover-actions';
+
+        var copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'email-popover-copy';
+        copyBtn.textContent = 'Copy';
+        copyBtn.addEventListener('click', function () {
+          copyToClipboard(email, function () {
+            copyBtn.textContent = 'Copied';
+            copyBtn.classList.add('is-copied');
+            setTimeout(function () {
+              copyBtn.textContent = 'Copy';
+              copyBtn.classList.remove('is-copied');
+            }, 1600);
+          });
+        });
+
+        var sendLink = document.createElement('a');
+        sendLink.className = 'email-popover-send';
+        sendLink.href = 'mailto:' + email;
+        sendLink.textContent = 'Send email';
+        sendLink.addEventListener('click', closePopover);
+
+        actions.appendChild(copyBtn);
+        actions.appendChild(sendLink);
+        popover.appendChild(address);
+        popover.appendChild(actions);
+        document.body.appendChild(popover);
+
+        // Clamp horizontally so the popover can't render off-screen on a
+        // narrow phone — it's appended (above) before this runs, so its
+        // real rendered width is already available to measure.
+        var rect = link.getBoundingClientRect();
+        var margin = 12;
+        var maxLeft = window.scrollX + window.innerWidth - popover.offsetWidth - margin;
+        var left = Math.min(rect.left + window.scrollX, Math.max(window.scrollX + margin, maxLeft));
+
+        popover.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+        popover.style.left = left + 'px';
+
+        link.setAttribute('aria-expanded', 'true');
+        open = { trigger: link, popover: popover };
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!open) return;
+      if (open.popover.contains(e.target) || open.trigger.contains(e.target)) return;
+      closePopover();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePopover();
+    });
+
+    window.addEventListener('scroll', closePopover, { passive: true });
+  }
+
+  /* ------------------------------------------------------------------
+     5. Photo lightbox — click a gallery photo to open it large, step
+        through the rest of that gallery with prev/next or the arrow
+        keys, with a small "2 / 3" counter. Inspired by 4M's image
+        carousels (4m.epfl.ch): step through examples, immediate
+        visual feedback. Each gallery on the page gets its own
+        independent click-through set, built from its own <img> tags.
+     ------------------------------------------------------------------ */
+  var galleries = document.querySelectorAll('.gallery');
+  if (galleries.length) {
+    var box = null;
+
+    var closeLightbox = function () {
+      if (!box) return;
+      box.el.parentNode.removeChild(box.el);
+      box.trigger.focus();
+      box = null;
+    };
+
+    var showIndex = function (i) {
+      var count = box.images.length;
+      box.index = (i + count) % count;
+      var img = box.images[box.index];
+      box.imageEl.src = img.src;
+      box.imageEl.alt = img.alt;
+      // counterEl only exists for multi-photo galleries — see openLightbox
+      if (box.counterEl) box.counterEl.textContent = (box.index + 1) + ' / ' + count;
+    };
+
+    var openLightbox = function (images, startIndex, trigger) {
+      var el = document.createElement('div');
+      el.className = 'lightbox';
+      el.setAttribute('role', 'dialog');
+      el.setAttribute('aria-label', 'Photo viewer');
+
+      var imageEl = document.createElement('img');
+      imageEl.className = 'lightbox-image';
+
+      var closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'lightbox-close';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.textContent = '×';
+      closeBtn.addEventListener('click', closeLightbox);
+
+      el.appendChild(imageEl);
+      el.appendChild(closeBtn);
+
+      if (images.length > 1) {
+        var prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'lightbox-nav lightbox-prev';
+        prevBtn.setAttribute('aria-label', 'Previous photo');
+        prevBtn.textContent = '‹';
+        prevBtn.addEventListener('click', function () { showIndex(box.index - 1); });
+
+        var nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'lightbox-nav lightbox-next';
+        nextBtn.setAttribute('aria-label', 'Next photo');
+        nextBtn.textContent = '›';
+        nextBtn.addEventListener('click', function () { showIndex(box.index + 1); });
+
+        var counterEl = document.createElement('div');
+        counterEl.className = 'lightbox-counter';
+
+        el.appendChild(prevBtn);
+        el.appendChild(nextBtn);
+        el.appendChild(counterEl);
+      }
+
+      el.addEventListener('click', function (e) {
+        if (e.target === el) closeLightbox();
+      });
+
+      document.body.appendChild(el);
+      box = {
+        el: el,
+        imageEl: imageEl,
+        counterEl: el.querySelector('.lightbox-counter'),
+        images: images,
+        index: 0,
+        trigger: trigger
+      };
+      showIndex(startIndex);
+      closeBtn.focus();
+    };
+
+    Array.prototype.forEach.call(galleries, function (gallery) {
+      var images = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+      images.forEach(function (img, i) {
+        img.addEventListener('click', function () {
+          openLightbox(images, i, img);
+        });
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!box) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showIndex(box.index - 1);
+      else if (e.key === 'ArrowRight') showIndex(box.index + 1);
+    });
+  }
+})();

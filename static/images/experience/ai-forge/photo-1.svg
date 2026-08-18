@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300"
+     role="img" aria-label="AI Forge Training photo 1 — placeholder">
+  <!-- PLACEHOLDER. Replace with a real photo (jpg/png) and update the
+       matching <img src> in this page's gallery. -->
+  <rect width="400" height="300" fill="#e0e5d8"/>
+  <rect x="150" y="80" width="100" height="70" rx="6" fill="none" stroke="#867766" stroke-width="2.5"/>
+  <circle cx="170" cy="99" r="6" fill="#867766"/>
+  <path d="M155 138l25-24 16 15 19-21 21 25" fill="none" stroke="#867766" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="200" y="182" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
+        font-size="12" font-weight="600" letter-spacing="1" fill="#6a5c4b">PHOTO PLACEHOLDER</text>
+  <text x="200" y="200" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
+        font-size="11" fill="#867766">AI Forge Training photo 1</text>
+</svg>

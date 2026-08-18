@@ -1,0 +1,718 @@
+/* ==========================================================================
+   Younes Toukal — personal academic site
+   Light theme, single accent, Inter. Dense, text-first, single-column
+   layout (CLONE 4 / Zamir-vilab style) — one narrow container for the
+   whole page rather than full-bleed alternating sections.
+
+   Retheming: everything visual is driven by the custom properties below.
+   ========================================================================== */
+
+:root {
+  /* --- colour ------------------------------------------------------------ */
+  /* Warm, earthy palette. Chestnut carries every text-accent role (links,
+     section labels, active states) — it's dark enough to read on white.
+     Honey-bronze is reserved for filled CTA buttons only: it's too light
+     to use as foreground text against a white background. */
+  --accent:        #873d32;   /* chestnut */
+  --accent-dark:   #6b2f26;   /* chestnut, darkened for hover */
+  --accent-soft:   #f6e3c9;   /* light honey wash — hover backgrounds, chips */
+  --cta:           #ffc068;   /* honey-bronze — CV button fill only */
+  --cta-dark:      #f0a93f;   /* honey-bronze, darkened for hover */
+  --cta-ink:       #2a2c2b;   /* graphite text on the honey-bronze fill */
+  --ink:           #2a2c2b;   /* graphite — body text */
+  --ink-strong:    #201f1d;   /* headings, slightly darker than graphite */
+  --ink-muted:     #6a5c4b;   /* dusty taupe, darkened for AA contrast on soft-linen */
+  --bg:            #fbfaf6;   /* warm off-white */
+  --bg-alt:        #f0f2ea;   /* soft linen, lightened toward bg — a gentle offset tint rather than a contrasting block */
+  --rule:          #d6d9c8;   /* border/divider, a shade off soft-linen */
+  --navbar-bg:     rgba(251, 250, 246, 0.85);
+
+  /* --- type -------------------------------------------------------------- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  /* --- layout ------------------------------------------------------------ */
+  --container:        960px;  /* nav bar width */
+  --container-narrow: 760px;  /* the dense page column — everything below the nav */
+  --measure:   68ch;          /* max line length for running prose */
+  --nav-h:     60px;
+  --radius:    10px;
+}
+
+/* --------------------------------------------------------------------------
+   Dark mode. Same warm palette family, inverted for a dark surface: chestnut
+   lightens to a terracotta so it still reads as text; honey-bronze CTA
+   buttons are self-contained (fixed bg + graphite text) and need no
+   override — they read fine against either surface.
+
+   Applied twice on purpose: once for the OS-level preference (guarded so an
+   explicit light choice can still override it), once for the explicit
+   data-theme attribute set by the toggle in the navbar. Whichever the user
+   picks with the toggle always wins over the system setting.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent:        #e2836f;
+    --accent-dark:   #efa08e;
+    --accent-soft:   #3a2f1f;
+    --ink:           #ece6d9;
+    --ink-strong:    #f7f2e7;
+    --ink-muted:     #b6a890;
+    --bg:            #171513;
+    --bg-alt:        #201e1b;
+    --rule:          #3a3630;
+    --navbar-bg:     rgba(23, 21, 19, 0.82);
+  }
+}
+
+:root[data-theme="dark"] {
+  --accent:        #e2836f;
+  --accent-dark:   #efa08e;
+  --accent-soft:   #3a2f1f;
+  --ink:           #ece6d9;
+  --ink-strong:    #f7f2e7;
+  --ink-muted:     #b6a890;
+  --bg:            #171513;
+  --bg-alt:        #201e1b;
+  --rule:          #3a3630;
+  --navbar-bg:     rgba(23, 21, 19, 0.82);
+}
+
+
+/* --------------------------------------------------------------------------
+   Reset / base
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* keeps anchored sections clear of the sticky navbar */
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  color: var(--ink-strong);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration: underline; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+img { max-width: 100%; height: auto; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Shared inline-SVG icon sizing. Deliberately sets no fill/stroke — each
+   <symbol> in the sprite carries its own, and they resolve to currentColor. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container.narrow { max-width: var(--container-narrow); }
+
+.prose { max-width: var(--measure); }
+
+.page-content { padding: 48px 0 90px; }
+
+/* Small-caps label used above every block on the page — the one
+   recurring divider, deliberately not boxed cards or full-bleed bands. */
+.dense-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 44px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+#about .dense-label { margin-top: 0; }
+
+
+/* --------------------------------------------------------------------------
+   Navbar — sticky; the CV button never scrolls out of reach
+   -------------------------------------------------------------------------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: var(--navbar-bg);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+  transition: background-color .25s ease, border-color .25s ease;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+}
+
+.navbar-brand {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink-strong);
+  flex: none;
+}
+.navbar-brand:hover { text-decoration: none; color: var(--accent); }
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.navbar-item {
+  position: relative;
+  padding: 6px 12px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  border-radius: 6px;
+}
+.navbar-item:hover { text-decoration: none; color: var(--ink-strong); }
+
+/* set by index.js as the reader scrolls */
+.navbar-item.is-active { color: var(--accent); }
+.navbar-item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* Plain link like the other nav items, just weighted/coloured to read as
+   the one action among them — no button box. */
+.navbar-cv {
+  flex: none;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.navbar-cv:hover { color: var(--accent-dark); }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: border-color .18s ease, color .18s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle .icon { width: 17px; height: 17px; }
+
+/* Icon reflects the *effective* theme — system preference by default,
+   overridden by an explicit data-theme choice from the toggle. Shows the
+   icon for the theme a click would switch to (sun in dark mode, moon in
+   light mode), the conventional direction for this control. */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+
+/* --------------------------------------------------------------------------
+   Hero — name and one-line credential only; photo, bio and contact each
+   live in their own labelled block below.
+   -------------------------------------------------------------------------- */
+
+.hero-block { margin-bottom: 8px; }
+
+.name-title {
+  font-size: clamp(1.7rem, 4vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.hero-role { color: var(--ink-muted); }
+
+
+/* --------------------------------------------------------------------------
+   About Me — bio text with the portrait docked to the right.
+   -------------------------------------------------------------------------- */
+
+.about-block {
+  display: flex;
+  gap: 28px;
+}
+
+.about-photo {
+  flex: none;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+
+
+/* --------------------------------------------------------------------------
+   News — a plain list, every entry visible at once, on purpose: this is
+   content meant to be scanned in a glance, not stepped through one at a
+   time. The only flourish is colouring the most recent date.
+   -------------------------------------------------------------------------- */
+
+.news-plain { display: grid; gap: 8px; font-size: 0.95rem; }
+.news-plain-date {
+  display: inline-block;
+  width: 70px;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+.news-plain li:first-child .news-plain-date { color: var(--accent); }
+
+
+/* --------------------------------------------------------------------------
+   Selected Projects — thumbnail-left dense rows: a small image, a linked
+   title, one line of context. Density over the fuller card treatment.
+   -------------------------------------------------------------------------- */
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.project-row img {
+  flex: none;
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+
+.project-row-title { font-weight: 600; }
+.project-row-org { font-size: 0.86rem; color: var(--ink-muted); }
+
+
+/* --------------------------------------------------------------------------
+   Activities & Training — a compact logo timeline: summer schools,
+   conferences, training and degrees all in one dense list.
+   -------------------------------------------------------------------------- */
+
+.activity-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  font-size: 0.94rem;
+}
+
+.activity-row img {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.activity-row-date {
+  flex: none;
+  width: 80px;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* --------------------------------------------------------------------------
+   Contact — plain inline text links, no icons, no boxed buttons.
+   -------------------------------------------------------------------------- */
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  font-size: 0.98rem;
+}
+.contact-row-location { color: var(--ink-muted); }
+
+
+/* --------------------------------------------------------------------------
+   Experience detail pages (acvss.html etc.) — a stripped-down page shell
+   with a back link, a header (logo, title, meta), body text reusing
+   .prose, and a photo gallery. Shares index.css rather than having its
+   own stylesheet, so the two stay visually consistent automatically.
+   -------------------------------------------------------------------------- */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-bottom: 32px;
+}
+.back-link:hover { color: var(--accent); text-decoration: none; }
+.back-link::before { content: "\2190"; }
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.detail-logo {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  padding: 6px;
+}
+
+.detail-title { font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 6px; }
+
+.detail-meta {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+.detail-meta span:not(:first-child)::before { content: "\0020\00b7\0020"; }
+
+.detail-body { margin-bottom: 44px; }
+.detail-body p { margin-bottom: 14px; }
+
+.gallery-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+  cursor: pointer;
+  transition: opacity .15s ease;
+}
+.gallery img:hover { opacity: 0.85; }
+
+
+/* --------------------------------------------------------------------------
+   Lightbox — click a gallery photo to open it large, step through the
+   rest of that gallery with prev/next or the arrow keys. Built by JS,
+   not present in the HTML; closes on backdrop click, the close button,
+   or Escape. Inspired by 4M's image-carousel panels (4m.epfl.ch): step
+   through examples, immediate visual feedback, a small "2 / 3" counter.
+   -------------------------------------------------------------------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(10, 9, 8, 0.82);
+  animation: lightbox-fade .15s ease;
+}
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-image {
+  max-width: min(900px, 100%);
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fbfaf6;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.22); }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fbfaf6;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox-nav:hover { background: rgba(255, 255, 255, 0.22); }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: rgba(251, 250, 246, 0.75);
+}
+
+@media (max-width: 720px) {
+  .lightbox { padding: 20px 56px; }
+  .lightbox-nav { width: 38px; height: 38px; }
+  .lightbox-prev { left: 4px; }
+  .lightbox-next { right: 4px; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Email popover — full address + Copy / Send email, positioned by JS
+   under whichever "Email" link was clicked. Not a modal: closes on
+   outside click, Escape, or scroll.
+   -------------------------------------------------------------------------- */
+
+.email-popover {
+  position: absolute;
+  z-index: 60;
+  min-width: 220px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.email-popover-address {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-strong);
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+
+.email-popover-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.email-popover-copy {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg-alt);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .18s ease, color .18s ease, background-color .18s ease;
+}
+.email-popover-copy:hover { border-color: var(--accent); color: var(--accent); }
+.email-popover-copy.is-copied {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.email-popover-send {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+
+/* --------------------------------------------------------------------------
+   Scroll reveal — subtle only (PLAN §2). Applied by index.js, which also
+   adds .js-reveal so the content stays visible when JS is unavailable.
+   -------------------------------------------------------------------------- */
+
+.js-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.js-reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .about-block { flex-direction: column-reverse; gap: 16px; }
+  .about-photo { width: 96px; height: 96px; }
+
+  .project-row { align-items: flex-start; }
+
+  .activity-row { flex-wrap: wrap; }
+  .activity-row-date { order: 3; width: auto; }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+
+  .container { padding: 0 18px; }
+
+  .page-content { padding: 32px 0 60px; }
+
+  .navbar-inner { gap: 12px; }
+
+  /* nav links become a compact scrolling strip; brand and CV button stay put */
+  .navbar-menu {
+    margin-left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .navbar-menu::-webkit-scrollbar { display: none; }
+
+  .navbar-item { padding: 6px 9px; font-size: 0.86rem; }
+
+  .detail-header { flex-wrap: wrap; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .navbar-brand { display: none; }     /* reclaim width for the nav strip */
+}
+
+
+/* --------------------------------------------------------------------------
+   Accessibility & print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .js-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .navbar { display: none; }
+  a { color: var(--ink); }
+}
