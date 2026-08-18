@@ -20,7 +20,7 @@
         content is never hidden if JS fails to run.
      ------------------------------------------------------------------ */
   var revealTargets = document.querySelectorAll(
-    '.hero-content, .section > .container > *'
+    '.hero-block, .page-content > section'
   );
 
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {

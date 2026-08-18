@@ -53,39 +53,11 @@
 <body>
 
 <!-- ============================================================
-     Inline SVG icon sprite — no icon-font dependency.
+     Inline SVG icon sprite — no icon-font dependency. Only the theme
+     toggle needs one now; Contact is plain text links, matching the
+     dense faculty-page style below.
      ============================================================ -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/>
-    <line x1="12" y1="15" x2="12" y2="3"/>
-  </symbol>
-  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>
-  </symbol>
-  <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 9.5h5.16V21H2.4zM9.9 9.5h4.94v1.57h.07c.69-1.24
-             2.37-2.55 4.88-2.55 5.22 0 6.18 3.28 6.18 7.55V21h-5.15v-4.86c0-1.16-.02-2.65-1.68-2.65-1.68
-             0-1.94 1.26-1.94 2.57V21H9.9z"/>
-  </symbol>
-  <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58
-             0-.29-.01-1.05-.02-2.06-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73
-             1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96
-             0-1.32.47-2.39 1.24-3.23-.13-.3-.54-1.53.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55
-             3.3-1.23 3.3-1.23.65 1.65.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.23 0 4.63-2.8 5.65-5.48
-             5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.83.58A12.01 12.01 0 0 0 24 12.5C24
-             5.87 18.63.5 12 .5z"/>
-  </symbol>
-  <symbol id="icon-scholar" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2 1 8l11 6 9-4.91V16h2V8zM4 13.4V17c0 2.21 3.58 4 8 4s8-1.79 8-4v-3.6l-8 4.36z"/>
-  </symbol>
-  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-  </symbol>
   <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="4"/>
@@ -106,9 +78,10 @@
     <a class="navbar-brand" href="#home">Younes&nbsp;Toukal</a>
 
     <div class="navbar-menu">
-      <a class="navbar-item" href="#education">Education</a>
-      <a class="navbar-item" href="#research">Research</a>
-      <a class="navbar-item" href="#experience">Experience</a>
+      <a class="navbar-item" href="#about">About</a>
+      <a class="navbar-item" href="#news">News</a>
+      <a class="navbar-item" href="#research">Projects</a>
+      <a class="navbar-item" href="#experience">Activities</a>
       <a class="navbar-item" href="#contact">Contact</a>
     </div>
 
@@ -124,387 +97,209 @@
 
 
 <!-- ============================================================
-     Hero
+     Dense, text-first, single-column layout — one narrow container
+     for the whole page rather than full-bleed alternating sections.
+     Every block below follows the same pattern: a small-caps label
+     (.dense-label) then the block's content. See README for the
+     copy-paste recipe for each repeated block (project row, activity
+     row, news item).
      ============================================================ -->
-<section class="hero" id="home">
-  <!-- ============================================================
-       Portrait floats left; the name, role, bio and actions below are
-       all normal flow content that wraps around it — text runs beside
-       the photo, then continues at full container width once past its
-       bottom edge, rather than sitting in a fixed side-by-side column.
-       ============================================================ -->
-  <div class="container hero-content">
+<div class="container narrow page-content">
 
-    <img class="hero-portrait" src="./static/images/headshot.jpg"
-         alt="Portrait of Younes Toukal" width="180" height="180">
-
+  <!-- Hero — name and one-line credential; everything else (photo,
+       bio, contact) lives in its own labelled block below. -->
+  <div class="hero-block" id="home">
     <h1 class="name-title">Younes Toukal</h1>
+    <p class="hero-role">USTHB &middot; Visual Computing &middot; AI for Medical Imaging</p>
+  </div>
 
-    <p class="hero-role">
-      Master's Student in Visual Computing &mdash; USTHB
-      <span class="sep">·</span>
-      AI for Medical Imaging
-    </p>
+  <!-- ============================================================
+       About Me — bio text with the portrait docked to the right,
+       rather than a big photo up top in the hero.
+       ============================================================ -->
+  <section id="about">
+    <h2 class="dense-label">About Me</h2>
+    <div class="about-block">
+      <div class="content prose">
+        <p>
+          I'm a Master's student in Visual Computing at <a href="#about">USTHB</a> (Algiers), currently
+          working on a thesis on hepatic vessel segmentation in radiological imaging. Before that I
+          completed a Bachelor's in Computer Science at the same university, with a graduation project
+          on an optimised architecture for image segmentation.
+        </p>
+        <p>
+          My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
+          patient treatment and contribute to medical research. VesselVis, listed below, grew directly
+          out of that thesis work.
+        </p>
+        <p>
+          Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
+          I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
+          AI and medicine.
+        </p>
+      </div>
+      <img class="about-photo" src="./static/images/headshot.jpg" alt="Portrait of Younes Toukal">
+    </div>
+  </section>
 
-    <div class="content prose hero-bio">
-      <p>
-        I'm a Master's student in Visual Computing at USTHB (Algiers), currently working on a thesis
-        on hepatic vessel segmentation in radiological imaging. Before that I completed a Bachelor's
-        in Computer Science at the same university, with a graduation project on an optimised
-        architecture for image segmentation.
-      </p>
-      <p>
-        My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
-        patient treatment and contribute to medical research. VesselVis, the segmentation review tool
-        below, grew directly out of that thesis work.
-      </p>
-      <p>
-        Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
-        I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
-        AI and medicine.
-      </p>
+  <!-- ============================================================
+       News — every entry visible at once, scanned in a glance.
+       Newest first. To add an entry, copy one <li> block.
+
+       TODO: only the first two entries below are confirmed real
+       (ACVSS/Indaba dates+locations, sourced separately). The third
+       is real (from the CV) but replace or extend as new things
+       happen — a paper submission, a new conference, a PhD start.
+       ============================================================ -->
+  <section id="news">
+    <h2 class="dense-label">News</h2>
+    <ul class="news-plain">
+      <li><span class="news-plain-date">Aug 2026</span>Attended <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria.</li>
+      <li><span class="news-plain-date">Jul 2026</span>Attended <a href="./acvss.html">ACVSS</a>, Accra, Ghana.</li>
+      <li><span class="news-plain-date">2025</span>Completed AI Forge Training, Boeing STEM Center, Algiers.</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       Selected Projects — thumbnail-left rows, title and one-line
+       context only; the point of this style is density, not the
+       fuller description each project got in the card layout before.
+
+       TODO: every thumbnail below is a placeholder (static/images/projects/*.svg).
+       TODO: every project link points at github.com/younestoukal/<slug>, which
+       doesn't exist yet — replace with the real URL once there is one.
+       ============================================================ -->
+  <section id="research">
+    <h2 class="dense-label">Selected Projects</h2>
+
+    <!-- ============================================================
+         TEMPLATE — copy everything from <div class="project-row" to
+         the matching </div>, paste it anywhere in this section, and
+         fill in the blanks. .project-row-org is optional.
+
+    <div class="project-row">
+      <img src="./static/images/projects/PLACEHOLDER.svg" alt="[Project title] — placeholder">
+      <div>
+        <div class="project-row-title"><a href="[URL]" rel="noopener" target="_blank">[Project title]</a></div>
+        <div class="project-row-org">[Venue, lab, dataset or collaborator]</div>
+      </div>
     </div>
 
-    <div class="hero-actions">
-      <a href="./static/pdfs/CV.pdf" target="_blank" rel="noopener">CV</a>
-      <span class="dot">&middot;</span>
-      <a class="email-link" href="mailto:younesstoukal2@gmail.com">Email</a>
-      <span class="dot">&middot;</span>
+         ============================================================ -->
+
+    <div class="project-row">
+      <img src="./static/images/projects/vesselvis.svg" alt="VesselVis — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/vesselvis" rel="noopener" target="_blank">VesselVis &mdash; 3D vessel segmentation review tool</a></div>
+        <div class="project-row-org">Thesis project</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/generative-models.svg" alt="Generative models from the ground up — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/generative-models" rel="noopener" target="_blank">Generative models from the ground up</a></div>
+        <div class="project-row-org">ACVSS 2026</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/depth-reconstruction.svg" alt="Depth and 3D reconstruction in an operating room — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/depth-reconstruction" rel="noopener" target="_blank">Depth &amp; 3D reconstruction in an operating room</a></div>
+        <div class="project-row-org">Independent project</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/video-understanding.svg" alt="Video understanding and action recognition — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/video-understanding" rel="noopener" target="_blank">Video understanding &amp; action recognition</a></div>
+        <div class="project-row-org">KTH dataset</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/vision-architecture.svg" alt="Saliency-inspired vision architecture — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/vision-architecture" rel="noopener" target="_blank">Saliency-inspired vision architecture</a></div>
+        <div class="project-row-org">Ongoing research</div>
+      </div>
+    </div>
+
+    <!-- Earlier work, outside the computer-vision focus above — kept
+         last on purpose. -->
+    <div class="project-row">
+      <img src="./static/images/projects/thermal-tempering.svg" alt="Thermal tempering and thermal shock in glass — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/thermal-tempering" rel="noopener" target="_blank">Thermal tempering and thermal shock in glass</a></div>
+        <div class="project-row-org">SEDIVER &middot; IPR&ndash;ISCR, Rennes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Activities & Training — a compact logo timeline: summer
+       schools, conferences, training programmes and degrees all in
+       one dense list, rather than separate Education/Experience
+       sections with a full paragraph each.
+
+       TODO: only the first two dated entries are confirmed real
+       (ACVSS/Indaba); the others are from the CV.
+       ============================================================ -->
+  <section id="experience">
+    <h2 class="dense-label">Activities &amp; Training</h2>
+
+    <!-- ============================================================
+         TEMPLATE — copy everything from <div class="activity-row" to
+         the matching </div>, paste it anywhere in this section, and
+         fill in the blanks. Link the title only if there's a detail
+         page for it (see README for how to add one).
+
+    <div class="activity-row">
+      <img src="./static/images/logos/PLACEHOLDER.svg" alt="">
+      <span class="activity-row-date">[e.g. 2024, or a range]</span>
+      [Title], [institution/organisation], [city, country]. [One optional clause of detail.]
+    </div>
+
+         ============================================================ -->
+
+    <div class="activity-row">
+      <img src="./static/images/logos/acvss.jpg" alt="">
+      <span class="activity-row-date">Jul 2026</span>
+      <a href="./acvss.html">ACVSS</a> &mdash; African Computer Vision Summer School, Accra, Ghana (Google AICC).
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/dl-indaba.png" alt="">
+      <span class="activity-row-date">Aug 2026</span>
+      <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria (Pan-Atlantic University).
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/ai-forge.jpg" alt="">
+      <span class="activity-row-date">2025</span>
+      <a href="./ai-forge.html">AI Forge Training</a>, Boeing STEM Center &middot; WorldLearning Algeria, Algiers.
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/usthb.png" alt="">
+      <span class="activity-row-date">2020&ndash;2026</span>
+      MSc Visual Computing (thesis: hepatic vessel segmentation) &amp; BSc Computer Science, USTHB, Algiers.
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Contact
+       ============================================================ -->
+  <section id="contact">
+    <h2 class="dense-label">Contact</h2>
+    <p class="contact-row">
+      <a class="email-link" href="mailto:younesstoukal2@gmail.com">younesstoukal2@gmail.com</a>
       <a href="https://www.linkedin.com/in/younes-toukal/" rel="noopener" target="_blank">LinkedIn</a>
-      <span class="dot">&middot;</span>
       <a href="https://github.com/younestoukal" rel="noopener" target="_blank">GitHub</a>
-      <!-- Google Scholar — uncomment and fill in the profile URL once you have one.
-      <span class="dot">&middot;</span>
-      <a href="https://scholar.google.com/citations?user=TODO" rel="noopener" target="_blank">Scholar</a>
-      -->
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Education
-     ============================================================ -->
-<section class="section is-alt" id="education">
-  <div class="container">
-    <h2 class="section-label">Education</h2>
-
-    <!-- ============================================================
-         TEMPLATE — copy everything from <li to </li>, paste it
-         anywhere in the list below, and fill in the blanks. This
-         same pattern (<ul class="timeline">, <li class="timeline-item">)
-         is reused as-is in the Experience section further down.
-         .timeline-logo, .timeline-location and .timeline-detail are all
-         optional — delete any of them you don't need. For a new logo,
-         drop a square image in static/images/logos/ and point the <img>
-         at it (any image works — it's grayscale-filtered by CSS).
-
-    <li class="timeline-item">
-      <div class="timeline-date">[e.g. 2024 &ndash; Present, or just a year]</div>
-      <div class="timeline-body">
-        <h3 class="timeline-title">[Degree / role title]</h3>
-        <p class="timeline-org">
-          <img class="timeline-logo" src="./static/images/logos/PLACEHOLDER.svg" alt="">
-          [Institution or organisation]
-          <span class="timeline-location">[City]</span>
-          <span class="timeline-location">[Country]</span>
-        </p>
-        <p class="timeline-detail">
-          [One line of detail — thesis topic, key coursework, what the role involved.]
-        </p>
-      </div>
-    </li>
-
-         ============================================================ -->
-
-    <ul class="timeline">
-      <li class="timeline-item">
-        <div class="timeline-date">2024 &ndash; Present</div>
-        <div class="timeline-body">
-          <h3 class="timeline-title">Master in Visual Computing</h3>
-          <p class="timeline-org">
-            <img class="timeline-logo" src="./static/images/logos/usthb.png" alt="">
-            University of Science and Technology Houari Boumediene (USTHB)
-            <span class="timeline-location">Algiers</span>
-            <span class="timeline-location">Algeria</span>
-          </p>
-          <p class="timeline-detail">
-            Thesis: hepatic vessel segmentation in radiological imaging.
-          </p>
-        </div>
-      </li>
-
-      <li class="timeline-item">
-        <div class="timeline-date">2020 &ndash; 2024</div>
-        <div class="timeline-body">
-          <h3 class="timeline-title">Bachelor's Degree in Computer Science</h3>
-          <p class="timeline-org">
-            <img class="timeline-logo" src="./static/images/logos/usthb.png" alt="">
-            University of Science and Technology Houari Boumediene (USTHB)
-            <span class="timeline-location">Algiers</span>
-            <span class="timeline-location">Algeria</span>
-          </p>
-          <p class="timeline-detail">
-            Graduation project: an optimised architecture for image segmentation.
-          </p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Research / Projects
-     ============================================================ -->
-<section class="section" id="research">
-  <div class="container">
-    <h2 class="section-label">Research &amp; Projects</h2>
-    <p class="section-intro">
-      Selected work in computer vision, generative models and medical imaging.
+      <span class="contact-row-location">Algiers, Algeria</span>
     </p>
+  </section>
 
-    <!-- TODO: every card image below is a placeholder (static/images/projects/*.svg).
-         Swap each src for a real photo or figure — same drop-in pattern as the headshot:
-         keep the filename or update the src, no other markup changes needed.
-         TODO: every card's .card-links entry is a placeholder — both the URL
-         (github.com/younestoukal/<slug> doesn't exist) and the label ("[Link]" —
-         deliberately generic; most of these are probably a paper or a project page, not
-         code). Update both together to match what it actually points to, e.g. [Code],
-         [Paper], [arXiv], [Project Page] or [Demo] — brackets and all, matching the
-         convention most researcher sites use for this row. Delete the whole .card-links
-         div for cards that won't ever have a link, or add more <a> lines for more than
-         one link on a card. -->
-
-    <!-- ============================================================
-         TEMPLATE — copy everything from <article to </article>,
-         paste it anywhere in the list below, and fill in the blanks.
-         .card-org and .card-links are both optional — delete either
-         (or both) if a project doesn't need them.
-
-    <article class="card">
-      <img class="card-image" src="./static/images/projects/PLACEHOLDER.svg"
-           alt="[Project title] — placeholder">
-      <div class="card-body">
-        <h3 class="card-title">[Project title]</h3>
-        <p class="card-org">[Venue, lab or collaborator — optional]</p>
-        <p class="card-desc">
-          [Two or three sentences: what it is, what was hard about it, what you built.]
-        </p>
-        <div class="card-links">
-          <a href="[URL]" rel="noopener" target="_blank">[Code]</a>
-          <a href="[URL]" rel="noopener" target="_blank">[Report]</a>
-        </div>
-      </div>
-    </article>
-
-         ============================================================ -->
-
-    <div class="cards">
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/thermal-tempering.svg"
-             alt="Thermal tempering and thermal shock in glass — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">Thermal tempering and thermal shock in glass</h3>
-          <p class="card-org">SEDIVER · IPR&ndash;ISCR, Rennes</p>
-          <p class="card-desc">
-            Study of residual stress build-up during thermal tempering of glass insulators and the
-            conditions under which thermal shock drives failure. Combines the process side (quench
-            parameters, stress profiles) with the characterisation side.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/thermal-tempering" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/generative-models.svg"
-             alt="Generative models from the ground up — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">Generative models from the ground up</h3>
-          <p class="card-org">ACVSS 2026</p>
-          <p class="card-desc">
-            Hand-built a DDIM sampler with classifier-free guidance rather than calling a library, then
-            worked through conditioning and adaptation on Stable Diffusion 1.5 &mdash; ControlNet, LoRA
-            fine-tuning, and flow matching as an alternative formulation.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/generative-models" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/depth-reconstruction.svg"
-             alt="Depth and 3D reconstruction in an operating room — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">Depth &amp; 3D reconstruction in an operating room</h3>
-          <p class="card-desc">
-            Reconstructing 3D scene geometry and meshes from a single fisheye camera mounted in a medical
-            simulation trauma room. The wide-angle distortion and the cluttered, occluded scene are the
-            hard parts &mdash; standard pinhole depth pipelines do not transfer directly.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/depth-reconstruction" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/vesselvis.svg"
-             alt="VesselVis 3D vessel segmentation review tool — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">VesselVis &mdash; 3D vessel segmentation review tool</h3>
-          <p class="card-desc">
-            A full-stack web tool for reviewing and correcting 3D liver vasculature segmentations:
-            synchronised 2D slice views and a 3D mesh viewer, with annotation, relabelling and island-removal
-            interventions that write back to the volume.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/vesselvis" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/video-understanding.svg"
-             alt="Video understanding and action recognition — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">Video understanding &amp; action recognition</h3>
-          <p class="card-desc">
-            Compared representative approaches to action recognition on the KTH dataset: frozen DINOv2
-            features with a temporal head, LSTM sequence models, I3D, and video transformers &mdash; looking
-            at what each buys you relative to its cost.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/video-understanding" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="card-image" src="./static/images/projects/vision-architecture.svg"
-             alt="Saliency-inspired vision architecture — placeholder">
-        <div class="card-body">
-          <h3 class="card-title">Saliency-inspired vision architecture</h3>
-          <p class="card-desc">
-            An ongoing research idea for a vision architecture that takes its structure from visual
-            saliency and attention rather than applying attention uniformly over a fixed token grid.
-          </p>
-          <!-- TODO: replace with the real repo/paper URL -->
-          <div class="card-links">
-            <a href="https://github.com/younestoukal/vision-architecture" rel="noopener" target="_blank">[Link]</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Experience — schools and programmes attended, kept to one line
-     each (no photos) to match how research sites usually treat this.
-     Same <li class="timeline-item"> pattern as Education — see the
-     TEMPLATE comment there for a block to copy.
-     ============================================================ -->
-<section class="section is-alt" id="experience">
-  <div class="container">
-    <h2 class="section-label">Experience</h2>
-
-    <ul class="timeline">
-      <li class="timeline-item">
-        <div class="timeline-date">Jul 2026</div>
-        <div class="timeline-body">
-          <h3 class="timeline-title"><a href="./acvss.html">ACVSS</a></h3>
-          <p class="timeline-org">
-            <img class="timeline-logo" src="./static/images/logos/acvss.jpg" alt="">
-            African Computer Vision Summer School
-            <span class="timeline-location">Accra</span>
-            <span class="timeline-location">Ghana</span>
-          </p>
-          <p class="timeline-detail">
-            Held at the Google AI Community Center (Google AICC). Worked on the generative-models
-            project listed under Research &amp; Projects above.
-          </p>
-        </div>
-      </li>
-
-      <li class="timeline-item">
-        <div class="timeline-date">Aug 2026</div>
-        <div class="timeline-body">
-          <h3 class="timeline-title"><a href="./deep-learning-indaba.html">Deep Learning Indaba</a></h3>
-          <p class="timeline-org">
-            <img class="timeline-logo" src="./static/images/logos/dl-indaba.png" alt="">
-            Pan-African meeting on machine learning research
-            <span class="timeline-location">Lagos</span>
-            <span class="timeline-location">Nigeria</span>
-          </p>
-          <p class="timeline-detail">
-            Held at Pan-Atlantic University.
-          </p>
-        </div>
-      </li>
-
-      <li class="timeline-item">
-        <div class="timeline-date">2025</div>
-        <div class="timeline-body">
-          <h3 class="timeline-title"><a href="./ai-forge.html">AI Forge Training</a></h3>
-          <p class="timeline-org">
-            <img class="timeline-logo" src="./static/images/logos/ai-forge.jpg" alt="">
-            Boeing STEM Center &middot; WorldLearning Algeria
-            <span class="timeline-location">Algiers</span>
-            <span class="timeline-location">Algeria</span>
-          </p>
-          <p class="timeline-detail">
-            Collaborated with a multidisciplinary team to develop an AI model for aviation-related
-            challenges, alongside conferences hosted by Microsoft AI for Good, INRIA and InstaDeep.
-          </p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     Contact
-     ============================================================ -->
-<section class="section" id="contact">
-  <div class="container">
-    <h2 class="section-label">Contact</h2>
-    <p class="section-intro">
-      The fastest way to reach me is email. I am open to PhD positions and research collaborations.
-    </p>
-
-    <ul class="contact-list">
-      <li>
-        <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg>
-        <a class="email-link" href="mailto:younesstoukal2@gmail.com">younesstoukal2@gmail.com</a>
-      </li>
-      <li>
-        <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"/></svg>
-        <a href="https://www.linkedin.com/in/younes-toukal/" rel="noopener" target="_blank">linkedin.com/in/younes-toukal</a>
-      </li>
-      <li>
-        <svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>
-        <a href="https://github.com/younestoukal" rel="noopener" target="_blank">github.com/younestoukal</a>
-      </li>
-      <li>
-        <svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>
-        <span>Algiers, Algeria</span>
-      </li>
-    </ul>
-  </div>
-</section>
+</div>
 
 
 <script src="./static/js/index.js"></script>

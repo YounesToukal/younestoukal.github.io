@@ -1,6 +1,8 @@
 /* ==========================================================================
    Younes Toukal — personal academic site
-   Light theme, single accent, Inter.
+   Light theme, single accent, Inter. Dense, text-first, single-column
+   layout (CLONE 4 / Zamir-vilab style) — one narrow container for the
+   whole page rather than full-bleed alternating sections.
 
    Retheming: everything visual is driven by the custom properties below.
    ========================================================================== */
@@ -30,7 +32,8 @@
   --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 
   /* --- layout ------------------------------------------------------------ */
-  --container: 960px;
+  --container:        960px;  /* nav bar width */
+  --container-narrow: 760px;  /* the dense page column — everything below the nav */
   --measure:   68ch;          /* max line length for running prose */
   --nav-h:     60px;
   --radius:    10px;
@@ -150,57 +153,26 @@ img { max-width: 100%; height: auto; }
   padding: 0 24px;
 }
 
-.section {
-  padding: 56px 0;
-  border-top: 1px solid var(--rule);
-  transition: background-color .25s ease, border-color .25s ease;
-}
-.section.is-alt { background: var(--bg-alt); }
+.container.narrow { max-width: var(--container-narrow); }
 
 .prose { max-width: var(--measure); }
 
+.page-content { padding: 48px 0 90px; }
 
-/* --------------------------------------------------------------------------
-   Section headers — 4M style: small label, thin rule, generous margin.
-   Deliberately not boxed cards.
-   -------------------------------------------------------------------------- */
-
-.section-label {
+/* Small-caps label used above every block on the page — the one
+   recurring divider, deliberately not boxed cards or full-bleed bands. */
+.dense-label {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  padding-bottom: 12px;
-  margin-bottom: 32px;
+  margin: 44px 0 16px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
 }
-
-.section-intro {
-  max-width: var(--measure);
-  margin-top: -12px;
-  margin-bottom: 32px;
-  color: var(--ink-muted);
-}
-
-
-/* --------------------------------------------------------------------------
-   Hero action links — plain inline text, not bordered buttons. Every
-   reference site treats CV/Email/Scholar/GitHub as ordinary links, not
-   CTAs, so the whole row stays flat and light rather than boxed.
-   -------------------------------------------------------------------------- */
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-.hero-actions .dot { color: var(--rule); }
+#about .dense-label { margin-top: 0; }
 
 
 /* --------------------------------------------------------------------------
@@ -275,7 +247,6 @@ img { max-width: 100%; height: auto; }
   color: var(--accent);
 }
 .navbar-cv:hover { color: var(--accent-dark); }
-.navbar-cv .icon { width: 15px; height: 15px; }
 
 .theme-toggle {
   display: inline-flex;
@@ -314,231 +285,126 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Hero
+   Hero — name and one-line credential only; photo, bio and contact each
+   live in their own labelled block below.
    -------------------------------------------------------------------------- */
 
-.hero { background: var(--bg); }
-
-.hero-content {
-  /* flow-root establishes a new block formatting context, so this box
-     properly contains the floated portrait's height instead of
-     collapsing around it. */
-  display: flow-root;
-  padding-top: 56px;
-  padding-bottom: 56px;
-}
-
-.hero-portrait {
-  float: left;
-  margin: 0 32px 20px 0;
-  width: 176px;
-  height: 176px;
-  object-fit: cover;
-  border-radius: 16px;              /* softly-rounded square, per PLAN §2 */
-  border: 1px solid var(--rule);
-  background: var(--bg-alt);
-}
+.hero-block { margin-bottom: 8px; }
 
 .name-title {
-  font-size: clamp(1.9rem, 4.5vw, 2.5rem);
+  font-size: clamp(1.7rem, 4vw, 2.1rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  margin-top: 0;
+  margin-bottom: 4px;
 }
 
-.hero-role {
-  font-size: 1.06rem;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-
-/* Bio — the former About section's content, folded straight into the
-   Hero. clear: left forces it to always start below the portrait
-   rather than reflow around it: letting a running paragraph's lines
-   wrap narrow-then-wide mid-sentence is bad typography (inconsistent
-   measure within one block of text) even though the name and role
-   line above wrap beside the photo fine, since those are short,
-   deliberate single lines rather than reflowing prose. */
-.hero-bio {
-  clear: left;
-  margin-bottom: 20px;
-}
-.hero-role .sep { color: var(--rule); margin: 0 6px; }
-
-.hero-tagline {
-  max-width: 56ch;
-  color: var(--ink-muted);
-}
+.hero-role { color: var(--ink-muted); }
 
 
 /* --------------------------------------------------------------------------
-   Education timeline
+   About Me — bio text with the portrait docked to the right.
    -------------------------------------------------------------------------- */
 
-.timeline { display: grid; gap: 30px; }
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 148px 1fr;
-  gap: 24px;
-  padding-left: 20px;
-  border-left: 2px solid var(--rule);
-}
-
-.timeline-date {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--ink-muted);
-  padding-top: 3px;
-  font-variant-numeric: tabular-nums;
-}
-
-.timeline-title { font-size: 1.14rem; margin-bottom: 3px; }
-
-/* Linked entries (Experience, to its own detail page) read as plain
-   heading text, not a generic blue link — the underline-on-hover and a
-   small trailing arrow are the only clickable affordance. */
-.timeline-title a {
-  color: inherit;
-  transition: color .15s ease;
-}
-.timeline-title a:hover { color: var(--accent); text-decoration: none; }
-.timeline-title a::after {
-  content: " \2192";
-  display: inline-block;
-  opacity: 0;
-  transform: translateX(-3px);
-  transition: opacity .15s ease, transform .15s ease;
-}
-.timeline-title a:hover::after { opacity: 1; transform: none; }
-
-.timeline-org {
+.about-block {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 5px;
+  gap: 28px;
 }
 
-.timeline-logo {
-  width: 20px;
-  height: 20px;
+.about-photo {
   flex: none;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-.timeline-location {
-  font-weight: 400;
-  color: var(--ink-muted);
-}
-.timeline-location::before { content: "\00b7\0020"; }
-
-.timeline-detail {
-  font-size: 0.95rem;
-  color: var(--ink-muted);
-  max-width: var(--measure);
-}
-
-
-/* --------------------------------------------------------------------------
-   Research / project entries — flat horizontal rows (thumbnail left, text
-   right), separated by whitespace and a thin rule rather than a boxed or
-   shadowed card. This is the one layout every reference researcher site
-   shares for publications/projects.
-   -------------------------------------------------------------------------- */
-
-.cards {
-  display: grid;
-  gap: 32px;
-}
-
-.card {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  padding-top: 28px;
-  border-top: 1px solid var(--rule);
-}
-.card:first-child {
-  padding-top: 0;
-  border-top: none;
-}
-
-.card-image {
-  flex: none;
-  width: 170px;
-  aspect-ratio: 4 / 3;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--rule);
   background: var(--bg-alt);
 }
 
-.card-body { min-width: 0; }
 
-.card-title { font-size: 1.08rem; margin-bottom: 5px; }
+/* --------------------------------------------------------------------------
+   News — a plain list, every entry visible at once, on purpose: this is
+   content meant to be scanned in a glance, not stepped through one at a
+   time. The only flourish is colouring the most recent date.
+   -------------------------------------------------------------------------- */
 
-.card-org {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.card-desc {
-  font-size: 0.93rem;
+.news-plain { display: grid; gap: 8px; font-size: 0.95rem; }
+.news-plain-date {
+  display: inline-block;
+  width: 70px;
   color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+.news-plain li:first-child .news-plain-date { color: var(--accent); }
+
+
+/* --------------------------------------------------------------------------
+   Selected Projects — thumbnail-left dense rows: a small image, a linked
+   title, one line of context. Density over the fuller card treatment.
+   -------------------------------------------------------------------------- */
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
 }
 
-/* Compact, bracket-labelled links — [Paper], [Code], [Project Page] — read
-   sequentially as their own small line under the description, the
-   convention most researcher sites use. No icons or per-type colour;
-   the label text alone says what each one is. */
-.card-links {
+.project-row img {
+  flex: none;
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  background: var(--bg-alt);
+}
+
+.project-row-title { font-weight: 600; }
+.project-row-org { font-size: 0.86rem; color: var(--ink-muted); }
+
+
+/* --------------------------------------------------------------------------
+   Activities & Training — a compact logo timeline: summer schools,
+   conferences, training and degrees all in one dense list.
+   -------------------------------------------------------------------------- */
+
+.activity-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-  font-size: 0.88rem;
-  font-weight: 500;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  font-size: 0.94rem;
+}
+
+.activity-row img {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.activity-row-date {
+  flex: none;
+  width: 80px;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
 }
 
 
 /* --------------------------------------------------------------------------
-   Contact
+   Contact — plain inline text links, no icons, no boxed buttons.
    -------------------------------------------------------------------------- */
 
-.contact-list { display: grid; gap: 14px; }
-
-.contact-list li {
+.contact-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 6px 16px;
   font-size: 0.98rem;
 }
-
-/* URLs have no natural break points — without this a long one (e.g. the
-   LinkedIn link) can force the whole page to scroll horizontally on a
-   narrow phone instead of wrapping. min-width:0 lets the flex item
-   actually shrink below its text's intrinsic width so the wrap can apply. */
-.contact-list li a,
-.contact-list li span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.contact-list .icon {
-  width: 1.05rem;
-  height: 1.05rem;
-  flex: none;
-  color: var(--accent);
-}
+.contact-row-location { color: var(--ink-muted); }
 
 
 /* --------------------------------------------------------------------------
@@ -788,38 +654,22 @@ img { max-width: 100%; height: auto; }
    Responsive
    -------------------------------------------------------------------------- */
 
-@media (max-width: 860px) {
-  .hero-content {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
+@media (max-width: 640px) {
+  .about-block { flex-direction: column-reverse; gap: 16px; }
+  .about-photo { width: 96px; height: 96px; }
 
-  /* Text wrapping around a float reads as cramped on a narrow phone —
-     drop the float and stack normally instead. */
-  .hero-portrait {
-    float: none;
-    display: block;
-    width: 128px;
-    height: 128px;
-    margin: 0 0 20px;
-  }
+  .project-row { align-items: flex-start; }
 
-  .hero-portrait { width: 128px; height: 128px; }
-
-  .timeline-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .timeline-date { padding-top: 0; }
+  .activity-row { flex-wrap: wrap; }
+  .activity-row-date { order: 3; width: auto; }
 }
 
 @media (max-width: 720px) {
   body { font-size: 16px; }
 
-  .section { padding: 40px 0; }
-
   .container { padding: 0 18px; }
+
+  .page-content { padding: 32px 0 60px; }
 
   .navbar-inner { gap: 12px; }
 
@@ -833,9 +683,6 @@ img { max-width: 100%; height: auto; }
   .navbar-menu::-webkit-scrollbar { display: none; }
 
   .navbar-item { padding: 6px 9px; font-size: 0.86rem; }
-
-  .card { flex-direction: column; gap: 12px; padding-top: 24px; }
-  .card-image { width: 100%; aspect-ratio: 16 / 9; }
 
   .detail-header { flex-wrap: wrap; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
@@ -867,7 +714,5 @@ img { max-width: 100%; height: auto; }
 
 @media print {
   .navbar { display: none; }
-  .section { padding: 24px 0; border-top: none; }
-  .card { break-inside: avoid; }
   a { color: var(--ink); }
 }
