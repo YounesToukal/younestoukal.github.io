@@ -483,24 +483,18 @@ img { max-width: 100%; height: auto; }
   color: var(--ink-muted);
 }
 
+/* Compact, bracket-labelled links — [Paper], [Code], [Project Page] — read
+   sequentially as their own small line under the description, the
+   convention most researcher sites use. No icons or per-type colour;
+   the label text alone says what each one is. */
 .card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 10px;
   margin-top: 12px;
-}
-
-.link-arrow {
   font-size: 0.88rem;
   font-weight: 500;
 }
-.link-arrow::after {
-  content: " \2192";
-  transition: margin-left .18s ease;
-  display: inline-block;
-}
-.link-arrow:hover { text-decoration: none; }
-.link-arrow:hover::after { margin-left: 4px; }
 
 
 /* --------------------------------------------------------------------------

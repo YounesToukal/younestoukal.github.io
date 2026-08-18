@@ -82,13 +82,16 @@ Every card already has one:
 
 ```html
 <div class="card-links">
-  <a class="link-arrow" href="[URL]" rel="noopener" target="_blank">Code</a>
+  <a href="[URL]" rel="noopener" target="_blank">[Link]</a>
 </div>
 ```
 
-Just edit the `href`. Add more `<a class="link-arrow">` lines for additional links (e.g. a
-second one for a paper or demo), or delete the whole `.card-links` div for a card that won't
-have one — cards without it render cleanly as-is.
+Edit the `href`, and change the label to whatever it actually is — `[Code]`, `[Paper]`,
+`[arXiv]`, `[Project Page]`, `[Demo]` — brackets and all; that's the convention most
+researcher sites use for this row (see andrewatanov.github.io for an example), and no CSS
+class is needed on the `<a>` for it. Add more `<a>` lines for additional links, or delete the
+whole `.card-links` div for a card that won't have one — cards without it render cleanly
+as-is.
 
 ### Add an Education or Experience entry
 
