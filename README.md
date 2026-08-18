@@ -18,13 +18,18 @@ static/css/index.css            all styling; theme variables in the :root block 
 static/js/index.js              scroll reveal, active-nav highlight, footer year, theme toggle
 static/images/                  headshot, favicon, social card
 static/images/projects/         one photo per Research & Projects card
-static/pdfs/CV.pdf              the CV the Download buttons point at
+static/pdfs/CV.pdf              the CV the CV links open in a new tab
 .nojekyll                       serve files verbatim, no Jekyll processing
 ```
 
 ## Editing
 
 **Content** — all of it is in `index.html`. Sections are separated by banner comments.
+
+**Email links** — any `<a class="email-link" href="mailto:...">` gets a click popover
+(full address, Copy button, Send email link) from `static/js/index.js`, driven entirely by
+the link's own `href` — change the address there and the popover picks it up automatically.
+Without JS the link still works as a plain mailto: link.
 
 **Theme** — the top of `static/css/index.css` defines every colour, font and dimension as a
 custom property, including a dark-mode variant. Changing the accent is one line:
@@ -55,7 +60,6 @@ Select-String -Path index.html -Pattern TODO
 | What | Where |
 |---|---|
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
-| LinkedIn URL | `index.html` — hero button and contact list (your CV doesn't give the raw slug) |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
 | ACVSS date/location | Experience section |
@@ -80,8 +84,7 @@ Any static server works. With Node installed:
 npx --yes serve .
 ```
 
-Then open the URL it prints. Opening `index.html` directly via `file://` also works, though
-the `download` attribute on the CV button behaves differently there.
+Then open the URL it prints. Opening `index.html` directly via `file://` also works.
 
 ## Deploy
 
