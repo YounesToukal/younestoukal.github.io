@@ -1,7 +1,8 @@
 # younestoukal.github.io
 
-Personal academic website for Younes Toukal — a single scrolling page covering About,
-Education, Research & Projects, Experience and Contact, with the CV always one click away.
+Personal academic website for Younes Toukal — a single scrolling page covering About
+(bio + degree history), Research & Projects, Experience and Contact, with the CV always one
+click away.
 
 Content and structure follow the convention used by most personal researcher sites (kept
 lean, no skills/tools tag clouds, no soft-skills or volunteering sections) rather than
@@ -13,7 +14,7 @@ Google Fonts. Deploys directly on GitHub Pages.
 ## Structure
 
 ```
-index.html                      the one-page site (About, Education, Research, Experience, Contact)
+index.html                      the one-page site (About, Research, Experience, Contact)
 acvss.html                      ACVSS detail page, linked from the Experience entry
 deep-learning-indaba.html       Deep Learning Indaba detail page, linked from the Experience entry
 ai-forge.html                   AI Forge Training detail page, linked from the Experience entry
@@ -21,7 +22,7 @@ static/css/index.css            all styling; theme variables in the :root block 
 static/js/index.js              scroll reveal, active-nav highlight, email popover, theme toggle
 static/images/                  headshot, favicon, social card
 static/images/projects/         one photo per Research & Projects card
-static/images/logos/            one logo per Education/Experience entry
+static/images/logos/            one logo per degree/Experience entry
 static/images/experience/*/     photo gallery for each Experience detail page
 static/pdfs/CV.pdf              the CV the CV links open in a new tab
 .nojekyll                       serve files verbatim, no Jekyll processing
@@ -93,12 +94,13 @@ class is needed on the `<a>` for it. Add more `<a>` lines for additional links, 
 whole `.card-links` div for a card that won't have one — cards without it render cleanly
 as-is.
 
-### Add an Education or Experience entry
+### Add a degree or Experience entry
 
-Both sections use the same pattern. In the Education section, right above
-`<ul class="timeline">`, there's a commented-out `TEMPLATE` block starting
-`<li class="timeline-item">`. Copy it, paste it inside either section's `<ul>…</ul>`, and
-fill in the blanks:
+Both live as a compact `<ul class="timeline">` list — degrees inside About (right above the
+bio, no separate section — see below for why), Experience as its own section further down.
+Same pattern in both places. Right above each `<ul class="timeline">` there's a commented-out
+`TEMPLATE` block starting `<li class="timeline-item">`. Copy it, paste it inside that
+section's `<ul>…</ul>`, and fill in the blanks:
 
 ```html
 <li class="timeline-item">
@@ -123,6 +125,16 @@ you don't need (`.timeline-location` can also repeat — one span per piece, e.g
 country as two separate spans rather than one comma-joined string). To remove an entry,
 delete its whole `<li>…</li>`.
 
+**Why degrees live inside About, not their own section** — with everything at one
+institution, a full separate "Education" section (heading, nav link, alternating background)
+was just re-stating in structured form what the bio already said in prose. Folding it into a
+compact `.timeline-tight` list right above the bio keeps the useful bits (logo, dates, thesis
+title) without the redundant chrome — the same thing several reference researcher sites do
+(e.g. andrewatanov.github.io folds an entire degree history into one line of the intro). If
+you add a second institution, either keep this pattern (it holds up fine with 3-4 entries) or
+promote it back to its own `<section>` — copy the Experience section's structure
+(`<h2 class="section-label">`, drop `.timeline-tight`) and re-add the nav link.
+
 **Institution logos** — every entry has a small logo in `static/images/logos/`, shown at its
 real colours (no filter). Drop a new logo image in, same filename, done — any square-ish
 image works.
@@ -133,7 +145,7 @@ and `ai-forge.html` are standalone pages (same nav/footer chrome as `index.html`
 treatment: copy one of these three files as a starting point, edit the title/meta/body/gallery,
 save it at the repo root with a new filename, then wrap that entry's `<h3 class="timeline-title">`
 text in `<a href="./your-new-page.html">…</a>` back in `index.html`. Entries without a page
-just render as plain text, like Education's do.
+just render as plain text.
 
 Every gallery photo is a placeholder in `static/images/experience/<page>/` — same drop-in
 swap as any other photo on the site, and you can add more `<img>` tags to a gallery; the grid
