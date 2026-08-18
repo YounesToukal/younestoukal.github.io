@@ -355,10 +355,16 @@ img { max-width: 100%; height: auto; }
 }
 
 /* Bio — the former About section's content, folded straight into the
-   Hero. Starts beside the portrait (still within the float's height)
-   and continues at full container width once past it, rather than
-   being confined to a fixed side-by-side column. */
-.hero-bio { margin-bottom: 20px; }
+   Hero. clear: left forces it to always start below the portrait
+   rather than reflow around it: letting a running paragraph's lines
+   wrap narrow-then-wide mid-sentence is bad typography (inconsistent
+   measure within one block of text) even though the name and role
+   line above wrap beside the photo fine, since those are short,
+   deliberate single lines rather than reflowing prose. */
+.hero-bio {
+  clear: left;
+  margin-bottom: 20px;
+}
 .hero-role .sep { color: var(--rule); margin: 0 6px; }
 
 .hero-tagline {
