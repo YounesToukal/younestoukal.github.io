@@ -21,7 +21,7 @@
   --ink-strong:    #201f1d;   /* headings, slightly darker than graphite */
   --ink-muted:     #6a5c4b;   /* dusty taupe, darkened for AA contrast on soft-linen */
   --bg:            #fbfaf6;   /* warm off-white */
-  --bg-alt:        #e0e5d8;   /* soft linen — alternating section bands */
+  --bg-alt:        #f0f2ea;   /* soft linen, lightened toward bg — a gentle offset tint rather than a contrasting block */
   --rule:          #d6d9c8;   /* border/divider, a shade off soft-linen */
   --navbar-bg:     rgba(251, 250, 246, 0.85);
 
