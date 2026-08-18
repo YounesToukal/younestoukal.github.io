@@ -13,11 +13,16 @@ Google Fonts. Deploys directly on GitHub Pages.
 ## Structure
 
 ```
-index.html                      the whole site (all content lives here)
+index.html                      the one-page site (About, Education, Research, Experience, Contact)
+acvss.html                      ACVSS detail page, linked from the Experience entry
+deep-learning-indaba.html       Deep Learning Indaba detail page, linked from the Experience entry
+ai-forge.html                   AI Forge Training detail page, linked from the Experience entry
 static/css/index.css            all styling; theme variables in the :root block at the top
-static/js/index.js              scroll reveal, active-nav highlight, footer year, theme toggle
+static/js/index.js              scroll reveal, active-nav highlight, email popover, theme toggle
 static/images/                  headshot, favicon, social card
 static/images/projects/         one photo per Research & Projects card
+static/images/logos/            one logo per Education/Experience entry
+static/images/experience/*/     photo gallery for each Experience detail page
 static/pdfs/CV.pdf              the CV the CV links open in a new tab
 .nojekyll                       serve files verbatim, no Jekyll processing
 ```
@@ -119,6 +124,18 @@ delete its whole `<li>…</li>`.
 real colours (no filter). Drop a new logo image in, same filename, done — any square-ish
 image works.
 
+**Linking an Experience entry to its own page** — `acvss.html`, `deep-learning-indaba.html`
+and `ai-forge.html` are standalone pages (same nav/footer chrome as `index.html`, reusing
+`index.css`) with a description and a photo gallery. To give a new Experience entry the same
+treatment: copy one of these three files as a starting point, edit the title/meta/body/gallery,
+save it at the repo root with a new filename, then wrap that entry's `<h3 class="timeline-title">`
+text in `<a href="./your-new-page.html">…</a>` back in `index.html`. Entries without a page
+just render as plain text, like Education's do.
+
+Every gallery photo is a placeholder in `static/images/experience/<page>/` — same drop-in
+swap as any other photo on the site, and you can add more `<img>` tags to a gallery; the grid
+reflows on its own.
+
 ### Edit the bio, role line or tagline
 
 All three live in the Hero and About sections near the top of `index.html` — the role line
@@ -184,6 +201,8 @@ Select-String -Path index.html -Pattern TODO
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
+| Project links (GitHub/arXiv/paper) | none are filled in — see "Add a link to a project" above |
+| 9 Experience gallery photos | `static/images/experience/*/photo-*.svg` → replace with real photos |
 | Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
 
 Content has been fact-checked against your CV (`Resume - Younes Toukal.pdf`) — identity,
