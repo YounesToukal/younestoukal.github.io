@@ -76,19 +76,19 @@ real photo or figure into that folder and either overwrite the placeholder file 
 same filename) or give it a new name and update the `src="…"` on that card's `<img>` — no
 other markup changes needed. Any image works; it's cropped to fit automatically.
 
-### Add a link to a project (paper, code, demo, report)
+### Add or change a project's link (paper, code, demo, report)
 
-Copy the commented-out `.card-links` example in the first project card:
+Every card already has one:
 
 ```html
 <div class="card-links">
   <a class="link-arrow" href="[URL]" rel="noopener" target="_blank">Code</a>
-  <a class="link-arrow" href="[URL]" rel="noopener" target="_blank">Report</a>
 </div>
 ```
 
-Paste it inside a card's `.card-body`, right after `.card-desc`, and edit the URLs and link
-text (add or remove `<a>` lines freely). Cards without this block render cleanly as-is.
+Just edit the `href`. Add more `<a class="link-arrow">` lines for additional links (e.g. a
+second one for a paper or demo), or delete the whole `.card-links` div for a card that won't
+have one — cards without it render cleanly as-is.
 
 ### Add an Education or Experience entry
 
@@ -201,7 +201,7 @@ Select-String -Path index.html -Pattern TODO
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
-| Project links (GitHub/arXiv/paper) | none are filled in — see "Add a link to a project" above |
+| 6 project links | every card's `.card-links` URL is a placeholder (`github.com/younestoukal/<slug>`, doesn't exist) — replace with the real one, or delete the `.card-links` div for cards that won't get one |
 | 9 Experience gallery photos | `static/images/experience/*/photo-*.svg` → replace with real photos |
 | Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
 
