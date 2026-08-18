@@ -478,8 +478,6 @@ img { max-width: 100%; height: auto; }
   margin-bottom: 16px;
 }
 
-.card .tags { margin-top: auto; }
-
 .card-links {
   display: flex;
   flex-wrap: wrap;
@@ -498,143 +496,6 @@ img { max-width: 100%; height: auto; }
 }
 .link-arrow:hover { text-decoration: none; }
 .link-arrow:hover::after { margin-left: 4px; }
-
-
-/* --------------------------------------------------------------------------
-   Tags — shared by cards and the skills section
-   -------------------------------------------------------------------------- */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.tags li {
-  padding: 3px 10px;
-  border-radius: 5px;
-  background: var(--bg-alt);
-  border: 1px solid var(--rule);
-  color: var(--ink-muted);
-  font-size: 0.79rem;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-.is-alt .tags li { background: var(--bg); }
-
-
-/* --------------------------------------------------------------------------
-   Academic service
-   -------------------------------------------------------------------------- */
-
-.service {
-  margin-top: 44px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
-}
-
-.service-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 8px;
-}
-
-.service p { font-size: 0.95rem; }
-
-.service-intro {
-  font-size: 0.9rem;
-  color: var(--ink-muted);
-  margin-bottom: 14px;
-}
-
-.service-list { display: grid; gap: 9px; max-width: var(--measure); }
-
-.service-list li {
-  font-size: 0.95rem;
-  color: var(--ink);
-  padding-left: 1.1em;
-  position: relative;
-}
-.service-list li::before {
-  content: "\2013";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-
-/* --------------------------------------------------------------------------
-   Experience — schools/programmes, photo + text
-   -------------------------------------------------------------------------- */
-
-.experience-list { display: grid; gap: 30px; }
-
-/* A tighter variant of the Education .timeline, used for short one-line
-   training entries nested inside an Experience .service block. */
-.timeline-compact { gap: 20px; }
-.timeline-compact .timeline-detail { font-size: 0.9rem; }
-
-.experience-item {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.experience-photo {
-  flex: none;
-  width: 220px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
-  background: var(--bg);
-}
-
-.experience-body { min-width: 0; }
-
-.experience-title { font-size: 1.14rem; margin-bottom: 3px; }
-
-.experience-meta {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.experience-desc {
-  font-size: 0.95rem;
-  color: var(--ink-muted);
-  max-width: var(--measure);
-}
-
-
-/* --------------------------------------------------------------------------
-   Skills — grouped, not a wall of tags
-   -------------------------------------------------------------------------- */
-
-.skills { display: grid; gap: 32px; }
-
-.skill-group {
-  display: grid;
-  grid-template-columns: 168px 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.skill-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  padding-top: 5px;
-}
 
 
 /* --------------------------------------------------------------------------
@@ -671,7 +532,6 @@ img { max-width: 100%; height: auto; }
 }
 
 .footer p { margin-bottom: 6px; }
-.footer-credit { font-size: 0.82rem; }
 
 
 /* --------------------------------------------------------------------------
@@ -706,17 +566,12 @@ img { max-width: 100%; height: auto; }
 
   .hero-portrait { width: 132px; height: 132px; }
 
-  .timeline-item,
-  .skill-group {
+  .timeline-item {
     grid-template-columns: 1fr;
     gap: 8px;
   }
 
   .timeline-date { padding-top: 0; }
-  .skill-label { padding-top: 0; }
-
-  .experience-item { flex-direction: column; gap: 14px; }
-  .experience-photo { width: 100%; height: auto; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 720px) {

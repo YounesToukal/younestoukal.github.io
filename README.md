@@ -1,8 +1,11 @@
 # younestoukal.github.io
 
 Personal academic website for Younes Toukal — a single scrolling page covering About,
-Education, Research & Projects, Experience, Skills and Contact, with the CV always one
-click away.
+Education, Research & Projects, Experience and Contact, with the CV always one click away.
+
+Content and structure follow the convention used by most personal researcher sites (kept
+lean, no skills/tools tag clouds, no soft-skills or volunteering sections) rather than
+mirroring a CV one-to-one — see the commit history for the reasoning.
 
 Plain HTML/CSS/JS. **No build step, no dependencies** — the only external requests are to
 Google Fonts. Deploys directly on GitHub Pages.
@@ -15,7 +18,6 @@ static/css/index.css            all styling; theme variables in the :root block 
 static/js/index.js              scroll reveal, active-nav highlight, footer year, theme toggle
 static/images/                  headshot, favicon, social card
 static/images/projects/         one photo per Research & Projects card
-static/images/experience/       one photo per Experience entry
 static/pdfs/CV.pdf              the CV the Download buttons point at
 .nojekyll                       serve files verbatim, no Jekyll processing
 ```
@@ -31,14 +33,16 @@ custom property, including a dark-mode variant. Changing the accent is one line:
 :root { --accent: #873d32; }   /* chestnut */
 ```
 
-**Adding a photo to a project card or Experience entry** — every card and Experience entry
-already has an `<img>` pointed at a placeholder in `static/images/projects/` or
-`static/images/experience/`. Drop the real photo in, keep (or update) the filename, done —
-same pattern as the headshot. No other markup changes needed.
+**Adding a photo to a project card** — every card already has an `<img>` pointed at a
+placeholder in `static/images/projects/`. Drop the real photo/figure in, keep (or update)
+the filename, done — same pattern as the headshot. No other markup changes needed.
 
-**Adding another Experience entry** — copy one `<li class="experience-item">` block in the
-Experience section and edit its contents; the layout, nav highlighting and scroll-reveal all
-pick it up automatically.
+**Adding a link to a project card** (paper, code, demo, report) — copy the commented-out
+`.card-links` example in the first card. Cards without one render cleanly as-is.
+
+**Adding another Experience entry** — copy one `<li class="timeline-item">` block in the
+Experience section (it reuses the same compact timeline as Education) and edit its contents;
+nav highlighting and scroll-reveal pick it up automatically.
 
 ## Remaining placeholders
 
@@ -54,15 +58,19 @@ Select-String -Path index.html -Pattern TODO
 | LinkedIn URL | `index.html` — hero button and contact list (your CV doesn't give the raw slug) |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
-| ACVSS dates, location, role | Experience section |
-| Deep Learning Indaba details | Experience section — year, location, role, what you did there |
-| 3 experience photos | `static/images/experience/*.svg` → replace with real photos |
+| ACVSS date/location | Experience section |
+| Deep Learning Indaba year/location | Experience section |
 | Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
 
 Content has been fact-checked against your CV (`Resume - Younes Toukal.pdf`) — identity,
-education, contact email, skills, volunteering and most experience entries are now sourced
-from it directly, not drafted. The exceptions are ACVSS 2026 and Deep Learning Indaba, which
-you mentioned directly but don't appear on that CV — worth double-checking their details.
+education, contact email and most experience entries are sourced from it directly, not
+drafted. ACVSS and Deep Learning Indaba are the exceptions — you mentioned them directly but
+they don't appear on that CV, so their dates are still placeholders.
+
+The Skills, Soft Skills, Volunteering and "Other Training" sections from an earlier pass
+were removed after comparing against real researcher personal sites (Zamir, Bachmann,
+Atanov, and others) — none of them carry that kind of CV-style content, so it didn't belong
+here either. What's left maps closely to what those sites actually include.
 
 ## Preview locally
 
