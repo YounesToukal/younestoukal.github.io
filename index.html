@@ -127,29 +127,26 @@
      Hero
      ============================================================ -->
 <section class="hero" id="home">
+  <!-- ============================================================
+       Portrait floats left; the name, role, bio and actions below are
+       all normal flow content that wraps around it — text runs beside
+       the photo, then continues at full container width once past its
+       bottom edge, rather than sitting in a fixed side-by-side column.
+       ============================================================ -->
   <div class="container hero-content">
 
     <img class="hero-portrait" src="./static/images/headshot.jpg"
          alt="Portrait of Younes Toukal" width="180" height="180">
 
-    <div class="hero-text">
-      <h1 class="name-title">Younes Toukal</h1>
+    <h1 class="name-title">Younes Toukal</h1>
 
-      <p class="hero-role">
-        Master's Student in Visual Computing &mdash; USTHB
-        <span class="sep">·</span>
-        AI for Medical Imaging
-      </p>
-    </div>
+    <p class="hero-role">
+      Master's Student in Visual Computing &mdash; USTHB
+      <span class="sep">·</span>
+      AI for Medical Imaging
+    </p>
 
-  </div>
-
-  <!-- ============================================================
-       Bio — the former About section, folded into the Hero itself
-       rather than kept as a separate section further down the page.
-       ============================================================ -->
-  <div class="container hero-bio">
-    <div class="content prose">
+    <div class="content prose hero-bio">
       <p>
         I'm a Master's student in Visual Computing at USTHB (Algiers), currently working on a thesis
         on hepatic vessel segmentation in radiological imaging. Before that I completed a Bachelor's

@@ -320,44 +320,45 @@ img { max-width: 100%; height: auto; }
 .hero { background: var(--bg); }
 
 .hero-content {
-  display: flex;
-  align-items: center;
-  gap: 36px;
+  /* flow-root establishes a new block formatting context, so this box
+     properly contains the floated portrait's height instead of
+     collapsing around it. */
+  display: flow-root;
   padding-top: 56px;
-  padding-bottom: 28px;
+  padding-bottom: 56px;
 }
 
-/* Bio — the former About section's content, folded straight into the
-   Hero: full container width rather than confined to the narrow
-   column beside the portrait, since it runs longer than a tagline. */
-.hero-bio { padding-bottom: 56px; }
-.hero-bio .prose { margin-bottom: 20px; }
-
 .hero-portrait {
+  float: left;
+  margin: 0 32px 20px 0;
   width: 176px;
   height: 176px;
-  flex: none;
   object-fit: cover;
   border-radius: 16px;              /* softly-rounded square, per PLAN §2 */
   border: 1px solid var(--rule);
   background: var(--bg-alt);
 }
 
-.hero-text { min-width: 0; }
-
 .name-title {
   font-size: clamp(1.9rem, 4.5vw, 2.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
+  margin-top: 0;
 }
 
 .hero-role {
   font-size: 1.06rem;
   font-weight: 500;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
+
+/* Bio — the former About section's content, folded straight into the
+   Hero. Starts beside the portrait (still within the float's height)
+   and continues at full container width once past it, rather than
+   being confined to a fixed side-by-side column. */
+.hero-bio { margin-bottom: 20px; }
 .hero-role .sep { color: var(--rule); margin: 0 6px; }
 
 .hero-tagline {
@@ -783,14 +784,19 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 860px) {
   .hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
     padding-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
   }
 
-  .hero-bio { padding-bottom: 40px; }
+  /* Text wrapping around a float reads as cramped on a narrow phone —
+     drop the float and stack normally instead. */
+  .hero-portrait {
+    float: none;
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: 0 0 20px;
+  }
 
   .hero-portrait { width: 128px; height: 128px; }
 
