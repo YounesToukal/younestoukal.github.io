@@ -481,9 +481,20 @@ img { max-width: 100%; height: auto; }
   font-size: 0.98rem;
 }
 
+/* URLs have no natural break points — without this a long one (e.g. the
+   LinkedIn link) can force the whole page to scroll horizontally on a
+   narrow phone instead of wrapping. min-width:0 lets the flex item
+   actually shrink below its text's intrinsic width so the wrap can apply. */
+.contact-list li a,
+.contact-list li span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .contact-list .icon {
   width: 1.05rem;
   height: 1.05rem;
+  flex: none;
   color: var(--accent);
 }
 
@@ -523,7 +534,7 @@ img { max-width: 100%; height: auto; }
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 5px 11px;
+  padding: 7px 12px;
   border: 1px solid var(--rule);
   border-radius: 6px;
   background: var(--bg-alt);

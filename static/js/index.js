@@ -194,9 +194,16 @@
         popover.appendChild(actions);
         document.body.appendChild(popover);
 
+        // Clamp horizontally so the popover can't render off-screen on a
+        // narrow phone — it's appended (above) before this runs, so its
+        // real rendered width is already available to measure.
         var rect = link.getBoundingClientRect();
+        var margin = 12;
+        var maxLeft = window.scrollX + window.innerWidth - popover.offsetWidth - margin;
+        var left = Math.min(rect.left + window.scrollX, Math.max(window.scrollX + margin, maxLeft));
+
         popover.style.top = (rect.bottom + window.scrollY + 8) + 'px';
-        popover.style.left = (rect.left + window.scrollX) + 'px';
+        popover.style.left = left + 'px';
 
         link.setAttribute('aria-expanded', 'true');
         open = { trigger: link, popover: popover };
