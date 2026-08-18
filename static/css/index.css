@@ -324,8 +324,14 @@ img { max-width: 100%; height: auto; }
   align-items: center;
   gap: 36px;
   padding-top: 56px;
-  padding-bottom: 56px;
+  padding-bottom: 28px;
 }
+
+/* Bio — the former About section's content, folded straight into the
+   Hero: full container width rather than confined to the narrow
+   column beside the portrait, since it runs longer than a tagline. */
+.hero-bio { padding-bottom: 56px; }
+.hero-bio .prose { margin-bottom: 20px; }
 
 .hero-portrait {
   width: 176px;
@@ -781,8 +787,10 @@ img { max-width: 100%; height: auto; }
     align-items: flex-start;
     gap: 24px;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
+
+  .hero-bio { padding-bottom: 40px; }
 
   .hero-portrait { width: 128px; height: 128px; }
 
