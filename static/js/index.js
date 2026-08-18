@@ -1,10 +1,11 @@
 /* ==========================================================================
    Younes Toukal — personal academic site
-   Four small enhancements, all progressive: with JS disabled the page is
+   Five small enhancements, all progressive: with JS disabled the page is
    fully readable and every anchor still works (smooth scrolling and the
    sticky-nav offset are handled in CSS, the dark-mode toggle falls back to
-   following the OS preference via a plain CSS media query, and every
-   "Email" link is still a working mailto: link on its own).
+   following the OS preference via a plain CSS media query, every "Email"
+   link is still a working mailto: link on its own, and every gallery
+   photo is still visible, just not enlargeable, without the lightbox).
    ========================================================================== */
 
 (function () {
@@ -221,5 +222,110 @@
     });
 
     window.addEventListener('scroll', closePopover, { passive: true });
+  }
+
+  /* ------------------------------------------------------------------
+     5. Photo lightbox — click a gallery photo to open it large, step
+        through the rest of that gallery with prev/next or the arrow
+        keys, with a small "2 / 3" counter. Inspired by 4M's image
+        carousels (4m.epfl.ch): step through examples, immediate
+        visual feedback. Each gallery on the page gets its own
+        independent click-through set, built from its own <img> tags.
+     ------------------------------------------------------------------ */
+  var galleries = document.querySelectorAll('.gallery');
+  if (galleries.length) {
+    var box = null;
+
+    var closeLightbox = function () {
+      if (!box) return;
+      box.el.parentNode.removeChild(box.el);
+      box.trigger.focus();
+      box = null;
+    };
+
+    var showIndex = function (i) {
+      var count = box.images.length;
+      box.index = (i + count) % count;
+      var img = box.images[box.index];
+      box.imageEl.src = img.src;
+      box.imageEl.alt = img.alt;
+      // counterEl only exists for multi-photo galleries — see openLightbox
+      if (box.counterEl) box.counterEl.textContent = (box.index + 1) + ' / ' + count;
+    };
+
+    var openLightbox = function (images, startIndex, trigger) {
+      var el = document.createElement('div');
+      el.className = 'lightbox';
+      el.setAttribute('role', 'dialog');
+      el.setAttribute('aria-label', 'Photo viewer');
+
+      var imageEl = document.createElement('img');
+      imageEl.className = 'lightbox-image';
+
+      var closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'lightbox-close';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.textContent = '×';
+      closeBtn.addEventListener('click', closeLightbox);
+
+      el.appendChild(imageEl);
+      el.appendChild(closeBtn);
+
+      if (images.length > 1) {
+        var prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'lightbox-nav lightbox-prev';
+        prevBtn.setAttribute('aria-label', 'Previous photo');
+        prevBtn.textContent = '‹';
+        prevBtn.addEventListener('click', function () { showIndex(box.index - 1); });
+
+        var nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'lightbox-nav lightbox-next';
+        nextBtn.setAttribute('aria-label', 'Next photo');
+        nextBtn.textContent = '›';
+        nextBtn.addEventListener('click', function () { showIndex(box.index + 1); });
+
+        var counterEl = document.createElement('div');
+        counterEl.className = 'lightbox-counter';
+
+        el.appendChild(prevBtn);
+        el.appendChild(nextBtn);
+        el.appendChild(counterEl);
+      }
+
+      el.addEventListener('click', function (e) {
+        if (e.target === el) closeLightbox();
+      });
+
+      document.body.appendChild(el);
+      box = {
+        el: el,
+        imageEl: imageEl,
+        counterEl: el.querySelector('.lightbox-counter'),
+        images: images,
+        index: 0,
+        trigger: trigger
+      };
+      showIndex(startIndex);
+      closeBtn.focus();
+    };
+
+    Array.prototype.forEach.call(galleries, function (gallery) {
+      var images = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+      images.forEach(function (img, i) {
+        img.addEventListener('click', function () {
+          openLightbox(images, i, img);
+        });
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!box) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showIndex(box.index - 1);
+      else if (e.key === 'ArrowRight') showIndex(box.index + 1);
+    });
   }
 })();

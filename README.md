@@ -139,6 +139,11 @@ Every gallery photo is a placeholder in `static/images/experience/<page>/` — s
 swap as any other photo on the site, and you can add more `<img>` tags to a gallery; the grid
 reflows on its own.
 
+**Clicking a gallery photo** opens it large with a lightbox (prev/next, arrow keys, a "2 / 3"
+counter) — `static/js/index.js` wires this up automatically for any `.gallery` on any page, so
+a new gallery on a new detail page gets it for free, no extra markup needed. A gallery with
+just one photo works too; the counter and nav arrows only appear once there's more than one.
+
 ### Edit the bio, role line or tagline
 
 All three live in the Hero and About sections near the top of `index.html` — the role line
