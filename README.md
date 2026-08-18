@@ -111,12 +111,12 @@ fill in the blanks:
 ```
 
 `.timeline-logo`, `.timeline-location` and `.timeline-detail` are all optional — delete any
-you don't need. See Deep Learning Indaba in the Experience section for an example with no
-detail line. To remove an entry, delete its whole `<li>…</li>`.
+you don't need (`.timeline-location` can also repeat — one span per piece, e.g. city and
+country as two separate spans rather than one comma-joined string). To remove an entry,
+delete its whole `<li>…</li>`.
 
-**Institution logos** — every entry has a small logo in `static/images/logos/` (currently
-placeholder initial badges). Drop a real logo image in, same filename, done — it's
-grayscale-filtered by CSS so any colour logo still sits calmly in the page. Any square-ish
+**Institution logos** — every entry has a small logo in `static/images/logos/`, shown at its
+real colours (no filter). Drop a new logo image in, same filename, done — any square-ish
 image works.
 
 ### Edit the bio, role line or tagline
@@ -184,14 +184,14 @@ Select-String -Path index.html -Pattern TODO
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
 | Google Scholar | commented-out block in the hero; uncomment when you have a profile |
 | 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
-| ACVSS date/location | Experience section |
-| Deep Learning Indaba year/location | Experience section |
 | Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
 
 Content has been fact-checked against your CV (`Resume - Younes Toukal.pdf`) — identity,
 education, contact email and most experience entries are sourced from it directly, not
-drafted. ACVSS and Deep Learning Indaba are the exceptions — you mentioned them directly but
-they don't appear on that CV, so their dates are still placeholders.
+drafted. ACVSS and Deep Learning Indaba are the exceptions — you mentioned them directly and
+they don't appear on that CV, so their dates and locations were confirmed separately (ACVSS:
+19–29 Jul 2026, Google AICC, Accra, Ghana — acvss.ai; Deep Learning Indaba: 2–7 Aug 2026,
+Pan-Atlantic University, Lagos, Nigeria — deeplearningindaba.com).
 
 The Skills, Soft Skills, Volunteering and "Other Training" sections from an earlier pass
 were removed after comparing against real researcher personal sites (Zamir, Bachmann,

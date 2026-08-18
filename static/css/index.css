@@ -395,16 +395,12 @@ img { max-width: 100%; height: auto; }
   margin-bottom: 5px;
 }
 
-/* Grayscale-toned so any institution's logo — whatever brand colours it
-   carries — sits calmly in the page rather than fighting the palette. */
 .timeline-logo {
   width: 20px;
   height: 20px;
   flex: none;
   object-fit: contain;
   border-radius: 4px;
-  filter: grayscale(100%);
-  opacity: 0.82;
 }
 
 .timeline-location {

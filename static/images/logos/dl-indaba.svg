@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
-     role="img" aria-label="Deep Learning Indaba — placeholder logo">
-  <!-- PLACEHOLDER. Replace with the real logo (square, transparent background
-       preferred) and update the matching <img class="timeline-logo" src> in
-       index.html. Rendered at 20x20 and grayscale-filtered by CSS. -->
-  <rect x="1" y="1" width="38" height="38" rx="8" fill="#f0f2ea" stroke="#d6d9c8" stroke-width="1.5"/>
-  <text x="20" y="25" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="13" font-weight="700" letter-spacing="0.02em" fill="#6a5c4b">DLI</text>
-</svg>
