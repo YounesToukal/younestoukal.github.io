@@ -109,6 +109,7 @@
       <a class="navbar-item" href="#about">About</a>
       <a class="navbar-item" href="#education">Education</a>
       <a class="navbar-item" href="#research">Research</a>
+      <a class="navbar-item" href="#experience">Experience</a>
       <a class="navbar-item" href="#skills">Skills</a>
       <a class="navbar-item" href="#contact">Contact</a>
     </div>
@@ -274,11 +275,16 @@
       Selected work across materials engineering and computer vision.
     </p>
 
-    <!-- TODO: for any card below, add a link row like the commented example in the first card
+    <!-- TODO: every card image below is a placeholder (static/images/projects/*.svg).
+         Swap each src for a real photo or figure — same drop-in pattern as the headshot:
+         keep the filename or update the src, no other markup changes needed.
+         TODO: for any card below, add a link row like the commented example in the first card
          once a repo, report or demo is public. Cards without links render cleanly as-is. -->
     <div class="cards">
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/thermal-tempering.svg"
+             alt="Thermal tempering and thermal shock in glass — placeholder">
         <h3 class="card-title">Thermal tempering and thermal shock in glass</h3>
         <p class="card-org">SEDIVER · IPR&ndash;ISCR, Rennes</p>
         <p class="card-desc">
@@ -298,6 +304,8 @@
       </article>
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/generative-models.svg"
+             alt="Generative models from the ground up — placeholder">
         <h3 class="card-title">Generative models from the ground up</h3>
         <p class="card-org">ACVSS 2026</p>
         <p class="card-desc">
@@ -311,6 +319,8 @@
       </article>
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/depth-reconstruction.svg"
+             alt="Depth and 3D reconstruction in an operating room — placeholder">
         <h3 class="card-title">Depth &amp; 3D reconstruction in an operating room</h3>
         <p class="card-desc">
           Reconstructing 3D scene geometry and meshes from a single fisheye camera mounted in a medical
@@ -323,6 +333,8 @@
       </article>
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/vesselvis.svg"
+             alt="VesselVis 3D vessel segmentation review tool — placeholder">
         <h3 class="card-title">VesselVis &mdash; 3D vessel segmentation review tool</h3>
         <p class="card-desc">
           A full-stack web tool for reviewing and correcting 3D liver vasculature segmentations:
@@ -335,6 +347,8 @@
       </article>
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/video-understanding.svg"
+             alt="Video understanding and action recognition — placeholder">
         <h3 class="card-title">Video understanding &amp; action recognition</h3>
         <p class="card-desc">
           Compared representative approaches to action recognition on the KTH dataset: frozen DINOv2
@@ -347,6 +361,8 @@
       </article>
 
       <article class="card">
+        <img class="card-image" src="./static/images/projects/vision-architecture.svg"
+             alt="Saliency-inspired vision architecture — placeholder">
         <h3 class="card-title">Saliency-inspired vision architecture</h3>
         <p class="card-desc">
           An ongoing research idea for a vision architecture that takes its structure from visual
@@ -369,9 +385,56 @@
 
 
 <!-- ============================================================
+     Experience — schools, workshops, programmes attended.
+     TODO: every photo below is a placeholder (static/images/experience/*.svg) —
+     same drop-in swap as the headshot. To add another entry, copy one
+     <li class="experience-item"> block and edit its contents.
+     ============================================================ -->
+<section class="section is-alt" id="experience">
+  <div class="container">
+    <h2 class="section-label">Experience</h2>
+    <p class="section-intro">
+      Summer schools and programmes I've taken part in.
+    </p>
+
+    <ul class="experience-list">
+      <li class="experience-item">
+        <img class="experience-photo" src="./static/images/experience/acvss.svg"
+             alt="ACVSS 2026 — placeholder">
+        <div class="experience-body">
+          <h3 class="experience-title">ACVSS 2026</h3>
+          <!-- TODO: confirm exact dates, location and your role (participant/selected/etc.) -->
+          <p class="experience-meta">African Computer Vision Summer School &mdash; 2026</p>
+          <p class="experience-desc">
+            A hands-on summer school in computer vision, where I worked on the generative-models
+            project listed under Research &amp; Projects above.
+          </p>
+        </div>
+      </li>
+
+      <li class="experience-item">
+        <img class="experience-photo" src="./static/images/experience/dl-indaba.svg"
+             alt="Deep Learning Indaba — placeholder">
+        <div class="experience-body">
+          <h3 class="experience-title">Deep Learning Indaba</h3>
+          <!-- TODO: confirm exact year, location and your role -->
+          <p class="experience-meta">Pan-African meeting on machine learning research</p>
+          <p class="experience-desc">
+            <!-- TODO: replace with what you actually did/attended there -->
+            Took part in the Indaba's programme of talks, tutorials and community-building around
+            machine learning research in Africa.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
      Skills
      ============================================================ -->
-<section class="section is-alt" id="skills">
+<section class="section" id="skills">
   <div class="container">
     <h2 class="section-label">Skills</h2>
 
@@ -407,7 +470,7 @@
 <!-- ============================================================
      Contact
      ============================================================ -->
-<section class="section" id="contact">
+<section class="section is-alt" id="contact">
   <div class="container">
     <h2 class="section-label">Contact</h2>
     <p class="section-intro">

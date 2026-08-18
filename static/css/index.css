@@ -444,11 +444,23 @@ img { max-width: 100%; height: auto; }
   background: var(--bg);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
+  overflow: hidden;   /* clips .card-image to the card's own corners */
   transition: background-color .25s ease, border-color .18s ease, box-shadow .18s ease;
 }
 .card:hover {
   border-color: var(--card-hover-border);
   box-shadow: 0 2px 16px var(--card-shadow);
+}
+
+/* Bleeds to the card's outer edge: negative margin cancels the card's own
+   padding on three sides, width compensates for it on the other two. */
+.card-image {
+  display: block;
+  width: calc(100% + 52px);
+  margin: -26px -26px 18px -26px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg-alt);
 }
 
 .card-title { font-size: 1.12rem; margin-bottom: 6px; }
@@ -533,6 +545,46 @@ img { max-width: 100%; height: auto; }
 }
 
 .service p { font-size: 0.95rem; }
+
+
+/* --------------------------------------------------------------------------
+   Experience — schools/programmes, photo + text
+   -------------------------------------------------------------------------- */
+
+.experience-list { display: grid; gap: 30px; }
+
+.experience-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.experience-photo {
+  flex: none;
+  width: 220px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.experience-body { min-width: 0; }
+
+.experience-title { font-size: 1.14rem; margin-bottom: 3px; }
+
+.experience-meta {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.experience-desc {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  max-width: var(--measure);
+}
 
 
 /* --------------------------------------------------------------------------
@@ -636,6 +688,9 @@ img { max-width: 100%; height: auto; }
 
   .timeline-date { padding-top: 0; }
   .skill-label { padding-top: 0; }
+
+  .experience-item { flex-direction: column; gap: 14px; }
+  .experience-photo { width: 100%; height: auto; aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 720px) {
