@@ -107,6 +107,7 @@
 
     <div class="navbar-menu">
       <a class="navbar-item" href="#about">About</a>
+      <a class="navbar-item" href="#education">Education</a>
       <a class="navbar-item" href="#research">Research</a>
       <a class="navbar-item" href="#experience">Experience</a>
       <a class="navbar-item" href="#contact">Contact</a>
@@ -172,14 +173,44 @@
   <div class="container">
     <h2 class="section-label">About</h2>
 
+    <div class="content prose">
+      <p>
+        I'm a Master's student in Visual Computing at USTHB (Algiers), currently working on a thesis
+        on hepatic vessel segmentation in radiological imaging. Before that I completed a Bachelor's
+        in Computer Science at the same university, with a graduation project on an optimised
+        architecture for image segmentation.
+      </p>
+      <p>
+        My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
+        patient treatment and contribute to medical research. VesselVis, the segmentation review tool
+        below, grew directly out of that thesis work.
+      </p>
+      <p>
+        Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
+        I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
+        AI and medicine.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Education
+     ============================================================ -->
+<section class="section is-alt" id="education">
+  <div class="container">
+    <h2 class="section-label">Education</h2>
+
     <!-- ============================================================
-         TEMPLATE for a new degree entry — copy everything from <li to
-         </li>, paste it anywhere in the list below, fill in the blanks.
-         Same pattern reused as-is in the Experience section further
-         down. .timeline-logo, .timeline-location and .timeline-detail
-         are all optional — delete any of them you don't need. For a
-         new logo, drop a square image in static/images/logos/ and
-         point the <img> at it — any image works, shown at real colour.
+         TEMPLATE — copy everything from <li to </li>, paste it
+         anywhere in the list below, and fill in the blanks. This
+         same pattern (<ul class="timeline">, <li class="timeline-item">)
+         is reused as-is in the Experience section further down.
+         .timeline-logo, .timeline-location and .timeline-detail are all
+         optional — delete any of them you don't need. For a new logo,
+         drop a square image in static/images/logos/ and point the <img>
+         at it (any image works — it's grayscale-filtered by CSS).
 
     <li class="timeline-item">
       <div class="timeline-date">[e.g. 2024 &ndash; Present, or just a year]</div>
@@ -199,7 +230,7 @@
 
          ============================================================ -->
 
-    <ul class="timeline timeline-tight">
+    <ul class="timeline">
       <li class="timeline-item">
         <div class="timeline-date">2024 &ndash; Present</div>
         <div class="timeline-body">
@@ -232,19 +263,6 @@
         </div>
       </li>
     </ul>
-
-    <div class="content prose">
-      <p>
-        My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
-        patient treatment and contribute to medical research. VesselVis, the segmentation review tool
-        below, grew directly out of my thesis work.
-      </p>
-      <p>
-        Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
-        I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
-        AI and medicine.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -252,7 +270,7 @@
 <!-- ============================================================
      Research / Projects
      ============================================================ -->
-<section class="section is-alt" id="research">
+<section class="section" id="research">
   <div class="container">
     <h2 class="section-label">Research &amp; Projects</h2>
     <p class="section-intro">
@@ -411,7 +429,7 @@
      Same <li class="timeline-item"> pattern as Education — see the
      TEMPLATE comment there for a block to copy.
      ============================================================ -->
-<section class="section" id="experience">
+<section class="section is-alt" id="experience">
   <div class="container">
     <h2 class="section-label">Experience</h2>
 
@@ -473,7 +491,7 @@
 <!-- ============================================================
      Contact
      ============================================================ -->
-<section class="section is-alt" id="contact">
+<section class="section" id="contact">
   <div class="container">
     <h2 class="section-label">Contact</h2>
     <p class="section-intro">
