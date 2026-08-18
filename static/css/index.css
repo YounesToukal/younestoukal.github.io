@@ -7,15 +7,22 @@
 
 :root {
   /* --- colour ------------------------------------------------------------ */
-  --accent:        #0f766e;   /* deep teal — deliberately not corporate blue */
-  --accent-dark:   #0b5b55;
-  --accent-soft:   #ccfbf1;
-  --ink:           #14181d;   /* body text */
-  --ink-strong:    #0a0d10;   /* headings */
-  --ink-muted:     #5b6570;   /* dates, captions, tags */
-  --bg:            #ffffff;
-  --bg-alt:        #f7f8f9;   /* alternating section bands */
-  --rule:          #e3e6e9;
+  /* Warm, earthy palette. Chestnut carries every text-accent role (links,
+     section labels, active states) — it's dark enough to read on white.
+     Honey-bronze is reserved for filled CTA buttons only: it's too light
+     to use as foreground text against a white background. */
+  --accent:        #873d32;   /* chestnut */
+  --accent-dark:   #6b2f26;   /* chestnut, darkened for hover */
+  --accent-soft:   #f6e3c9;   /* light honey wash — hover backgrounds, chips */
+  --cta:           #ffc068;   /* honey-bronze — CV button fill only */
+  --cta-dark:      #f0a93f;   /* honey-bronze, darkened for hover */
+  --cta-ink:       #2a2c2b;   /* graphite text on the honey-bronze fill */
+  --ink:           #2a2c2b;   /* graphite — body text */
+  --ink-strong:    #201f1d;   /* headings, slightly darker than graphite */
+  --ink-muted:     #6a5c4b;   /* dusty taupe, darkened for AA contrast on soft-linen */
+  --bg:            #fbfaf6;   /* warm off-white */
+  --bg-alt:        #e0e5d8;   /* soft linen — alternating section bands */
+  --rule:          #d6d9c8;   /* border/divider, a shade off soft-linen */
 
   /* --- type -------------------------------------------------------------- */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -161,14 +168,15 @@ img { max-width: 100%; height: auto; }
 }
 
 .button.is-accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--cta);
+  border-color: var(--cta);
+  color: var(--cta-ink);
+  font-weight: 600;
 }
 .button.is-accent:hover {
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
-  color: #fff;
+  background: var(--cta-dark);
+  border-color: var(--cta-dark);
+  color: var(--cta-ink);
 }
 
 .button.is-small {
@@ -194,7 +202,7 @@ img { max-width: 100%; height: auto; }
   top: 0;
   z-index: 50;
   height: var(--nav-h);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(251, 250, 246, 0.85);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--rule);
@@ -354,8 +362,8 @@ img { max-width: 100%; height: auto; }
   transition: border-color .18s ease, box-shadow .18s ease;
 }
 .card:hover {
-  border-color: #cfd5da;
-  box-shadow: 0 2px 16px rgba(20, 24, 29, 0.05);
+  border-color: #c2c7b3;
+  box-shadow: 0 2px 16px rgba(42, 44, 43, 0.06);
 }
 
 .card-title { font-size: 1.12rem; margin-bottom: 6px; }
