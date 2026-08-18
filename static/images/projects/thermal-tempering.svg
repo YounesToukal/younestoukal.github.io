@@ -1,17 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360"
-     role="img" aria-label="Thermal tempering / thermal shock in glass — placeholder">
-  <!-- PLACEHOLDER. Replace this file with a real photo/figure (jpg or png)
-       and update the matching <img src> in index.html. -->
-  <rect width="640" height="360" fill="#e0e5d8"/>
-
-  <!-- generic image icon -->
-  <rect x="240" y="130" width="160" height="112" rx="8" fill="none" stroke="#867766" stroke-width="3"/>
-  <circle cx="270" cy="158" r="10" fill="#867766"/>
-  <path d="M248 220l40-38 26 24 30-34 34 40" fill="none" stroke="#867766" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
-
-  <text x="320" y="272" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="15" font-weight="600" letter-spacing="1.2" fill="#6a5c4b">PHOTO PLACEHOLDER</text>
-  <text x="320" y="296" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="13" fill="#867766">Thermal tempering / thermal shock in glass</text>
+     role="img" aria-label="Thermal tempering and thermal shock in glass — placeholder graphic">
+  <!-- PLACEHOLDER — original abstract artwork standing in for a real photo/figure.
+       Replace with a real image (jpg/png) and update the <img src> in index.html. -->
+  <defs>
+    <radialGradient id="heat" cx="30%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#ffc068"/>
+      <stop offset="45%" stop-color="#c9773f"/>
+      <stop offset="100%" stop-color="#2a2c2b"/>
+    </radialGradient>
+    <linearGradient id="crackFade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0f2ea" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f0f2ea" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#heat)"/>
+  <!-- fracture lines radiating from a stress point, glass-crack motif -->
+  <g stroke="url(#crackFade)" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M195 165 L60 40"/>
+    <path d="M195 165 L30 150"/>
+    <path d="M195 165 L50 260"/>
+    <path d="M195 165 L140 320"/>
+    <path d="M195 165 L280 330"/>
+    <path d="M195 165 L380 300"/>
+    <path d="M195 165 L430 200"/>
+    <path d="M195 165 L410 90"/>
+    <path d="M195 165 L300 30"/>
+    <path d="M195 165 L230 60"/>
+  </g>
+  <g stroke="#f0f2ea" stroke-width="1.4" fill="none" stroke-opacity="0.4">
+    <path d="M120 100 L155 145"/>
+    <path d="M300 250 L250 200"/>
+    <path d="M350 130 L300 155"/>
+  </g>
+  <circle cx="195" cy="165" r="5" fill="#fbfaf6"/>
 </svg>

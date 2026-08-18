@@ -1,17 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360"
-     role="img" aria-label="Video understanding & action recognition — placeholder">
-  <!-- PLACEHOLDER. Replace this file with a real photo/figure (jpg or png)
-       and update the matching <img src> in index.html. -->
-  <rect width="640" height="360" fill="#e0e5d8"/>
-
-  <!-- generic image icon -->
-  <rect x="240" y="130" width="160" height="112" rx="8" fill="none" stroke="#867766" stroke-width="3"/>
-  <circle cx="270" cy="158" r="10" fill="#867766"/>
-  <path d="M248 220l40-38 26 24 30-34 34 40" fill="none" stroke="#867766" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
-
-  <text x="320" y="272" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="15" font-weight="600" letter-spacing="1.2" fill="#6a5c4b">PHOTO PLACEHOLDER</text>
-  <text x="320" y="296" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="13" fill="#867766">Video understanding & action recognition</text>
+     role="img" aria-label="Video understanding and action recognition — placeholder graphic">
+  <!-- PLACEHOLDER — original abstract artwork standing in for a real photo/figure.
+       Replace with a real image (jpg/png) and update the <img src> in index.html. -->
+  <rect width="640" height="360" fill="#201f1d"/>
+  <!-- stroboscopic motion trail: a figure silhouette repeated across a walking arc,
+       fading with time, evoking action-recognition frame sampling -->
+  <g fill="#e0e5d8">
+    <ellipse cx="120" cy="230" rx="16" ry="34" opacity="0.12"/>
+    <ellipse cx="120" cy="150" rx="11" ry="11" opacity="0.12"/>
+  </g>
+  <g fill="#e0e5d8">
+    <ellipse cx="230" cy="225" rx="16" ry="34" opacity="0.22"/>
+    <ellipse cx="230" cy="145" rx="11" ry="11" opacity="0.22"/>
+  </g>
+  <g fill="#e0e5d8">
+    <ellipse cx="340" cy="215" rx="16" ry="36" opacity="0.4"/>
+    <ellipse cx="340" cy="132" rx="11" ry="11" opacity="0.4"/>
+  </g>
+  <g fill="#ffc068">
+    <ellipse cx="450" cy="205" rx="17" ry="38" opacity="0.75"/>
+    <ellipse cx="450" cy="118" rx="12" ry="12" opacity="0.75"/>
+  </g>
+  <g fill="#fbfaf6">
+    <ellipse cx="470" cy="200" rx="18" ry="40"/>
+    <ellipse cx="472" cy="110" rx="13" ry="13"/>
+  </g>
+  <!-- a sampled-frame bounding box on the sharp (rightmost) figure -->
+  <rect x="440" y="60" width="70" height="200" fill="none" stroke="#873d32" stroke-width="2" rx="4"/>
+  <!-- ground line -->
+  <line x1="40" y1="270" x2="600" y2="270" stroke="#3a3630" stroke-width="1.5"/>
 </svg>

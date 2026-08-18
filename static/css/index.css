@@ -385,11 +385,33 @@ img { max-width: 100%; height: auto; }
 .timeline-title { font-size: 1.14rem; margin-bottom: 3px; }
 
 .timeline-org {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--accent);
   margin-bottom: 5px;
 }
+
+/* Grayscale-toned so any institution's logo — whatever brand colours it
+   carries — sits calmly in the page rather than fighting the palette. */
+.timeline-logo {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: grayscale(100%);
+  opacity: 0.82;
+}
+
+.timeline-location {
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+.timeline-location::before { content: "\00b7\0020"; }
 
 .timeline-detail {
   font-size: 0.95rem;

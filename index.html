@@ -207,13 +207,20 @@
          anywhere in the list below, and fill in the blanks. This
          same pattern (<ul class="timeline">, <li class="timeline-item">)
          is reused as-is in the Experience section further down.
-         .timeline-detail is optional — delete it for a one-line entry.
+         .timeline-logo, .timeline-location and .timeline-detail are all
+         optional — delete any of them you don't need. For a new logo,
+         drop a square image in static/images/logos/ and point the <img>
+         at it (any image works — it's grayscale-filtered by CSS).
 
     <li class="timeline-item">
       <div class="timeline-date">[e.g. 2024 &ndash; Present, or just a year]</div>
       <div class="timeline-body">
         <h3 class="timeline-title">[Degree / role title]</h3>
-        <p class="timeline-org">[Institution or organisation]</p>
+        <p class="timeline-org">
+          <img class="timeline-logo" src="./static/images/logos/PLACEHOLDER.svg" alt="">
+          [Institution or organisation]
+          <span class="timeline-location">[City, Country]</span>
+        </p>
         <p class="timeline-detail">
           [One line of detail — thesis topic, key coursework, what the role involved.]
         </p>
@@ -227,7 +234,12 @@
         <div class="timeline-date">2024 &ndash; Present</div>
         <div class="timeline-body">
           <h3 class="timeline-title">Master in Visual Computing</h3>
-          <p class="timeline-org">University of Science and Technology Houari Boumediene (USTHB), Algiers</p>
+          <p class="timeline-org">
+            <!-- TODO: replace with the real USTHB logo (static/images/logos/usthb.svg is a placeholder) -->
+            <img class="timeline-logo" src="./static/images/logos/usthb.svg" alt="">
+            University of Science and Technology Houari Boumediene (USTHB)
+            <span class="timeline-location">Algiers, Algeria</span>
+          </p>
           <p class="timeline-detail">
             Thesis: hepatic vessel segmentation in radiological imaging.
           </p>
@@ -238,7 +250,12 @@
         <div class="timeline-date">2020 &ndash; 2024</div>
         <div class="timeline-body">
           <h3 class="timeline-title">Bachelor's Degree in Computer Science</h3>
-          <p class="timeline-org">University of Science and Technology Houari Boumediene (USTHB), Algiers</p>
+          <p class="timeline-org">
+            <!-- TODO: replace with the real USTHB logo (static/images/logos/usthb.svg is a placeholder) -->
+            <img class="timeline-logo" src="./static/images/logos/usthb.svg" alt="">
+            University of Science and Technology Houari Boumediene (USTHB)
+            <span class="timeline-location">Algiers, Algeria</span>
+          </p>
           <p class="timeline-detail">
             Graduation project: an optimised architecture for image segmentation.
           </p>
@@ -397,7 +414,13 @@
         <div class="timeline-date">2026</div>
         <div class="timeline-body">
           <h3 class="timeline-title">ACVSS</h3>
-          <p class="timeline-org">African Computer Vision Summer School</p>
+          <p class="timeline-org">
+            <!-- TODO: replace with the real ACVSS logo (static/images/logos/acvss.svg is a placeholder) -->
+            <img class="timeline-logo" src="./static/images/logos/acvss.svg" alt="">
+            African Computer Vision Summer School
+            <!-- TODO: fill in the location once confirmed -->
+            <span class="timeline-location">Location&nbsp;TBD</span>
+          </p>
           <p class="timeline-detail">
             Worked on the generative-models project listed under Research &amp; Projects above.
           </p>
@@ -409,7 +432,13 @@
         <div class="timeline-date">Year&nbsp;TBD</div>
         <div class="timeline-body">
           <h3 class="timeline-title">Deep Learning Indaba</h3>
-          <p class="timeline-org">Pan-African meeting on machine learning research</p>
+          <p class="timeline-org">
+            <!-- TODO: replace with the real Deep Learning Indaba logo (static/images/logos/dl-indaba.svg is a placeholder) -->
+            <img class="timeline-logo" src="./static/images/logos/dl-indaba.svg" alt="">
+            Pan-African meeting on machine learning research
+            <!-- TODO: fill in the location once confirmed -->
+            <span class="timeline-location">Location&nbsp;TBD</span>
+          </p>
         </div>
       </li>
 
@@ -417,7 +446,12 @@
         <div class="timeline-date">2025</div>
         <div class="timeline-body">
           <h3 class="timeline-title">AI Forge Training</h3>
-          <p class="timeline-org">Boeing STEM Center &middot; WorldLearning Algeria</p>
+          <p class="timeline-org">
+            <!-- TODO: replace with the real Boeing / WorldLearning logo (static/images/logos/ai-forge.svg is a placeholder) -->
+            <img class="timeline-logo" src="./static/images/logos/ai-forge.svg" alt="">
+            Boeing STEM Center &middot; WorldLearning Algeria
+            <span class="timeline-location">Algeria</span>
+          </p>
           <p class="timeline-detail">
             Collaborated with a multidisciplinary team to develop an AI model for aviation-related
             challenges, alongside conferences hosted by Microsoft AI for Good, INRIA and InstaDeep.

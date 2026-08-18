@@ -97,7 +97,11 @@ fill in the blanks:
   <div class="timeline-date">[e.g. 2024 – Present, or just a year]</div>
   <div class="timeline-body">
     <h3 class="timeline-title">[Degree / role title]</h3>
-    <p class="timeline-org">[Institution or organisation]</p>
+    <p class="timeline-org">
+      <img class="timeline-logo" src="./static/images/logos/PLACEHOLDER.svg" alt="">
+      [Institution or organisation]
+      <span class="timeline-location">[City, Country]</span>
+    </p>
     <p class="timeline-detail">
       [One line of detail — thesis topic, key coursework, what the role involved.]
     </p>
@@ -105,9 +109,14 @@ fill in the blanks:
 </li>
 ```
 
-Delete the `<p class="timeline-detail">` line for a bare one-line entry — see Deep Learning
-Indaba in the Experience section for an example. To remove an entry, delete its whole
-`<li>…</li>`.
+`.timeline-logo`, `.timeline-location` and `.timeline-detail` are all optional — delete any
+you don't need. See Deep Learning Indaba in the Experience section for an example with no
+detail line. To remove an entry, delete its whole `<li>…</li>`.
+
+**Institution logos** — every entry has a small logo in `static/images/logos/` (currently
+placeholder initial badges). Drop a real logo image in, same filename, done — it's
+grayscale-filtered by CSS so any colour logo still sits calmly in the page. Any square-ish
+image works.
 
 ### Edit the bio, role line or tagline
 

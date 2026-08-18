@@ -1,17 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360"
-     role="img" aria-label="Saliency-inspired vision architecture — placeholder">
-  <!-- PLACEHOLDER. Replace this file with a real photo/figure (jpg or png)
-       and update the matching <img src> in index.html. -->
-  <rect width="640" height="360" fill="#e0e5d8"/>
-
-  <!-- generic image icon -->
-  <rect x="240" y="130" width="160" height="112" rx="8" fill="none" stroke="#867766" stroke-width="3"/>
-  <circle cx="270" cy="158" r="10" fill="#867766"/>
-  <path d="M248 220l40-38 26 24 30-34 34 40" fill="none" stroke="#867766" stroke-width="3"
-        stroke-linecap="round" stroke-linejoin="round"/>
-
-  <text x="320" y="272" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="15" font-weight="600" letter-spacing="1.2" fill="#6a5c4b">PHOTO PLACEHOLDER</text>
-  <text x="320" y="296" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif"
-        font-size="13" fill="#867766">Saliency-inspired vision architecture</text>
+     role="img" aria-label="Saliency-inspired vision architecture — placeholder graphic">
+  <!-- PLACEHOLDER — original abstract artwork standing in for a real photo/figure.
+       Replace with a real image (jpg/png) and update the <img src> in index.html. -->
+  <defs>
+    <radialGradient id="salient1" cx="38%" cy="42%" r="30%">
+      <stop offset="0%" stop-color="#ffc068" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffc068" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="salient2" cx="68%" cy="62%" r="22%">
+      <stop offset="0%" stop-color="#873d32" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#873d32" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="#2a2c2b"/>
+  <!-- uniform attention grid in the background -->
+  <g stroke="#f0f2ea" stroke-opacity="0.1">
+    <line x1="0" y1="45" x2="640" y2="45"/><line x1="0" y1="90" x2="640" y2="90"/>
+    <line x1="0" y1="135" x2="640" y2="135"/><line x1="0" y1="180" x2="640" y2="180"/>
+    <line x1="0" y1="225" x2="640" y2="225"/><line x1="0" y1="270" x2="640" y2="270"/>
+    <line x1="0" y1="315" x2="640" y2="315"/>
+    <line x1="80" y1="0" x2="80" y2="360"/><line x1="160" y1="0" x2="160" y2="360"/>
+    <line x1="240" y1="0" x2="240" y2="360"/><line x1="320" y1="0" x2="320" y2="360"/>
+    <line x1="400" y1="0" x2="400" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+    <line x1="560" y1="0" x2="560" y2="360"/>
+  </g>
+  <!-- saliency hotspots: attention concentrated on a few regions, not uniform -->
+  <rect width="640" height="360" fill="url(#salient1)"/>
+  <rect width="640" height="360" fill="url(#salient2)"/>
 </svg>
