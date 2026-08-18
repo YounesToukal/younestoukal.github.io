@@ -100,7 +100,8 @@ fill in the blanks:
     <p class="timeline-org">
       <img class="timeline-logo" src="./static/images/logos/PLACEHOLDER.svg" alt="">
       [Institution or organisation]
-      <span class="timeline-location">[City, Country]</span>
+      <span class="timeline-location">[City]</span>
+      <span class="timeline-location">[Country]</span>
     </p>
     <p class="timeline-detail">
       [One line of detail — thesis topic, key coursework, what the role involved.]
