@@ -1,8 +1,6 @@
 /* ==========================================================================
    Younes Toukal — personal academic site
-   Structure follows the Nerfies project-page template (CC BY-SA 4.0):
-   https://github.com/nerfies/nerfies.github.io
-   Styling is original — light theme, single accent, Inter.
+   Light theme, single accent, Inter.
 
    Retheming: everything visual is driven by the custom properties below.
    ========================================================================== */
@@ -93,7 +91,7 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Layout primitives (Nerfies vocabulary: .container / .section)
+   Layout primitives
    -------------------------------------------------------------------------- */
 
 .container {
@@ -138,7 +136,7 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Buttons (Nerfies .button / .publication-links / .link-block)
+   Buttons
    -------------------------------------------------------------------------- */
 
 .button {
@@ -178,13 +176,13 @@ img { max-width: 100%; height: auto; }
   font-size: 0.85rem;
 }
 
-.publication-links {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 26px;
 }
-.link-block { display: inline-flex; }
+.action-item { display: inline-flex; }
 
 
 /* --------------------------------------------------------------------------
@@ -257,7 +255,7 @@ img { max-width: 100%; height: auto; }
 
 .hero { background: var(--bg); }
 
-.hero-body {
+.hero-content {
   display: flex;
   align-items: center;
   gap: 48px;
@@ -277,7 +275,7 @@ img { max-width: 100%; height: auto; }
 
 .hero-text { min-width: 0; }
 
-.publication-title {
+.name-title {
   font-size: clamp(2.1rem, 5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -527,7 +525,7 @@ img { max-width: 100%; height: auto; }
    -------------------------------------------------------------------------- */
 
 @media (max-width: 860px) {
-  .hero-body {
+  .hero-content {
     flex-direction: column;
     align-items: flex-start;
     gap: 28px;

@@ -76,8 +76,4 @@ The site goes live at <https://younestoukal.github.io> within a minute or two.
 
 ## Licence
 
-This site is built on the [Nerfies](https://github.com/nerfies/nerfies.github.io) project page
-template, which is released under
-[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/). This site inherits that
-licence — see [LICENSE](LICENSE). The attribution links in the footer of `index.html` satisfy
-the licence terms; please keep them.
+All rights reserved — see [LICENSE](LICENSE).
