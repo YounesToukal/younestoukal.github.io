@@ -1,6 +1,6 @@
 /* ==========================================================================
    Younes Toukal — personal academic site
-   Four small enhancements, all progressive: with JS disabled the page is
+   Three small enhancements, all progressive: with JS disabled the page is
    fully readable and every anchor still works (smooth scrolling and the
    sticky-nav offset are handled in CSS, and the dark-mode toggle falls back
    to following the OS preference via a plain CSS media query).
@@ -13,15 +13,7 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------
-     1. Footer year
-     ------------------------------------------------------------------ */
-  var yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
-  }
-
-  /* ------------------------------------------------------------------
-     2. Scroll reveal — subtle fade + rise, once per element.
+     1. Scroll reveal — subtle fade + rise, once per element.
         The .js-reveal class is added here rather than in the HTML so
         content is never hidden if JS fails to run.
      ------------------------------------------------------------------ */
@@ -45,7 +37,7 @@
   }
 
   /* ------------------------------------------------------------------
-     3. Active section highlight in the navbar
+     2. Active section highlight in the navbar
      ------------------------------------------------------------------ */
   var navLinks = Array.prototype.slice.call(
     document.querySelectorAll('.navbar-menu .navbar-item')
@@ -90,7 +82,7 @@
   }
 
   /* ------------------------------------------------------------------
-     4. Dark-mode toggle
+     3. Dark-mode toggle
         The icon shown for each theme, and the OS-preference fallback for
         anyone who never clicks the toggle, are handled entirely in CSS
         (see .theme-toggle in index.css) — this only needs to flip the

@@ -328,11 +328,11 @@ img { max-width: 100%; height: auto; }
 }
 
 .hero-portrait {
-  width: 148px;
-  height: 148px;
+  width: 176px;
+  height: 176px;
   flex: none;
   object-fit: cover;
-  border-radius: 14px;              /* softly-rounded square, per PLAN §2 */
+  border-radius: 16px;              /* softly-rounded square, per PLAN §2 */
   border: 1px solid var(--rule);
   background: var(--bg-alt);
 }
@@ -489,22 +489,6 @@ img { max-width: 100%; height: auto; }
 
 
 /* --------------------------------------------------------------------------
-   Footer
-   -------------------------------------------------------------------------- */
-
-.footer {
-  padding: 40px 0 56px;
-  border-top: 1px solid var(--rule);
-  background: var(--bg-alt);
-  font-size: 0.87rem;
-  color: var(--ink-muted);
-  text-align: center;
-}
-
-.footer p { margin-bottom: 6px; }
-
-
-/* --------------------------------------------------------------------------
    Scroll reveal — subtle only (PLAN §2). Applied by index.js, which also
    adds .js-reveal so the content stays visible when JS is unavailable.
    -------------------------------------------------------------------------- */
@@ -534,7 +518,7 @@ img { max-width: 100%; height: auto; }
     padding-bottom: 40px;
   }
 
-  .hero-portrait { width: 112px; height: 112px; }
+  .hero-portrait { width: 128px; height: 128px; }
 
   .timeline-item {
     grid-template-columns: 1fr;
@@ -593,7 +577,7 @@ img { max-width: 100%; height: auto; }
 }
 
 @media print {
-  .navbar, .footer { display: none; }
+  .navbar { display: none; }
   .section { padding: 24px 0; border-top: none; }
   .card { break-inside: avoid; }
   a { color: var(--ink); }
