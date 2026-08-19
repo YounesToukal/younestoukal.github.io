@@ -1,308 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Younes Toukal</title>
+<link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Younes Toukal — personal site. al-folio-style layout (fixed
+     navbar + progress bar, floated profile photo, bibliography-row
+     project list), own self-contained styling in this file rather
+     than static/css/index.css.
+     ============================================================ */
+  :root{
+    --bg:#fff; --text:#000; --text-light:#828282; --theme:#ea4335;
+    --divider:rgba(0,0,0,.1); --hover-fill:rgba(0,0,0,.06);
+    /* A small warm icon palette — yellow/red family, same temperature
+       as the red link/accent colour but three distinct hues within it
+       so the three news icons still read apart from one another. */
+    --icon-rust:#c1440e; --icon-red:#b3261e; --icon-amber:#d4a017;
+  }
+  /* Night mode — same red accent, grey/black surface. Applied twice on
+     purpose: once for the OS preference (guarded so an explicit light
+     choice can still override it), once for the explicit data-theme
+     the toggle sets — whichever the reader picks always wins. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#171513; --text:#e8eaed; --text-light:#9aa0a6; --theme:#ea4335;
+      --divider:rgba(255,255,255,.14); --hover-fill:rgba(255,255,255,.08);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#171513; --text:#e8eaed; --text-light:#9aa0a6; --theme:#ea4335;
+    --divider:rgba(255,255,255,.14); --hover-fill:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:70px}
+  body{
+    margin:0; padding-top:56px;
+    background:var(--bg); color:var(--text);
+    font-family:'Roboto',sans-serif; font-weight:300; font-size:1rem; line-height:1.6;
+  }
+  a{color:var(--theme); text-decoration:none}
+  a:hover{text-decoration:underline}
 
-  <!-- Applies a saved theme choice before first paint, so there is no flash
-       of the wrong colour scheme. The toggle itself lives in static/js/index.js. -->
-  <script>
-    (function () {
-      try {
-        var saved = localStorage.getItem('theme');
-        if (saved === 'dark' || saved === 'light') {
-          document.documentElement.setAttribute('data-theme', saved);
-        }
-      } catch (e) {}
-    })();
-  </script>
+  .container{max-width:930px; margin:0 auto; padding:0 15px}
 
-  <title>Younes Toukal — Visual Computing &amp; Medical Imaging</title>
-  <meta name="description"
-        content="Younes Toukal — Master's student in Visual Computing at USTHB, working on computer vision
-                 and AI for medical imaging.">
-  <meta name="keywords"
-        content="Younes Toukal, visual computing, computer vision, medical imaging, deep learning,
-                 image segmentation, USTHB, Algiers">
-  <meta name="author" content="Younes Toukal">
+  /* Navbar */
+  .navbar{
+    position:fixed; top:0; left:0; right:0; z-index:100; height:56px;
+    background:var(--bg); border-bottom:1px solid var(--divider);
+  }
+  .navbar .container{display:flex; align-items:center; justify-content:flex-end; gap:18px; height:100%}
+  .navbar-nav{display:flex; gap:26px; list-style:none; margin:0; padding:0}
+  .navbar-nav a{color:var(--text); font-size:.95rem}
+  .navbar-nav .active a{color:var(--theme); font-weight:700}
+  .navbar-nav a:hover{color:var(--theme); text-decoration:none}
 
-  <link rel="canonical" href="https://younestoukal.github.io/">
+  /* Theme toggle — a Material-style icon button: circular hover fill,
+     no border, the two line/fill icons swapped by data-theme/media
+     query rather than by JS, so it never flashes the wrong one. */
+  .theme-toggle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:36px; height:36px; padding:0; border:0; border-radius:50%;
+    background:transparent; color:var(--text-light); cursor:pointer;
+  }
+  .theme-toggle:hover{background:var(--hover-fill); color:var(--text)}
+  .theme-toggle svg{width:19px; height:19px}
+  .theme-toggle .icon-sun{fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+  .theme-toggle .icon-moon{display:none; fill:currentColor}
+  :root[data-theme="dark"] .theme-toggle .icon-sun{display:none}
+  :root[data-theme="dark"] .theme-toggle .icon-moon{display:block}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun{display:none}
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon{display:block}
+  }
 
-  <!-- Open Graph / social preview -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Younes Toukal — Visual Computing &amp; Medical Imaging">
-  <meta property="og:description"
-        content="Master's student in Visual Computing at USTHB, working on computer vision and AI for
-                 medical imaging.">
-  <meta property="og:url" content="https://younestoukal.github.io/">
-  <!-- TODO: replace og-card.svg with a real 1200x630 PNG social-card image (can be built
-       from static/images/headshot.jpg, which already exists) -->
-  <meta property="og:image" content="https://younestoukal.github.io/static/images/og-card.svg">
-  <meta name="twitter:card" content="summary_large_image">
+  progress{position:fixed; left:0; top:56px; z-index:10; width:100%; height:2px; appearance:none; border:0; background:transparent; color:var(--theme)}
+  progress::-webkit-progress-bar{background:transparent}
+  progress::-webkit-progress-value{background:var(--theme)}
+  progress::-moz-progress-bar{background:var(--theme)}
 
-  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  .main{max-width:930px; margin:56px auto 0; padding:0 15px}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
-        rel="stylesheet">
+  .post-title{font-family:'Roboto Slab',serif; font-size:2.2rem; font-weight:400; margin:0 0 6px}
+  .post-title .bold{font-weight:700}
+  .desc{color:var(--text); font-size:.95rem; margin:0 0 34px}
 
-  <link rel="stylesheet" href="./static/css/index.css">
+  /* Profile */
+  .profile{float:right; width:30%; margin-left:1rem; text-align:center}
+  .profile img{width:100%; border-radius:6px; display:block}
+  .profile .more-info{margin-top:5px; font-family:monospace; font-size:.85rem; text-align:center}
+  .profile .more-info p{margin:0}
+
+  .clearfix p{margin:0 0 14px}
+  .clearfix ul{margin:0 0 14px; padding-left:1.4rem}
+  .clearfix li{margin-bottom:2px}
+  article::after{content:""; display:table; clear:both}
+
+  h2.section-h{
+    font-family:'Roboto',sans-serif; font-size:1.5rem; font-weight:400; margin:2.5rem 0 1rem;
+  }
+  h2.section-h a{color:inherit}
+
+  /* News table */
+  table.news{width:100%; border-collapse:collapse}
+  table.news td, table.news th{padding:1px 1rem 1px 0; font-size:1rem; font-weight:300; vertical-align:top}
+  table.news tr{border-bottom:none}
+  table.news th{font-weight:400; width:20%; white-space:nowrap; color:var(--text); text-align:right; padding-right:1.5rem}
+  .news-icon{display:inline-block; width:15px; height:15px; vertical-align:-2px; margin-left:4px}
+  .news-icon-globe{fill:var(--icon-rust)}
+  .news-icon-sparkle{fill:var(--icon-amber)}
+  .news-icon-flight{fill:var(--icon-red)}
+
+  /* Publications / bibliography */
+  ol.bibliography{list-style:none; margin:0; padding:0}
+  ol.bibliography li{margin-bottom:1rem}
+  .bib-row{display:flex; gap:0}
+  .bib-thumb{flex:0 0 20%; max-width:20%; padding-right:1rem}
+  .bib-thumb img{width:100%; height:auto; border-radius:4px; display:block}
+  .bib-body{flex:0 0 66%; max-width:66%}
+  .bib-title{font-weight:700}
+  .bib-author{margin-top:2px}
+  .bib-author em{border-bottom:1px solid var(--text); font-style:normal}
+  .bib-author a{color:var(--text); border-bottom:none; text-decoration:none}
+  .bib-periodical{margin-top:2px}
+  .bib-periodical em{font-style:italic}
+  .bib-links{margin-top:.4rem; font-size:.9rem}
+  .bib-links a{color:var(--theme); margin-right:.6rem}
+  .bib-links a:hover{text-decoration:underline}
+  .bib-links a::before{content:"["; color:var(--text)}
+  .bib-links a::after{content:"]"; color:var(--text)}
+
+  /* Activities — its own row style: logos framed in a uniform chip so
+     wildly different source images (colour, mono, square, wide) don't
+     clash, and the row is vertically centred rather than top-aligned. */
+  ol.activities{list-style:none; margin:0; padding:0}
+  .act-row{
+    display:flex; align-items:center; gap:16px; padding:14px 0;
+    border-bottom:1px solid var(--divider);
+  }
+  ol.activities li:first-child .act-row{padding-top:0}
+  ol.activities li:last-child .act-row{border-bottom:none; padding-bottom:0}
+  .act-thumb{
+    flex:0 0 auto; width:48px; height:48px; display:flex; align-items:center;
+    justify-content:center; border:1px solid var(--divider); border-radius:6px;
+    padding:6px; background:var(--bg);
+  }
+  .act-thumb img{max-width:100%; max-height:100%; object-fit:contain; display:block}
+  .act-body .bib-title{font-weight:500; font-size:.98rem}
+  .act-body .bib-periodical{margin-top:1px}
+
+  hr.rule{border:0; border-top:1px solid var(--divider); margin:0 0 1rem}
+
+  /* ============================================================
+     Responsive — phones and small tablets. Every fixed-width piece
+     above (the floated 30%-wide profile photo, the nav row, the
+     20%-wide bib/news columns) assumed a desktop-width container;
+     these rules are what actually change on a narrow screen.
+     ============================================================ */
+  @media (max-width:680px){
+    .navbar .container{gap:10px}
+    .navbar-nav{gap:14px}
+    .navbar-nav a{font-size:.82rem}
+    .theme-toggle{width:32px; height:32px}
+
+    .post-title{font-size:1.7rem}
+    h2.section-h{font-size:1.25rem; margin-top:2rem}
+
+    /* Stack the profile photo above the bio instead of floating it
+       beside a squeezed 70%-width text column. */
+    .profile{float:none; width:130px; margin:0 auto 18px}
+    article::after{content:none}
+
+    table.news th{width:auto; padding-right:.75rem; font-size:.85rem}
+
+    .bib-thumb{flex-basis:26%; max-width:26%}
+    .bib-body{flex-basis:70%; max-width:70%}
+  }
+
+  @media (max-width:420px){
+    /* Thumbnails get too small to read below this — stack each
+       Selected Work row instead of squeezing the row further. */
+    .bib-row{flex-direction:column; gap:8px}
+    .bib-thumb, .bib-body{flex-basis:100%; max-width:100%; padding-right:0}
+    .bib-thumb img{max-height:160px; object-fit:cover}
+
+    .act-row{gap:12px}
+    .contact-icons{gap:1.4rem}
+  }
+
+  /* Footer — contact icons live here, in their own bordered bar,
+     rather than trailing loose at the end of the content flow. */
+  .site-footer{border-top:1px solid var(--divider); margin-top:56px; padding:28px 0}
+  .contact-icons{font-size:0; display:flex; justify-content:center; gap:2rem}
+  .contact-icons a{display:inline-flex; width:44px; height:44px; align-items:center; justify-content:center; color:var(--text)}
+  .contact-icons a:hover{color:var(--theme)}
+  .contact-icons svg{width:22px; height:22px; fill:currentColor}
+</style>
 </head>
-
 <body>
 
-<!-- ============================================================
-     Inline SVG icon sprite — no icon-font dependency. Only the theme
-     toggle needs one now; Contact is plain text links, matching the
-     dense faculty-page style below.
-     ============================================================ -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="4"/>
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2
-             M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-  </symbol>
-  <symbol id="icon-moon" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/>
-  </symbol>
-</svg>
-
-
-<!-- ============================================================
-     Nav — sticky, CV button always reachable (PLAN §1)
-     ============================================================ -->
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="container navbar-inner">
-    <a class="navbar-brand" href="#home">Younes&nbsp;Toukal</a>
-
-    <div class="navbar-menu">
-      <a class="navbar-item" href="#about">About</a>
-      <a class="navbar-item" href="#news">News</a>
-      <a class="navbar-item" href="#research">Projects</a>
-      <a class="navbar-item" href="#experience">Activities</a>
-      <a class="navbar-item" href="#contact">Contact</a>
-    </div>
-
+<nav class="navbar">
+  <div class="container">
+    <ul class="navbar-nav">
+      <li class="active"><a href="#about">about</a></li>
+      <li><a href="#news">news</a></li>
+      <li><a href="#work">work</a></li>
+      <li><a href="#activities">activities</a></li>
+      <li><a href="./cv.html">cv</a></li>
+    </ul>
     <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-      <svg class="icon icon-sun" aria-hidden="true"><use href="#icon-sun"/></svg>
-      <svg class="icon icon-moon" aria-hidden="true"><use href="#icon-moon"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/></svg>
     </button>
-
-    <!-- TODO: replace static/pdfs/CV.pdf with the real CV (keep the filename and this link works as-is) -->
-    <a class="navbar-item navbar-cv" href="./static/pdfs/CV.pdf" target="_blank" rel="noopener">CV</a>
   </div>
 </nav>
+<progress id="progress" value="0" max="100"></progress>
 
+<div class="main">
+  <header id="about">
+    <h1 class="post-title"><span class="bold">Younes</span> Toukal</h1>
+    <p class="desc"><strong>Contact</strong>. younesstoukal2 [at] gmail [dot] com</p>
+  </header>
 
-<!-- ============================================================
-     Dense, text-first, single-column layout — one narrow container
-     for the whole page rather than full-bleed alternating sections.
-     Every block below follows the same pattern: a small-caps label
-     (.dense-label) then the block's content. See README for the
-     copy-paste recipe for each repeated block (project row, activity
-     row, news item).
-     ============================================================ -->
-<div class="container narrow page-content">
+  <article>
+    <div class="profile">
+      <img src="./static/images/headshot.jpg" alt="Younes Toukal">
+      <div class="more-info">
+        <p>USTHB</p>
+        <p>Algiers, Algeria</p>
+      </div>
+    </div>
 
-  <!-- Hero — name and one-line credential; everything else (photo,
-       bio, contact) lives in its own labelled block below. -->
-  <div class="hero-block" id="home">
-    <h1 class="name-title">Younes Toukal</h1>
-    <p class="hero-role">USTHB &middot; Visual Computing &middot; AI for Medical Imaging</p>
+    <div class="clearfix">
+      <p>Hi, thanks for stopping by! 👋</p>
+      <p>I am a Master's student in Visual Computing at <a href="#about">USTHB</a> (Algiers), currently
+        writing my thesis on hepatic vessel segmentation in radiological imaging. Before that I
+        completed a Bachelor's in Computer Science at the same university, with a graduation project
+        on an optimised architecture for image segmentation.</p>
+      <p>💭 My current research interests include</p>
+      <ul>
+        <li>Medical image segmentation</li>
+        <li>Generative models</li>
+        <li>3D reconstruction and video understanding</li>
+      </ul>
+      <p>but not limited to.</p>
+      <p>I'm always open to collaborations and research discussions &mdash; especially at the
+        intersection of AI and medicine. Feel free to reach out!</p>
+    </div>
+  </article>
+
+  <h2 class="section-h" id="news"><a href="#news">news</a></h2>
+  <div class="news">
+    <!-- ============================================================
+         TEMPLATE — copy one <tr> row, paste it above the others
+         (newest first), fill in the blanks. Delete a row to remove
+         that entry. The link is optional — plain text works too.
+
+    <tr><th>[Month Year, or just a year]</th><td>[What happened — a <a href="...">link</a> is fine.]</td></tr>
+
+         ============================================================ -->
+    <table class="news">
+      <tr><th>Aug 2026</th><td>Attended <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria.
+        <svg class="news-icon news-icon-globe" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7.93 6h-2.75c-.28-1.47-.66-2.84-1.13-4.05A8.03 8.03 0 0 1 19.93 8zM12 4c.83 1.22 1.5 2.66 1.91 4H10.09c.41-1.34 1.08-2.78 1.91-4zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.81 2h2.75c.28 1.47.66 2.84 1.13 4.05A7.99 7.99 0 0 1 5.07 16zm2.75-8H5.07a7.99 7.99 0 0 1 3.88-4.05C8.48 5.16 8.1 6.53 7.82 8zM12 20c-.83-1.22-1.5-2.66-1.91-4h3.82c-.41 1.34-1.08 2.78-1.91 4zm2.34-6H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.05c.47-1.21.85-2.58 1.13-4.05h2.75a8.03 8.03 0 0 1-3.88 4.05zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+      </td></tr>
+      <tr><th>Jul 2026</th><td>Attended <a href="./acvss.html">ACVSS</a>, Accra, Ghana &mdash; worked on the generative-models project below.
+        <svg class="news-icon news-icon-sparkle" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg>
+      </td></tr>
+      <tr><th>2025</th><td>Completed AI Forge Training, Boeing STEM Center, Algiers.
+        <svg class="news-icon news-icon-flight" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2.5 1.5V22l4-1 4 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+      </td></tr>
+    </table>
   </div>
 
-  <!-- ============================================================
-       About Me — bio text with the portrait docked to the right,
-       rather than a big photo up top in the hero.
-       ============================================================ -->
-  <section id="about">
-    <h2 class="dense-label">About Me</h2>
-    <div class="about-block">
-      <div class="content prose">
-        <p>
-          I'm a Master's student in Visual Computing at <a href="#about">USTHB</a> (Algiers), currently
-          working on a thesis on hepatic vessel segmentation in radiological imaging. Before that I
-          completed a Bachelor's in Computer Science at the same university, with a graduation project
-          on an optimised architecture for image segmentation.
-        </p>
-        <p>
-          My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
-          patient treatment and contribute to medical research. VesselVis, listed below, grew directly
-          out of that thesis work.
-        </p>
-        <p>
-          Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
-          I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
-          AI and medicine.
-        </p>
-      </div>
-      <img class="about-photo" src="./static/images/headshot.jpg" alt="Portrait of Younes Toukal">
-    </div>
-  </section>
-
-  <!-- ============================================================
-       News — every entry visible at once, scanned in a glance.
-       Newest first. To add an entry, copy one <li> block.
-
-       TODO: only the first two entries below are confirmed real
-       (ACVSS/Indaba dates+locations, sourced separately). The third
-       is real (from the CV) but replace or extend as new things
-       happen — a paper submission, a new conference, a PhD start.
-       ============================================================ -->
-  <section id="news">
-    <h2 class="dense-label">News</h2>
-    <ul class="news-plain">
-      <li><span class="news-plain-date">Aug 2026</span>Attended <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria.</li>
-      <li><span class="news-plain-date">Jul 2026</span>Attended <a href="./acvss.html">ACVSS</a>, Accra, Ghana.</li>
-      <li><span class="news-plain-date">2025</span>Completed AI Forge Training, Boeing STEM Center, Algiers.</li>
-    </ul>
-  </section>
-
-  <!-- ============================================================
-       Selected Projects — thumbnail-left rows, title and one-line
-       context only; the point of this style is density, not the
-       fuller description each project got in the card layout before.
-
-       TODO: every thumbnail below is a placeholder (static/images/projects/*.svg).
-       TODO: every project link points at github.com/younestoukal/<slug>, which
-       doesn't exist yet — replace with the real URL once there is one.
-       ============================================================ -->
-  <section id="research">
-    <h2 class="dense-label">Selected Projects</h2>
-
+  <h2 class="section-h" id="work"><a href="#work">selected work</a></h2>
+  <div class="publications">
     <!-- ============================================================
-         TEMPLATE — copy everything from <div class="project-row" to
-         the matching </div>, paste it anywhere in this section, and
-         fill in the blanks. .project-row-org is optional.
+         TEMPLATE — copy everything from <li> to the matching </li>,
+         paste it anywhere in this list, fill in the blanks.
+         .bib-links is optional — drop the whole div for no links.
 
-    <div class="project-row">
-      <img src="./static/images/projects/PLACEHOLDER.svg" alt="[Project title] — placeholder">
-      <div>
-        <div class="project-row-title"><a href="[URL]" rel="noopener" target="_blank">[Project title]</a></div>
-        <div class="project-row-org">[Venue, lab, dataset or collaborator]</div>
+    <li>
+      <div class="bib-row">
+        <div class="bib-thumb"><img src="./static/images/projects/PLACEHOLDER.svg" alt=""></div>
+        <div class="bib-body">
+          <div class="bib-title">[Project title]</div>
+          <div class="bib-author"><em>Younes Toukal</em></div>
+          <div class="bib-periodical"><em>[Venue, lab or context]</em>, [Year]</div>
+          <div class="bib-links">
+            <a href="[URL]" rel="noopener" target="_blank">Code</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </li>
 
          ============================================================ -->
+    <ol class="bibliography">
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/vesselvis.svg" alt="vesselvis.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">VesselVis &mdash; 3D vessel segmentation review tool</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>Thesis project</em>, USTHB, 2026</div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/vesselvis" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/generative-models.svg" alt="generative-models.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">Generative models from the ground up</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>ACVSS</em>, Accra, 2026</div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/generative-models" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/depth-reconstruction.svg" alt="depth-reconstruction.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">Depth &amp; 3D reconstruction in an operating room</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>Independent project</em>, 2026</div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/depth-reconstruction" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/video-understanding.svg" alt="video-understanding.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">Video understanding &amp; action recognition</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>KTH dataset</em>, 2025</div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/video-understanding" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/vision-architecture.svg" alt="vision-architecture.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">Saliency-inspired vision architecture</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>Ongoing research</em></div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/vision-architecture" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="bib-row">
+          <div class="bib-thumb"><img src="./static/images/projects/thermal-tempering.svg" alt="thermal-tempering.svg"></div>
+          <div class="bib-body">
+            <div class="bib-title">Thermal tempering and thermal shock in glass</div>
+            <div class="bib-author"><em>Younes Toukal</em></div>
+            <div class="bib-periodical"><em>SEDIVER &middot; IPR&ndash;ISCR</em>, Rennes, 2024</div>
+            <div class="bib-links">
+              <a href="https://github.com/younestoukal/thermal-tempering" rel="noopener" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
 
-    <div class="project-row">
-      <img src="./static/images/projects/vesselvis.svg" alt="VesselVis — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/vesselvis" rel="noopener" target="_blank">VesselVis &mdash; 3D vessel segmentation review tool</a></div>
-        <div class="project-row-org">Thesis project</div>
-      </div>
-    </div>
-
-    <div class="project-row">
-      <img src="./static/images/projects/generative-models.svg" alt="Generative models from the ground up — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/generative-models" rel="noopener" target="_blank">Generative models from the ground up</a></div>
-        <div class="project-row-org">ACVSS 2026</div>
-      </div>
-    </div>
-
-    <div class="project-row">
-      <img src="./static/images/projects/depth-reconstruction.svg" alt="Depth and 3D reconstruction in an operating room — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/depth-reconstruction" rel="noopener" target="_blank">Depth &amp; 3D reconstruction in an operating room</a></div>
-        <div class="project-row-org">Independent project</div>
-      </div>
-    </div>
-
-    <div class="project-row">
-      <img src="./static/images/projects/video-understanding.svg" alt="Video understanding and action recognition — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/video-understanding" rel="noopener" target="_blank">Video understanding &amp; action recognition</a></div>
-        <div class="project-row-org">KTH dataset</div>
-      </div>
-    </div>
-
-    <div class="project-row">
-      <img src="./static/images/projects/vision-architecture.svg" alt="Saliency-inspired vision architecture — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/vision-architecture" rel="noopener" target="_blank">Saliency-inspired vision architecture</a></div>
-        <div class="project-row-org">Ongoing research</div>
-      </div>
-    </div>
-
-    <!-- Earlier work, outside the computer-vision focus above — kept
-         last on purpose. -->
-    <div class="project-row">
-      <img src="./static/images/projects/thermal-tempering.svg" alt="Thermal tempering and thermal shock in glass — placeholder">
-      <div>
-        <div class="project-row-title"><a href="https://github.com/younestoukal/thermal-tempering" rel="noopener" target="_blank">Thermal tempering and thermal shock in glass</a></div>
-        <div class="project-row-org">SEDIVER &middot; IPR&ndash;ISCR, Rennes</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       Activities & Training — a compact logo timeline: summer
-       schools, conferences, training programmes and degrees all in
-       one dense list, rather than separate Education/Experience
-       sections with a full paragraph each.
-
-       TODO: only the first two dated entries are confirmed real
-       (ACVSS/Indaba); the others are from the CV.
-       ============================================================ -->
-  <section id="experience">
-    <h2 class="dense-label">Activities &amp; Training</h2>
-
+  <h2 class="section-h" id="activities"><a href="#activities">activities &amp; training</a></h2>
+  <div class="publications">
     <!-- ============================================================
-         TEMPLATE — copy everything from <div class="activity-row" to
-         the matching </div>, paste it anywhere in this section, and
-         fill in the blanks. Link the title only if there's a detail
-         page for it (see README for how to add one).
+         TEMPLATE — copy everything from <li> to the matching </li>,
+         paste it anywhere in this list, fill in the blanks. Wrap the
+         title in <a href="...">…</a> only if it links to its own
+         detail page (see acvss.html for an example
+         to copy); otherwise leave it as plain text.
 
-    <div class="activity-row">
-      <img src="./static/images/logos/PLACEHOLDER.svg" alt="">
-      <span class="activity-row-date">[e.g. 2024, or a range]</span>
-      [Title], [institution/organisation], [city, country]. [One optional clause of detail.]
-    </div>
+    <li>
+      <div class="act-row">
+        <div class="act-thumb"><img src="./static/images/logos/PLACEHOLDER.svg" alt=""></div>
+        <div class="act-body">
+          <div class="bib-title">[Title]</div>
+          <div class="bib-periodical">[Date] &middot; [City, country] &middot; [Organisation]</div>
+        </div>
+      </div>
+    </li>
 
          ============================================================ -->
-
-    <div class="activity-row">
-      <img src="./static/images/logos/acvss.jpg" alt="">
-      <span class="activity-row-date">Jul 2026</span>
-      <a href="./acvss.html">ACVSS</a> &mdash; African Computer Vision Summer School, Accra, Ghana (Google AICC).
-    </div>
-    <div class="activity-row">
-      <img src="./static/images/logos/dl-indaba.png" alt="">
-      <span class="activity-row-date">Aug 2026</span>
-      <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria (Pan-Atlantic University).
-    </div>
-    <div class="activity-row">
-      <img src="./static/images/logos/ai-forge.jpg" alt="">
-      <span class="activity-row-date">2025</span>
-      <a href="./ai-forge.html">AI Forge Training</a>, Boeing STEM Center &middot; WorldLearning Algeria, Algiers.
-    </div>
-    <div class="activity-row">
-      <img src="./static/images/logos/usthb.png" alt="">
-      <span class="activity-row-date">2020&ndash;2026</span>
-      MSc Visual Computing (thesis: hepatic vessel segmentation) &amp; BSc Computer Science, USTHB, Algiers.
-    </div>
-  </section>
-
-  <!-- ============================================================
-       Contact
-       ============================================================ -->
-  <section id="contact">
-    <h2 class="dense-label">Contact</h2>
-    <p class="contact-row">
-      <a class="email-link" href="mailto:younesstoukal2@gmail.com">younesstoukal2@gmail.com</a>
-      <a href="https://www.linkedin.com/in/younes-toukal/" rel="noopener" target="_blank">LinkedIn</a>
-      <a href="https://github.com/younestoukal" rel="noopener" target="_blank">GitHub</a>
-      <span class="contact-row-location">Algiers, Algeria</span>
-    </p>
-  </section>
+    <ol class="activities">
+      <li>
+        <div class="act-row">
+          <div class="act-thumb"><img src="./static/images/logos/acvss.jpg" alt=""></div>
+          <div class="act-body">
+            <div class="bib-title"><a href="./acvss.html" style="color:inherit; border-bottom:none">African Computer Vision Summer School</a></div>
+            <div class="bib-periodical">Jul 2026 &middot; Accra, Ghana &middot; Google AI Community Center</div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="act-row">
+          <div class="act-thumb"><img src="./static/images/logos/dl-indaba.png" alt=""></div>
+          <div class="act-body">
+            <div class="bib-title"><a href="./deep-learning-indaba.html" style="color:inherit; border-bottom:none">Deep Learning Indaba</a></div>
+            <div class="bib-periodical">Aug 2026 &middot; Lagos, Nigeria &middot; Pan-Atlantic University</div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="act-row">
+          <div class="act-thumb"><img src="./static/images/logos/ai-forge.jpg" alt=""></div>
+          <div class="act-body">
+            <div class="bib-title"><a href="./ai-forge.html" style="color:inherit; border-bottom:none">AI Forge Training</a></div>
+            <div class="bib-periodical">2025 &middot; Boeing STEM Center &middot; WorldLearning Algeria, Algiers</div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="act-row">
+          <div class="act-thumb"><img src="./static/images/logos/usthb.png" alt=""></div>
+          <div class="act-body">
+            <div class="bib-title">MSc Visual Computing &amp; BSc Computer Science</div>
+            <div class="bib-periodical">2020&ndash;2026 &middot; USTHB, Algiers</div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
 
 </div>
 
+<footer class="site-footer" id="contact">
+  <div class="contact-icons">
+    <a href="mailto:younesstoukal2@gmail.com" title="email">
+      <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 2.24-8 6-8-6V18h16V8.24z"/></svg>
+    </a>
+    <a href="https://github.com/younestoukal" rel="noopener" target="_blank" title="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.41 6.84 9.77.5.1.68-.22.68-.5 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.28 9.28 0 0 1 5 0c1.9-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/younes-toukal/" rel="noopener" target="_blank" title="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.1 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C19.9 8 21 10.13 21 13.6V23h-4v-8.55c0-2.04-.04-4.66-2.84-4.66-2.84 0-3.28 2.22-3.28 4.5V23h-4V8z"/></svg>
+    </a>
+  </div>
+</footer>
 
-<script src="./static/js/index.js"></script>
+<script>
+  // Land on About only when arriving with no hash of its own — a link
+  // that points at #news, #work or #activities (like the detail pages'
+  // "Back to Activities" link) should still land where it says.
+  if (!window.location.hash) {
+    window.location.hash = 'about';
+  }
+
+  (function () {
+    var bar = document.getElementById('progress');
+    function update() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.value = h > 0 ? (window.scrollY / h) * 100 : 0;
+    }
+    document.addEventListener('scroll', update);
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    var root = document.documentElement;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
 </body>
 </html>
