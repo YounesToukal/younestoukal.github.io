@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Applies a saved theme choice before first paint, so there is no flash
+       of the wrong colour scheme. The toggle itself lives in static/js/index.js. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Younes Toukal — Visual Computing &amp; Medical Imaging</title>
+  <meta name="description"
+        content="Younes Toukal — Master's student in Visual Computing at USTHB, working on computer vision
+                 and AI for medical imaging.">
+  <meta name="keywords"
+        content="Younes Toukal, visual computing, computer vision, medical imaging, deep learning,
+                 image segmentation, USTHB, Algiers">
+  <meta name="author" content="Younes Toukal">
+
+  <link rel="canonical" href="https://younestoukal.github.io/">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Younes Toukal — Visual Computing &amp; Medical Imaging">
+  <meta property="og:description"
+        content="Master's student in Visual Computing at USTHB, working on computer vision and AI for
+                 medical imaging.">
+  <meta property="og:url" content="https://younestoukal.github.io/">
+  <!-- TODO: replace og-card.svg with a real 1200x630 PNG social-card image (can be built
+       from static/images/headshot.jpg, which already exists) -->
+  <meta property="og:image" content="https://younestoukal.github.io/static/images/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     Inline SVG icon sprite — no icon-font dependency. Only the theme
+     toggle needs one now; Contact is plain text links, matching the
+     dense faculty-page style below.
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2
+             M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </symbol>
+  <symbol id="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/>
+  </symbol>
+</svg>
+
+
+<!-- ============================================================
+     Nav — sticky, CV button always reachable (PLAN §1)
+     ============================================================ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container navbar-inner">
+    <a class="navbar-brand" href="#home">Younes&nbsp;Toukal</a>
+
+    <div class="navbar-menu">
+      <a class="navbar-item" href="#about">About</a>
+      <a class="navbar-item" href="#news">News</a>
+      <a class="navbar-item" href="#research">Projects</a>
+      <a class="navbar-item" href="#experience">Activities</a>
+      <a class="navbar-item" href="#contact">Contact</a>
+    </div>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon icon-sun" aria-hidden="true"><use href="#icon-sun"/></svg>
+      <svg class="icon icon-moon" aria-hidden="true"><use href="#icon-moon"/></svg>
+    </button>
+
+    <!-- TODO: replace static/pdfs/CV.pdf with the real CV (keep the filename and this link works as-is) -->
+    <a class="navbar-item navbar-cv" href="./static/pdfs/CV.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     Dense, text-first, single-column layout — one narrow container
+     for the whole page rather than full-bleed alternating sections.
+     Every block below follows the same pattern: a small-caps label
+     (.dense-label) then the block's content. See README for the
+     copy-paste recipe for each repeated block (project row, activity
+     row, news item).
+     ============================================================ -->
+<div class="container narrow page-content">
+
+  <!-- Hero — name and one-line credential; everything else (photo,
+       bio, contact) lives in its own labelled block below. -->
+  <div class="hero-block" id="home">
+    <h1 class="name-title">Younes Toukal</h1>
+    <p class="hero-role">USTHB &middot; Visual Computing &middot; AI for Medical Imaging</p>
+  </div>
+
+  <!-- ============================================================
+       About Me — bio text with the portrait docked to the right,
+       rather than a big photo up top in the hero.
+       ============================================================ -->
+  <section id="about">
+    <h2 class="dense-label">About Me</h2>
+    <div class="about-block">
+      <div class="content prose">
+        <p>
+          I'm a Master's student in Visual Computing at <a href="#about">USTHB</a> (Algiers), currently
+          working on a thesis on hepatic vessel segmentation in radiological imaging. Before that I
+          completed a Bachelor's in Computer Science at the same university, with a graduation project
+          on an optimised architecture for image segmentation.
+        </p>
+        <p>
+          My focus is applying computer vision and AI to healthcare &mdash; models and tools that support
+          patient treatment and contribute to medical research. VesselVis, listed below, grew directly
+          out of that thesis work.
+        </p>
+        <p>
+          Alongside that I've worked on generative models, 3D reconstruction and video understanding, and
+          I'm always looking for opportunities &mdash; research or otherwise &mdash; at the intersection of
+          AI and medicine.
+        </p>
+      </div>
+      <img class="about-photo" src="./static/images/headshot.jpg" alt="Portrait of Younes Toukal">
+    </div>
+  </section>
+
+  <!-- ============================================================
+       News — every entry visible at once, scanned in a glance.
+       Newest first. To add an entry, copy one <li> block.
+
+       TODO: only the first two entries below are confirmed real
+       (ACVSS/Indaba dates+locations, sourced separately). The third
+       is real (from the CV) but replace or extend as new things
+       happen — a paper submission, a new conference, a PhD start.
+       ============================================================ -->
+  <section id="news">
+    <h2 class="dense-label">News</h2>
+    <ul class="news-plain">
+      <li><span class="news-plain-date">Aug 2026</span>Attended <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria.</li>
+      <li><span class="news-plain-date">Jul 2026</span>Attended <a href="./acvss.html">ACVSS</a>, Accra, Ghana.</li>
+      <li><span class="news-plain-date">2025</span>Completed AI Forge Training, Boeing STEM Center, Algiers.</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       Selected Projects — thumbnail-left rows, title and one-line
+       context only; the point of this style is density, not the
+       fuller description each project got in the card layout before.
+
+       TODO: every thumbnail below is a placeholder (static/images/projects/*.svg).
+       TODO: every project link points at github.com/younestoukal/<slug>, which
+       doesn't exist yet — replace with the real URL once there is one.
+       ============================================================ -->
+  <section id="research">
+    <h2 class="dense-label">Selected Projects</h2>
+
+    <!-- ============================================================
+         TEMPLATE — copy everything from <div class="project-row" to
+         the matching </div>, paste it anywhere in this section, and
+         fill in the blanks. .project-row-org is optional.
+
+    <div class="project-row">
+      <img src="./static/images/projects/PLACEHOLDER.svg" alt="[Project title] — placeholder">
+      <div>
+        <div class="project-row-title"><a href="[URL]" rel="noopener" target="_blank">[Project title]</a></div>
+        <div class="project-row-org">[Venue, lab, dataset or collaborator]</div>
+      </div>
+    </div>
+
+         ============================================================ -->
+
+    <div class="project-row">
+      <img src="./static/images/projects/vesselvis.svg" alt="VesselVis — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/vesselvis" rel="noopener" target="_blank">VesselVis &mdash; 3D vessel segmentation review tool</a></div>
+        <div class="project-row-org">Thesis project</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/generative-models.svg" alt="Generative models from the ground up — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/generative-models" rel="noopener" target="_blank">Generative models from the ground up</a></div>
+        <div class="project-row-org">ACVSS 2026</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/depth-reconstruction.svg" alt="Depth and 3D reconstruction in an operating room — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/depth-reconstruction" rel="noopener" target="_blank">Depth &amp; 3D reconstruction in an operating room</a></div>
+        <div class="project-row-org">Independent project</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/video-understanding.svg" alt="Video understanding and action recognition — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/video-understanding" rel="noopener" target="_blank">Video understanding &amp; action recognition</a></div>
+        <div class="project-row-org">KTH dataset</div>
+      </div>
+    </div>
+
+    <div class="project-row">
+      <img src="./static/images/projects/vision-architecture.svg" alt="Saliency-inspired vision architecture — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/vision-architecture" rel="noopener" target="_blank">Saliency-inspired vision architecture</a></div>
+        <div class="project-row-org">Ongoing research</div>
+      </div>
+    </div>
+
+    <!-- Earlier work, outside the computer-vision focus above — kept
+         last on purpose. -->
+    <div class="project-row">
+      <img src="./static/images/projects/thermal-tempering.svg" alt="Thermal tempering and thermal shock in glass — placeholder">
+      <div>
+        <div class="project-row-title"><a href="https://github.com/younestoukal/thermal-tempering" rel="noopener" target="_blank">Thermal tempering and thermal shock in glass</a></div>
+        <div class="project-row-org">SEDIVER &middot; IPR&ndash;ISCR, Rennes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Activities & Training — a compact logo timeline: summer
+       schools, conferences, training programmes and degrees all in
+       one dense list, rather than separate Education/Experience
+       sections with a full paragraph each.
+
+       TODO: only the first two dated entries are confirmed real
+       (ACVSS/Indaba); the others are from the CV.
+       ============================================================ -->
+  <section id="experience">
+    <h2 class="dense-label">Activities &amp; Training</h2>
+
+    <!-- ============================================================
+         TEMPLATE — copy everything from <div class="activity-row" to
+         the matching </div>, paste it anywhere in this section, and
+         fill in the blanks. Link the title only if there's a detail
+         page for it (see README for how to add one).
+
+    <div class="activity-row">
+      <img src="./static/images/logos/PLACEHOLDER.svg" alt="">
+      <span class="activity-row-date">[e.g. 2024, or a range]</span>
+      [Title], [institution/organisation], [city, country]. [One optional clause of detail.]
+    </div>
+
+         ============================================================ -->
+
+    <div class="activity-row">
+      <img src="./static/images/logos/acvss.jpg" alt="">
+      <span class="activity-row-date">Jul 2026</span>
+      <a href="./acvss.html">ACVSS</a> &mdash; African Computer Vision Summer School, Accra, Ghana (Google AICC).
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/dl-indaba.png" alt="">
+      <span class="activity-row-date">Aug 2026</span>
+      <a href="./deep-learning-indaba.html">Deep Learning Indaba</a>, Lagos, Nigeria (Pan-Atlantic University).
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/ai-forge.jpg" alt="">
+      <span class="activity-row-date">2025</span>
+      <a href="./ai-forge.html">AI Forge Training</a>, Boeing STEM Center &middot; WorldLearning Algeria, Algiers.
+    </div>
+    <div class="activity-row">
+      <img src="./static/images/logos/usthb.png" alt="">
+      <span class="activity-row-date">2020&ndash;2026</span>
+      MSc Visual Computing (thesis: hepatic vessel segmentation) &amp; BSc Computer Science, USTHB, Algiers.
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Contact
+       ============================================================ -->
+  <section id="contact">
+    <h2 class="dense-label">Contact</h2>
+    <p class="contact-row">
+      <a class="email-link" href="mailto:younesstoukal2@gmail.com">younesstoukal2@gmail.com</a>
+      <a href="https://www.linkedin.com/in/younes-toukal/" rel="noopener" target="_blank">LinkedIn</a>
+      <a href="https://github.com/younestoukal" rel="noopener" target="_blank">GitHub</a>
+      <span class="contact-row-location">Algiers, Algeria</span>
+    </p>
+  </section>
+
+</div>
+
+
+<script src="./static/js/index.js"></script>
+</body>
+</html>

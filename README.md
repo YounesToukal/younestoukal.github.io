@@ -1,14 +1,9 @@
 # younestoukal.github.io
 
-Personal academic website for Younes Toukal — a single, dense, text-first column covering
-Hero, About Me, News, Selected Projects, Activities & Training and Contact, with the CV
-always one click away.
-
-Structure follows the "dense faculty-page" convention seen on some personal researcher sites
-(Amir Zamir's, for one) rather than the wider, more spaced-out card layout most other
-personal sites use — one narrow column, a small-caps label above each block, thumbnail-left
-rows for projects, a compact logo timeline for activities. See the commit history for the
-reasoning.
+Personal academic website for Younes Toukal — an al-folio-style layout (fixed navbar and
+scroll-progress bar, floated profile photo, bibliography-row project list, a compact logo
+timeline for activities) covering About, News, Selected Work, Activities & Training and
+Contact, with a matching CV page and light/dark theme toggle.
 
 Plain HTML/CSS/JS. **No build step, no dependencies** — the only external requests are to
 Google Fonts. Deploys directly on GitHub Pages.
@@ -16,166 +11,148 @@ Google Fonts. Deploys directly on GitHub Pages.
 ## Structure
 
 ```
-index.html                      the one-page site (Hero, About Me, News, Selected Projects, Activities & Training, Contact)
+index.html                      the homepage (About, News, Selected Work, Activities & Training, Contact)
+cv.html                         the CV page, linked from the navbar's "cv" item
 acvss.html                      ACVSS detail page, linked from its Activities row
 deep-learning-indaba.html       Deep Learning Indaba detail page, linked from its Activities row
 ai-forge.html                   AI Forge Training detail page, linked from its Activities row
-static/css/index.css            all styling; theme variables in the :root block at the top
-static/js/index.js              scroll reveal, active-nav highlight, email popover, theme toggle
 static/images/                  headshot, favicon, social card
-static/images/projects/         one thumbnail per Selected Projects row
+static/images/projects/         one thumbnail per Selected Work row
 static/images/logos/            one logo per Activities & Training row
-static/images/experience/*/     photo gallery for each Activities detail page (folder name is
-                                 a legacy holdover from an earlier "Experience" section name)
-static/pdfs/CV.pdf              the CV the CV links open in a new tab
+static/images/experience/*/     photo gallery for each Activities detail page
+static/pdfs/CV.pdf              the file the CV page's PDF icon opens in a new tab
 .nojekyll                       serve files verbatim, no Jekyll processing
 ```
 
+Each of the five HTML files is self-contained — its own `<style>` block, not a shared
+stylesheet — so there's no `static/css/index.css` to keep in sync; every colour is a custom
+property in that file's own `:root` block near the top (see
+[Change the accent colour](#change-the-accent-colour)).
+
+`index-old.html`, `acvss-old.html`, `deep-learning-indaba-old.html` and
+`ai-forge-old.html` are the previous dense-single-column design, kept as a reference/backup —
+not linked from anywhere live.
+
 ## Editing
 
-Everything is in **one file**, `index.html` — no build step, no template engine, no data
-file to keep in sync. Open it in any text editor (VS Code, Notepad, GitHub's own web
-editor — see [Publishing a change](#publishing-a-change) below), find the block you want by
-its banner comment (`<!-- Selected Projects -->` etc. — each block also has its own `<h2>`
-with matching text, so Ctrl+F for the heading works too), and edit the text directly. Every
-repeated row — a project, an activity, a news item — is a self-contained chunk you can copy,
-paste, delete or reorder freely; nothing elsewhere in the file depends on how many there are.
+No build step, no template engine, no data file to keep in sync. Open the file you want in
+any text editor (VS Code, Notepad, GitHub's own web editor — see
+[Publishing a change](#publishing-a-change) below), find the block by its `<h2>` heading or
+`id`, and edit the text directly. Every repeated row — a News entry, a Selected Work item, an
+Activities row, a gallery photo — is a self-contained chunk you can copy, paste, delete or
+reorder freely; nothing elsewhere in the file depends on how many there are.
 
-Each of the recipes below is a copy-paste-and-fill-in-the-blanks operation. None of them
-require touching the CSS or JS files.
-
-### Add a project
-
-In `index.html`, inside the **Selected Projects** section (`id="research"`), there's a
-commented-out `TEMPLATE` block right above the first row, starting `<div class="project-row">`.
-Copy everything between (and including) that `<div class="project-row">` and its matching
-`</div>`, paste it anywhere among the other project rows, and fill in the blanks:
-
-```html
-<div class="project-row">
-  <img src="./static/images/projects/PLACEHOLDER.svg" alt="[Project title] — placeholder">
-  <div>
-    <div class="project-row-title"><a href="[URL]" rel="noopener" target="_blank">[Project title]</a></div>
-    <div class="project-row-org">[Venue, lab, dataset or collaborator]</div>
-  </div>
-</div>
-```
-
-`.project-row-org` is optional — delete it for a project with no venue/context line. Order on
-the page follows order in the file — move a row up or down by cutting and pasting its whole
-`<div class="project-row">…</div>` block earlier or later in the list.
-
-### Remove a project
-
-Delete everything from that project's `<div class="project-row">` to its matching `</div>`,
-inclusive. Nothing else needs to change.
-
-### Add a photo to a project
-
-Every row already points at a placeholder image in `static/images/projects/`. Drop your real
-photo or figure into that folder and either overwrite the placeholder file (keep the same
-filename) or give it a new name and update the `src="…"` on that row's `<img>` — no other
-markup changes needed. Any image works; it's cropped to fit automatically.
-
-### Change a project's link
-
-Each row's title is already a link:
-
-```html
-<div class="project-row-title"><a href="[URL]" rel="noopener" target="_blank">[Project title]</a></div>
-```
-
-Just edit the `href` — every project link currently points at
-`github.com/younestoukal/<slug>`, which doesn't exist yet, so this is a TODO for all six.
-
-### Add an Activities & Training entry
-
-In the **Activities & Training** section (`id="experience"`), there's a commented-out
-`TEMPLATE` block right above the first row, starting `<div class="activity-row">`. Copy it,
-paste it anywhere among the other rows, and fill in the blanks:
-
-```html
-<div class="activity-row">
-  <img src="./static/images/logos/PLACEHOLDER.svg" alt="">
-  <span class="activity-row-date">[e.g. 2024, or a range]</span>
-  [Title], [institution/organisation], [city, country]. [One optional clause of detail.]
-</div>
-```
-
-Wrap `[Title]` in `<a href="./your-page.html">…</a>` if the entry links to its own detail
-page (see below); otherwise leave it as plain text. To remove an entry, delete its whole
-`<div class="activity-row">…</div>`.
-
-**Logos** — every entry has a small logo in `static/images/logos/`, shown at its real colours
-(no filter). Drop a new logo image in, same filename, done — any square-ish image works.
-
-**Linking an entry to its own page** — `acvss.html`, `deep-learning-indaba.html` and
-`ai-forge.html` are standalone pages (same nav chrome as `index.html`, reusing `index.css`)
-with a description and a photo gallery. To give a new entry the same treatment: copy one of
-these three files as a starting point, edit the title/meta/body/gallery, save it at the repo
-root with a new filename, then wrap that entry's title text in
-`<a href="./your-new-page.html">…</a>` back in `index.html`.
-
-Every gallery photo is a placeholder in `static/images/experience/<page>/` — same drop-in
-swap as any other photo on the site, and you can add more `<img>` tags to a gallery; the grid
-reflows on its own.
-
-**Clicking a gallery photo** opens it large with a lightbox (prev/next, arrow keys, a "2 / 3"
-counter) — `static/js/index.js` wires this up automatically for any `.gallery` on any page, so
-a new gallery on a new detail page gets it for free, no extra markup needed. A gallery with
-just one photo works too; the counter and nav arrows only appear once there's more than one.
+Each of the recipes below is a copy-paste-and-fill-in-the-blanks operation, using the
+commented-out `TEMPLATE` block sitting right above the first entry in each list.
 
 ### Add or remove a News update
 
-In the **News** section, there's a `<ul class="news-plain">` — newest entry first. Copy one
-`<li>` to add an entry, or delete one to remove it:
+In `index.html`'s **News** section (`id="news"`), copy one `<tr>` row (newest first) to add
+an entry, or delete one to remove it:
 
 ```html
-<li><span class="news-plain-date">[Month Year]</span>[What happened — a link is fine.]</li>
+<tr><th>[Month Year, or just a year]</th><td>[What happened — a <a href="...">link</a> is fine.]</td></tr>
 ```
 
-Every entry stays visible at once, on purpose — this is meant to be scanned in a glance, not
-stepped through. Keep new entries newest-first; the newest date is coloured automatically by
-CSS (`.news-plain li:first-child`), nothing to set by hand.
+### Add or remove a Selected Work item
 
-### Edit the bio, role line or degrees
+In `index.html`'s **Selected Work** section (`id="work"`), copy an `<li>` block from
+`ol.bibliography` and fill in the blanks:
 
-The role line (`<p class="hero-role">`) is in the Hero block near the top of `index.html`.
-The bio itself is the `<div class="content prose">` inside the **About Me** section — three
-plain paragraphs, edit the text directly. The two degrees are folded into the last row of
-**Activities & Training** rather than kept as a separate Education section; edit that row the
-same way as any other activity row.
+```html
+<li>
+  <div class="bib-row">
+    <div class="bib-thumb"><img src="./static/images/projects/PLACEHOLDER.svg" alt=""></div>
+    <div class="bib-body">
+      <div class="bib-title">[Project title]</div>
+      <div class="bib-author"><em>Younes Toukal</em></div>
+      <div class="bib-periodical"><em>[Venue, lab or context]</em>, [Year]</div>
+      <div class="bib-links">
+        <a href="[URL]" rel="noopener" target="_blank">Code</a>
+      </div>
+    </div>
+  </div>
+</li>
+```
+
+`.bib-links` is optional — drop the whole `div` for an item with nothing to link to. Delete
+the whole `<li>…</li>` to remove an item.
+
+### Add a photo to a Selected Work item
+
+Every row points at a placeholder image in `static/images/projects/`. Drop your real photo or
+figure into that folder and either overwrite the placeholder file (keep the same filename) or
+give it a new name and update the row's `src="…"` — no other markup changes needed. Any image
+works; it's cropped to fit automatically.
+
+### Add or remove an Activities & Training entry
+
+In `index.html`'s **Activities & Training** section (`id="activities"`), copy an `<li>` block
+from `ol.activities` and fill in the blanks:
+
+```html
+<li>
+  <div class="act-row">
+    <div class="act-thumb"><img src="./static/images/logos/PLACEHOLDER.svg" alt=""></div>
+    <div class="act-body">
+      <div class="bib-title">[Title]</div>
+      <div class="bib-periodical">[Date] &middot; [City, country] &middot; [Organisation]</div>
+    </div>
+  </div>
+</li>
+```
+
+Wrap `[Title]` in `<a href="./your-page.html">…</a>` if the entry links to its own detail page
+(see below); otherwise leave it as plain text. Delete the whole `<li>…</li>` to remove an
+entry.
+
+**Logos** — every entry has a small logo in `static/images/logos/`, framed in a uniform chip
+so differently-sized/coloured source images still sit consistently. Drop a new logo image in,
+same filename, done — any square-ish image works.
+
+**Linking an entry to its own page** — `acvss.html`, `deep-learning-indaba.html` and
+`ai-forge.html` are standalone detail pages (same navbar as `index.html`, a photo gallery with
+a click-to-enlarge lightbox). To give a new entry the same treatment: copy one of these three
+files as a starting point, edit the title/meta/body/gallery, save it at the repo root with a
+new filename, then wrap that entry's title text in `<a href="./your-new-page.html">…</a>` back
+in `index.html`.
+
+Every gallery photo is a placeholder in `static/images/experience/<page>/` — same drop-in swap
+as any other photo, and you can add more `<img>` tags to `.gallery`; the grid and the lightbox
+both pick up new photos automatically, no other markup to touch.
+
+### Edit the bio or research interests
+
+The bio is the `<div class="clearfix">` inside the **About** section of `index.html` — plain
+paragraphs and a `<ul>`, edit the text directly.
 
 ### Change contact info
 
-Email, LinkedIn and GitHub live in one place — the **Contact** section's `<p class="contact-row">`
-— plain text links, no icons:
+Email, GitHub and LinkedIn live in the footer's `.contact-icons` row at the bottom of
+`index.html` — three icon links:
 
 ```html
-<a class="email-link" href="mailto:…">…</a>
-<a href="…" rel="noopener" target="_blank">LinkedIn</a>
-<a href="…" rel="noopener" target="_blank">GitHub</a>
-<span class="contact-row-location">Algiers, Algeria</span>
+<a href="mailto:…" title="email">…</a>
+<a href="…" rel="noopener" target="_blank" title="GitHub">…</a>
+<a href="…" rel="noopener" target="_blank" title="LinkedIn">…</a>
 ```
 
-**Email links** — any `<a class="email-link" href="mailto:…">` gets a click popover (full
-address, Copy button, Send email link) from `static/js/index.js`, driven entirely by the
-link's own `href`. Change the address there and the popover updates itself — nothing to edit
-in the JS. Without JS the link still works as a plain mailto: link.
+Just edit the `href` on the one you want to change.
 
 ### Swap the photo
 
 Replace `static/images/headshot.jpg` with your own image, same filename — or give it a new
-name and update the `src="…"` on `<img class="about-photo">` in the **About Me** section.
-Works with any aspect ratio; it's cropped to a square automatically.
+name and update the `src="…"` on `<img>` inside `.profile` in the **About** section. Works
+with any aspect ratio; it's cropped to fit automatically.
 
 ### Change the accent colour
 
-The top of `static/css/index.css` defines every colour as a named custom property, including
-a separate dark-mode palette. Changing the accent is one line:
+Each of the five HTML files defines its own colours as named custom properties near the top
+of its `<style>` block, in both the light (`:root`) and dark-mode blocks. Changing the accent
+means editing `--theme` in all five files:
 
 ```css
-:root { --accent: #873d32; }   /* chestnut */
+:root{ --theme:#ea4335; }
 ```
 
 ## Publishing a change
@@ -199,20 +176,14 @@ Same result: Pages rebuilds automatically after the push.
 
 ## Remaining placeholders
 
-Everything still to be filled in is marked with a `TODO` comment. To list them:
-
-```powershell
-Select-String -Path index.html -Pattern TODO
-```
+Everything still to be filled in:
 
 | What | Where |
 |---|---|
 | CV | `static/pdfs/CV.pdf` → overwrite with the real file, same name, no HTML change needed |
-| Google Scholar | commented-out block in the hero; uncomment when you have a profile |
-| 6 project photos | `static/images/projects/*.svg` → replace with real photos/figures |
-| 6 project links | every row's link points at `github.com/younestoukal/<slug>`, which doesn't exist — replace with the real URL |
-| 9 Activities gallery photos | `static/images/experience/*/photo-*.svg` → replace with real photos |
-| Social card | `static/images/og-card.svg` → ideally a 1200×630 PNG |
+| Selected Work photos | `static/images/projects/*.svg` → replace with real photos/figures |
+| Selected Work links | every item's `[Code]` link points at `github.com/younestoukal/<slug>`, which doesn't exist — replace with the real URL |
+| Activities gallery photos | `static/images/experience/*/photo-*.svg` → replace with real photos |
 
 Content has been fact-checked against your CV (`Resume - Younes Toukal.pdf`) — identity,
 education, contact email and most Activities entries are sourced from it directly, not

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Applies a saved theme choice before first paint, so there is no flash
+       of the wrong colour scheme. The toggle itself lives in static/js/index.js. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Deep Learning Indaba — Younes Toukal</title>
+  <meta name="description"
+        content="Younes Toukal at Deep Learning Indaba 2026, Lagos, Nigeria.">
+  <link rel="canonical" href="https://younestoukal.github.io/deep-learning-indaba.html">
+
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     Inline SVG icon sprite — no icon-font dependency.
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2
+             M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </symbol>
+  <symbol id="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/>
+  </symbol>
+</svg>
+
+
+<!-- ============================================================
+     Nav — same chrome as index.html, minus the section-jump menu
+     (this page has no sections to jump to).
+     ============================================================ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container navbar-inner">
+    <a class="navbar-brand" href="./index.html">Younes&nbsp;Toukal</a>
+
+    <div class="navbar-menu">
+      <a class="navbar-item" href="./index.html#experience">Experience</a>
+    </div>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon icon-sun" aria-hidden="true"><use href="#icon-sun"/></svg>
+      <svg class="icon icon-moon" aria-hidden="true"><use href="#icon-moon"/></svg>
+    </button>
+
+    <a class="navbar-item navbar-cv" href="./static/pdfs/CV.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</nav>
+
+
+<section class="section">
+  <div class="container">
+
+    <a class="back-link" href="./index.html#experience">Back to Experience</a>
+
+    <header class="detail-header">
+      <img class="detail-logo" src="./static/images/logos/dl-indaba.png" alt="">
+      <div>
+        <h1 class="detail-title">Deep Learning Indaba</h1>
+        <p class="detail-meta">
+          <span>Aug 2026</span>
+          <span>Lagos, Nigeria</span>
+          <span>Pan-Atlantic University</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="prose detail-body">
+      <p>
+        Deep Learning Indaba is the annual pan-African gathering for the machine learning
+        community &mdash; researchers, engineers, students and policymakers from across the
+        continent, working to strengthen Africa's AI research capacity and leadership. The
+        2026 edition's theme was "Sovereign Intelligence": Africa's capacity to develop and
+        direct its own AI systems, data and scientific future.
+      </p>
+      <p>
+        I took part in the Indaba's programme of talks, tutorials and community-building
+        around machine learning research in Africa.
+      </p>
+    </div>
+
+    <!-- TODO: every photo below is a placeholder
+         (static/images/experience/deep-learning-indaba/*.svg). Replace each with a real
+         photo (jpg/png), same filename or update the src — same drop-in pattern as the
+         headshot. Add more <img> tags for more photos; the grid reflows automatically. -->
+    <h2 class="gallery-label">Photos</h2>
+    <div class="gallery">
+      <img src="./static/images/experience/deep-learning-indaba/photo-1.svg" alt="Deep Learning Indaba — placeholder">
+      <img src="./static/images/experience/deep-learning-indaba/photo-2.svg" alt="Deep Learning Indaba — placeholder">
+      <img src="./static/images/experience/deep-learning-indaba/photo-3.svg" alt="Deep Learning Indaba — placeholder">
+    </div>
+
+  </div>
+</section>
+
+<script src="./static/js/index.js"></script>
+</body>
+</html>
