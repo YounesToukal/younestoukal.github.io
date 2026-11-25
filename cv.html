@@ -4,180 +4,232 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>cv | Younes Toukal</title>
+<title>CV &mdash; Younes Toukal</title>
+<meta name="description" content="Curriculum vitae of Younes Toukal, Master's student in Visual Computing at USTHB, Algiers.">
 <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem('theme');
-      if (saved === 'dark' || saved === 'light') {
-        document.documentElement.setAttribute('data-theme', saved);
-      }
-    } catch (e) {}
-  })();
-</script>
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#fff; --text:#000; --text-light:#828282; --theme:#ea4335;
-    --divider:rgba(0,0,0,.1); --hover-fill:rgba(0,0,0,.06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg:#171513; --text:#e8eaed; --text-light:#9aa0a6; --theme:#ea4335;
-      --divider:rgba(255,255,255,.14); --hover-fill:rgba(255,255,255,.08);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg:#171513; --text:#e8eaed; --text-light:#9aa0a6; --theme:#ea4335;
-    --divider:rgba(255,255,255,.14); --hover-fill:rgba(255,255,255,.08);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth; scroll-padding-top:70px}
-  body{
-    margin:0; padding-top:56px;
-    background:var(--bg); color:var(--text);
-    font-family:'Roboto',sans-serif; font-weight:300; font-size:1rem; line-height:1.6;
-  }
-  a{color:var(--theme); text-decoration:none}
-  a:hover{text-decoration:underline}
-
-  .container{max-width:930px; margin:0 auto; padding:0 15px}
-
-  /* Navbar — identical to the main clone page */
-  .navbar{
-    position:fixed; top:0; left:0; right:0; z-index:100; height:56px;
-    background:var(--bg); border-bottom:1px solid var(--divider);
-  }
-  .navbar .container{display:flex; align-items:center; justify-content:space-between; gap:18px; height:100%}
-  .navbar-brand{font-family:'Roboto Slab',serif; font-size:1.15rem; color:var(--text)}
-  .navbar-brand:hover{color:var(--theme); text-decoration:none}
-  .navbar-brand .bold{font-weight:700}
-  .navbar-right{display:flex; align-items:center; gap:18px}
-  .navbar-nav{display:flex; gap:26px; list-style:none; margin:0; padding:0}
-  .navbar-nav a{color:var(--text); font-size:.95rem}
-  .navbar-nav .active a{color:var(--theme); font-weight:700}
-  .navbar-nav a:hover{color:var(--theme); text-decoration:none}
-
-  .theme-toggle{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:36px; height:36px; padding:0; border:0; border-radius:50%;
-    background:transparent; color:var(--text-light); cursor:pointer;
-  }
-  .theme-toggle:hover{background:var(--hover-fill); color:var(--text)}
-  .theme-toggle svg{width:19px; height:19px}
-  .theme-toggle .icon-sun{fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
-  .theme-toggle .icon-moon{display:none; fill:currentColor}
-  :root[data-theme="dark"] .theme-toggle .icon-sun{display:none}
-  :root[data-theme="dark"] .theme-toggle .icon-moon{display:block}
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]) .theme-toggle .icon-sun{display:none}
-    :root:not([data-theme="light"]) .theme-toggle .icon-moon{display:block}
-  }
-
-  progress{position:fixed; left:0; top:56px; z-index:10; width:100%; height:2px; appearance:none; border:0; background:transparent; color:var(--theme)}
-  progress::-webkit-progress-bar{background:transparent}
-  progress::-webkit-progress-value{background:var(--theme)}
-  progress::-moz-progress-bar{background:var(--theme)}
-
-  .main{max-width:930px; margin:56px auto 0; padding:0 15px 90px}
-
-  .post-title{
-    display:flex; align-items:center; justify-content:space-between;
-    font-family:'Roboto Slab',serif; font-size:2.2rem; font-weight:400;
-    margin:0 0 40px; padding-bottom:20px; border-bottom:1px solid var(--divider);
-  }
-  .pdf-link{
-    display:inline-flex; flex-direction:column; align-items:center; gap:2px;
-    color:var(--text-light); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em;
-  }
-  .pdf-link:hover{color:var(--theme); text-decoration:none}
-
-  /* Responsive — brand + full nav + toggle all share one 56px-tall
-     row here, which overflows a phone-width screen unless it shrinks
-     (and, past a point, drops the brand — the "about" link does the
-     same job of getting back to the main page). */
-  @media (max-width:680px){
-    .navbar .container{gap:8px}
-    .navbar-brand{font-size:.95rem}
-    .navbar-right{gap:10px}
-    .navbar-nav{gap:10px}
-    .navbar-nav a{font-size:.78rem}
-    .theme-toggle{width:32px; height:32px}
-    .post-title{font-size:1.7rem; margin-bottom:28px; padding-bottom:14px}
-  }
-  @media (max-width:420px){
-    .navbar-brand{display:none}
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./static/css/site.css">
 </head>
 <body>
 
-<nav class="navbar">
+<header class="site-header">
   <div class="container">
-    <a class="navbar-brand" href="./index.html#about"><span class="bold">Younes</span> Toukal</a>
-    <div class="navbar-right">
-      <ul class="navbar-nav">
-        <li><a href="./index.html#about">about</a></li>
-        <li><a href="./index.html#news">news</a></li>
-        <li><a href="./index.html#work">work</a></li>
-        <li><a href="./index.html#activities">activities</a></li>
-        <li class="active"><a href="./cv.html">cv</a></li>
-      </ul>
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/></svg>
-      </button>
-    </div>
+    <a class="brand" href="./index.html"><b>Younes</b> Toukal</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="./index.html#about">About</a>
+      <a href="./index.html#news">News</a>
+      <a href="./index.html#work">Work</a>
+      <a href="./index.html#activities">Activities</a>
+      <a href="./cv.html" aria-current="page">CV</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M20.7 15.6A9 9 0 1 1 8.4 3.3a7 7 0 0 0 12.3 12.3z"/></svg>
+    </button>
   </div>
-</nav>
-<progress id="progress" value="0" max="100"></progress>
+  <div class="progress"></div>
+</header>
 
-<div class="main">
-  <div class="post">
-    <header>
-      <h1 class="post-title">
-        cv
-        <a class="pdf-link" href="./static/pdfs/CV.pdf" target="_blank" rel="noopener noreferrer" title="Download PDF">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 13h2.2a2 2 0 1 1 0 4H8v3H6.6v-8H8v1zm0 1.3v1.4h2.2a.7.7 0 1 0 0-1.4H8zM13 12h1.4v8H13v-8zm3 0h3.5v1.3H17.4V15h2v1.3h-2V20H16v-8z"/></svg>
-          <span>PDF</span>
-        </a>
-      </h1>
-    </header>
+<main class="container">
+  <section class="cv-head">
+    <h1><b>Younes</b> Toukal</h1>
+    <p class="intro-role">Master's student in Visual Computing &middot; USTHB, Algiers, Algeria</p>
+    <ul class="links">
+      <li><a href="mailto:younesstoukal2@gmail.com">younesstoukal2@gmail.com</a></li>
+      <li><a href="https://younestoukal.github.io/">younestoukal.github.io</a></li>
+      <li><a href="https://github.com/YounesToukal" target="_blank" rel="noopener">github.com/YounesToukal</a></li>
+      <li><a href="https://www.linkedin.com/in/younes-toukal/" target="_blank" rel="noopener">linkedin.com/in/younes-toukal</a></li>
+      <li class="no-print"><a href="./static/pdfs/CV.pdf" target="_blank" rel="noopener">Download PDF</a></li>
+    </ul>
+  </section>
 
-    <article>
-      <div class="cv">
-      </div>
-    </article>
+  <section>
+    <h2>Education</h2>
+    <ol class="rows cv">
+      <li class="row">
+        <div class="row-label">2020&ndash;2026</div>
+        <div>
+          <div class="row-title">Université des Sciences et de la Technologie Houari Boumediene (USTHB)</div>
+          <div class="row-meta">Algiers, Algeria</div>
+          <div class="row-text"><ul><li><span class="row-title">MSc in Visual Computing</span> &mdash; thesis in progress on hepatic vessel segmentation in radiological imaging</li><li><span class="row-title">BSc in Computer Science</span> &mdash; graduation project on an optimised architecture for image segmentation</li></ul></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Research projects</h2>
+    <ol class="rows cv">
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title"><a href="https://github.com/YounesToukal/context-aware-hepatic-vessel-segmentation" target="_blank" rel="noopener">Context-aware hepatic vessel segmentation</a></div>
+          <div class="row-meta">Medical Segmentation Decathlon, Task 08</div>
+          <div class="row-text">A 2.5D EfficientNet U-Net for hepatic vessels in CT, using adjacent slices as context, deep supervision and a clDice loss to keep thin vessels connected.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title">VesselVis &mdash; 3D vessel segmentation review tool</div>
+          <div class="row-meta">Thesis project, USTHB</div>
+          <div class="row-text">A web tool for reviewing and correcting 3D liver vessel segmentations, with synchronised 2D slice views, a 3D mesh viewer, and relabelling and island removal written back to the volume.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title">Generative models from the ground up</div>
+          <div class="row-meta">ACVSS, Accra</div>
+          <div class="row-text">A DDIM sampler with classifier-free guidance built from scratch, followed by ControlNet, LoRA fine-tuning and flow matching on Stable Diffusion 1.5.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title">Depth and 3D reconstruction in an operating room</div>
+          <div class="row-meta">Independent project</div>
+          <div class="row-text">Scene geometry and meshes from a single fisheye camera in a medical simulation trauma room, where wide-angle distortion and occlusion break standard pinhole depth pipelines.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2025</div>
+        <div>
+          <div class="row-title">Video understanding and action recognition</div>
+          <div class="row-meta">KTH dataset</div>
+          <div class="row-text">A comparison of action recognition approaches on KTH: frozen DINOv2 features with a temporal head, LSTMs, I3D and video transformers, weighed against their cost.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2024</div>
+        <div>
+          <div class="row-title">Thermal tempering and thermal shock in glass</div>
+          <div class="row-meta">SEDIVER &middot; IPR&ndash;ISCR, Rennes</div>
+          <div class="row-text">Residual stress build-up during the thermal tempering of glass insulators, and the conditions under which thermal shock leads to failure.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">Ongoing</div>
+        <div>
+          <div class="row-title">Saliency-inspired vision architecture</div>
+          <div class="row-meta">Independent research</div>
+          <div class="row-text">A vision architecture whose structure follows visual saliency and attention, instead of attending uniformly over a fixed grid of tokens.</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Schools and training</h2>
+    <ol class="rows cv">
+      <li class="row">
+        <div class="row-label">Aug 2026</div>
+        <div>
+          <div class="row-title"><a href="./deep-learning-indaba.html">Deep Learning Indaba</a></div>
+          <div class="row-meta">Pan-Atlantic University, Lagos, Nigeria</div>
+          <div class="row-text">Annual pan-African machine learning gathering: talks, tutorials and community events.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">Jul 2026</div>
+        <div>
+          <div class="row-title"><a href="./acvss.html">African Computer Vision Summer School</a></div>
+          <div class="row-meta">Google AI Community Center, Accra, Ghana</div>
+          <div class="row-text">Lectures and project work; generative-models project.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2025</div>
+        <div>
+          <div class="row-title"><a href="./ai-forge.html">AI Forge Training</a></div>
+          <div class="row-meta">Boeing STEM Center &middot; WorldLearning Algeria, Algiers, Algeria</div>
+          <div class="row-text">Developed an AI model for aviation-related challenges in a multidisciplinary team; conferences by Microsoft AI for Good, INRIA and InstaDeep.</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Teaching</h2>
+    <ol class="rows cv">
+      <li class="row">
+        <div class="row-label"></div>
+        <div>
+          <div class="row-title">Computer vision</div>
+          <div class="row-meta">Micro Club, scientific student club of USTHB, Algiers</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Other projects</h2>
+    <ol class="rows cv">
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title"><a href="https://github.com/YounesToukal/SABIL" target="_blank" rel="noopener">SABIL</a></div>
+          <div class="row-meta">Energy access</div>
+          <div class="row-text">A home solar kit that protects its battery, for families who lose the electricity grid for months.</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">2026</div>
+        <div>
+          <div class="row-title"><a href="https://github.com/YounesToukal/QuranicSchool" target="_blank" rel="noopener">QuranDec</a></div>
+          <div class="row-meta">Community education</div>
+          <div class="row-text">A bilingual Arabic and French web application for following each student&rsquo;s progress in a Quranic school.</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ol class="rows cv compact">
+      <li class="row">
+        <div class="row-label">Languages</div>
+        <div>
+          <div class="row-text">Python, C, C++, SQL</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">Machine learning</div>
+        <div>
+          <div class="row-text">PyTorch, TensorFlow, CatBoost, TabPFN</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">Vision</div>
+        <div>
+          <div class="row-text">OpenCV, nibabel</div>
+        </div>
+      </li>
+      <li class="row">
+        <div class="row-label">Data</div>
+        <div>
+          <div class="row-text">NumPy, pandas, Matplotlib</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="links">
+      <li>Younes Toukal</li>
+      <li><a href="mailto:younesstoukal2@gmail.com">Email</a></li>
+      <li><a href="https://github.com/YounesToukal" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/younes-toukal/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="./cv.html">CV</a></li>
+    </ul>
   </div>
-</div>
+</footer>
 
-<script>
-  (function () {
-    var bar = document.getElementById('progress');
-    function update() {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.value = h > 0 ? (window.scrollY / h) * 100 : 0;
-    }
-    document.addEventListener('scroll', update);
-    window.addEventListener('resize', update);
-    update();
-  })();
-
-  (function () {
-    var btn = document.querySelector('.theme-toggle');
-    if (!btn) return;
-    var root = document.documentElement;
-    btn.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      var next = current === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-    });
-  })();
-</script>
+<script src="./static/js/site.js"></script>
 </body>
 </html>
